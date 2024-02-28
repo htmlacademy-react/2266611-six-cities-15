@@ -25,6 +25,20 @@
   font-size: 170px;
 }
 
+.right {
+  position: absolute;
+  top: -6px;
+  left: -104px;
+  transform: rotate(30deg);
+}
+
+.left {
+  position: absolute;
+  top: 6px;
+  right: -92px;
+  transform: rotate(-22deg);
+}
+
 .subtitle {
   font-size: 30px;
   margin: 0 0 10px 0;

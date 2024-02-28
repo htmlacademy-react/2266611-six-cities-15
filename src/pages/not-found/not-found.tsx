@@ -5,7 +5,7 @@ import styles from './styles.module.css';
 const NotFound = (): JSX.Element => (
   <div className={styles.wrapper}>
     <div className={styles.container}>
-      <h1 className={styles.title}>404</h1>
+      <h1 className={styles.title}><span className="visually-hidden">Error</span><span className={styles.right}>4</span>0<span className={styles.left}>4</span></h1>
       <h2 className={styles.subtitle}>Sorry, Page Not Found</h2>
       <p className={styles.description}>The page you are looking for was moved, removed, renamed or might never existed</p>
       <Link className={styles.link} to={AppRoute.Root}>Back to Home</Link>

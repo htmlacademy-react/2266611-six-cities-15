@@ -1,4 +1,4 @@
-import AppRouter from './router/app-router';
+import AppRouter from './router/app-router.tsx';
 
 const App = (): JSX.Element => (
   <AppRouter />
