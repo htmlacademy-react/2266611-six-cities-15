@@ -1,7 +1,7 @@
-import Main from '../pages/main';
+import AppRouter from './router/app-router';
 
 const App = (): JSX.Element => (
-  <Main />
+  <AppRouter />
 );
 
 export default App;
