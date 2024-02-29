@@ -1,4 +1,4 @@
-import Layout from '../../shared/layouts';
+import Layout from '../../shared/layout';
 import Header from '../../widgets/header';
 import Place from '../../widgets/place';
 import NearPlaces from '../../widgets/near-places';

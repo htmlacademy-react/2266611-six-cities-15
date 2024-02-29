@@ -14,7 +14,12 @@ const AppRoutes = (): JSX.Element => (
     <BrowserRouter>
       <Routes>
         <Route path={AppRoute.Root} element={<Main />} />
-        <Route path={AppRoute.Login} element={<Login />} />
+        <Route path={AppRoute.Login} element={
+          <PrivateRoute authorizationStatus={AuthorizationStatus.Auth} isReverse>
+            <Login />
+          </PrivateRoute>
+        }
+        />
         <Route path={AppRoute.Favorites} element={
           <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
             <Favorites />

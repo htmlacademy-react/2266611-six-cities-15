@@ -1,4 +1,4 @@
-import Layout from '../../shared/layouts';
+import Layout from '../../shared/layout';
 import Authorization from '../../widgets/authorization';
 import Header from '../../widgets/header';
 

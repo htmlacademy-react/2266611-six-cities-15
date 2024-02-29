@@ -1,4 +1,4 @@
-import Layout from '../../shared/layouts';
+import Layout from '../../shared/layout';
 import Header from '../../widgets/header';
 import Footer from '../../widgets/footer';
 import SavedList from '../../widgets/saved-list';

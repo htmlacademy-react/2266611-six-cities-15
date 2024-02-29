@@ -1,4 +1,4 @@
-import Layout from '../../shared/layouts';
+import Layout from '../../shared/layout';
 import Header from '../../widgets/header';
 import Filter from '../../features/filter';
 import AllPlaces from '../../widgets/all-places';
