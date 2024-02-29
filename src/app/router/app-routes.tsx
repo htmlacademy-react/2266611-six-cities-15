@@ -1,7 +1,8 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
-import { AppRoute, AuthorizationStatus } from '../../shared/const';
+import { AppRoute } from '../../shared/const';
 import PrivateRoute from './private-route';
+import { getAuthorizationStatus } from '../../mocks/authorization-status';
 
 import Main from '../../pages/main';
 import Login from '../../pages/login';
@@ -15,13 +16,13 @@ const AppRoutes = (): JSX.Element => (
       <Routes>
         <Route path={AppRoute.Root} element={<Main />} />
         <Route path={AppRoute.Login} element={
-          <PrivateRoute authorizationStatus={AuthorizationStatus.Auth} isReverse>
+          <PrivateRoute authorizationStatus={getAuthorizationStatus()} isReverse>
             <Login />
           </PrivateRoute>
         }
         />
         <Route path={AppRoute.Favorites} element={
-          <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
+          <PrivateRoute authorizationStatus={getAuthorizationStatus()}>
             <Favorites />
           </PrivateRoute>
         }
