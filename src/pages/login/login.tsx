@@ -1,23 +1,19 @@
+import Layout from '../../shared/layouts';
 import Authorization from '../../widgets/authorization';
-import Logo from '../../shared/ui/logo';
+import Header from '../../widgets/header';
 
 const Login = (): JSX.Element => (
-  <div className="page page--gray page--login">
-
-    <header className="header">
-      <div className="container">
-        <div className="header__wrapper">
-          <div className="header__left">
-            <Logo />
-          </div>
-        </div>
-      </div>
-    </header>
-
-    <main className="page__main page__main--login">
-      <Authorization />
-    </main>
-  </div>
+  <Layout
+    wrapper="page page--gray page--login"
+    title="6 cities: authorization"
+    header={<Header withToolbar={false}/>}
+    content={
+      <main className="page__main page__main--login">
+        <Authorization />
+      </main>
+    }
+    footer={false}
+  />
 );
 
 export default Login;
