@@ -1,10 +1,12 @@
 import Review from '../../../entities/review';
 import Feedback from '../../../features/feedback';
+import Badge from '../../../shared/ui/badge';
 import { AuthorizationStatus } from '../../../shared/const';
 import { getAuthorizationStatus } from '../../../mocks/authorization-status';
 
 const Place = (): JSX.Element => {
   const authorizationStatus = getAuthorizationStatus();
+
   return (
     <section className="offer">
 
@@ -34,9 +36,10 @@ const Place = (): JSX.Element => {
       <div className="offer__container container">
         <div className="offer__wrapper">
 
-          <div className="offer__mark">
-            <span>Premium</span>
-          </div>
+          <Badge
+            className="offer__mark"
+            text="Premium"
+          />
 
           <div className="offer__name-wrapper">
             <h1 className="offer__name">
