@@ -1,7 +1,7 @@
-import AppRouter from './router/app-router.tsx';
+import AppRoutes from './router/app-routes.tsx';
 
 const App = (): JSX.Element => (
-  <AppRouter />
+  <AppRoutes />
 );
 
 export default App;
