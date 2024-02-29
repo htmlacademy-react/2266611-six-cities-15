@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 import { Helmet } from 'react-helmet-async';
 
 type LayoutProps = {
-  wrapper?: string;
+  wrapper: string;
   title: string;
   header: ReactNode;
   content: ReactNode;

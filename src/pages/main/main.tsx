@@ -7,7 +7,7 @@ const Main = (): JSX.Element => (
   <Layout
     wrapper="page page--gray page--main"
     title="6 cities"
-    header={<Header />}
+    header={<Header activeLogo/>}
     content={
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>

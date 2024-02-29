@@ -6,9 +6,10 @@ import Logo from '../../../shared/ui/logo';
 
 type HeaderProps = {
   withToolbar?: boolean;
+  activeLogo?: boolean;
 }
 
-const Header = ({ withToolbar = true }: HeaderProps): JSX.Element => {
+const Header = ({ withToolbar = true, activeLogo = false }: HeaderProps): JSX.Element => {
   const authorizationStatus = getAuthorizationStatus();
 
   if (!withToolbar) {
@@ -17,7 +18,10 @@ const Header = ({ withToolbar = true }: HeaderProps): JSX.Element => {
         <div className="container">
           <div className="header__wrapper">
             <div className="header__left">
-              <Logo />
+              <Logo
+                type="header"
+                to={AppRoute.Root}
+              />
             </div>
           </div>
         </div>
@@ -30,7 +34,11 @@ const Header = ({ withToolbar = true }: HeaderProps): JSX.Element => {
       <div className="container">
         <div className="header__wrapper">
           <div className="header__left">
-            <Logo />
+            <Logo
+              type="header"
+              isActive={activeLogo}
+              to={AppRoute.Root}
+            />
           </div>
           <nav className="header__nav">
 
