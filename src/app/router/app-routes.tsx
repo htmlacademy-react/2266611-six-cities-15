@@ -1,9 +1,10 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { AppRoute } from '../../shared/const';
-import PrivateRoute from './private-route';
+import { ScrollToTop } from '../../shared/lib';
 import { getAuthorizationStatus } from '../../mocks/authorization-status';
 
+import PrivateRoute from './private-route';
 import Main from '../../pages/main';
 import Login from '../../pages/login';
 import Favorites from '../../pages/favorites';
@@ -13,6 +14,7 @@ import NotFound from '../../pages/not-found';
 const AppRoutes = (): JSX.Element => (
   <HelmetProvider>
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         <Route path={AppRoute.Root} element={<Main />} />
         <Route path={AppRoute.Login} element={
