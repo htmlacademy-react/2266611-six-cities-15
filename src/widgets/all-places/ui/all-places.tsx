@@ -20,7 +20,9 @@ const AllPlaces = (): JSX.Element => (
         </div>
       </section>
       <div className="cities__right-section">
-        <Map />
+        <Map
+          type="cities"
+        />
       </div>
     </div>
   </div>

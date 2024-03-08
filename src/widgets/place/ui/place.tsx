@@ -1,3 +1,4 @@
+import Map from '../../../features/map';
 import Review from '../../../entities/review';
 import Feedback from '../../../features/feedback';
 import Badge from '../../../shared/ui/badge';
@@ -152,7 +153,9 @@ const Place = (): JSX.Element => {
         </div>
       </div>
 
-      <section className="offer__map map"></section>
+      <Map
+        type="offer"
+      />
 
     </section>
   );
