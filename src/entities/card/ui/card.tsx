@@ -8,7 +8,7 @@ type CardProps = {
 }
 
 const Card = ({ offer }: CardProps): JSX.Element => {
-  const {title, type, price, previewImage, isFavorite, isPremium, rating} = offer;
+  const { title, type, price, previewImage, isFavorite, isPremium, rating } = offer;
   return (
     <article className="cities__card place-card">
 

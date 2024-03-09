@@ -16,12 +16,12 @@ type AppRoutesProps = {
   offers: Place[];
 }
 
-const AppRoutes = ({offers}: AppRoutesProps): JSX.Element => (
+const AppRoutes = ({ offers }: AppRoutesProps): JSX.Element => (
   <HelmetProvider>
     <BrowserRouter>
       <ScrollToTop />
       <Routes>
-        <Route path={AppRoute.Root} element={<Main offers={offers}/>} />
+        <Route path={AppRoute.Root} element={<Main offers={offers} />} />
         <Route path={AppRoute.Login} element={
           <PrivateRoute authorizationStatus={getAuthorizationStatus()} isReverse>
             <Login />

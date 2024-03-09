@@ -8,16 +8,16 @@ type MainProps = {
   offers: Place[];
 };
 
-const Main = ({offers}: MainProps): JSX.Element => (
+const Main = ({ offers }: MainProps): JSX.Element => (
   <Layout
     wrapper="page page--gray page--main"
     title="6 cities"
-    header={<Header activeLogo/>}
+    header={<Header activeLogo />}
     content={
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
         <Filter />
-        <AllPlaces offers={offers}/>
+        <AllPlaces offers={offers} />
       </main>
     }
     footer={false}

@@ -5,7 +5,7 @@ type AppProps = {
   offers: Place[];
 }
 
-const App = ({offers}: AppProps): JSX.Element => (
+const App = ({ offers }: AppProps): JSX.Element => (
   <AppRoutes
     offers={offers}
   />

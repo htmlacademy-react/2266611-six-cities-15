@@ -7,7 +7,7 @@ type AllPlacesProps = {
   offers: Place[];
 };
 
-const AllPlaces = ({offers}: AllPlacesProps): JSX.Element => (
+const AllPlaces = ({ offers }: AllPlacesProps): JSX.Element => (
   <div className="cities">
     <div className="cities__places-container container">
       <section className="cities__places places">

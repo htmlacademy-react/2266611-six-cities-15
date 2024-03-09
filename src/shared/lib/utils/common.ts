@@ -5,4 +5,4 @@ const calculateRatingPercent = (rating: number) => {
   return Math.round(rating) / total * 100;
 };
 
-export {capitalizeFirstLetter, calculateRatingPercent};
+export { capitalizeFirstLetter, calculateRatingPercent };
