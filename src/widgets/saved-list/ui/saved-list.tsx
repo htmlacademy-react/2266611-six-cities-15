@@ -12,6 +12,7 @@ const SavedList = (): JSX.Element => (
           </div>
         </div>
         <div className="favorites__places">
+
           <article className="favorites__card place-card">
             <div className="place-card__mark">
               <span>Premium</span>
@@ -78,6 +79,7 @@ const SavedList = (): JSX.Element => (
               <p className="place-card__type">Room</p>
             </div>
           </article>
+
         </div>
       </li>
 

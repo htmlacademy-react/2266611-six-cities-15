@@ -1,8 +1,13 @@
 import Sort from '../../../features/sort';
 import Map from '../../../features/map';
 import Card from '../../../entities/card';
+import { Place } from '../../../shared/types/places';
 
-const AllPlaces = (): JSX.Element => (
+type AllPlacesProps = {
+  offers: Place[];
+};
+
+const AllPlaces = ({offers}: AllPlacesProps): JSX.Element => (
   <div className="cities">
     <div className="cities__places-container container">
       <section className="cities__places places">
@@ -11,11 +16,7 @@ const AllPlaces = (): JSX.Element => (
         <Sort />
         <div className="cities__places-list places__list tabs__content">
 
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
+          {offers.map((offer) => <Card key={offer.id} offer={offer} />)}
 
         </div>
       </section>

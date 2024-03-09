@@ -1,6 +1,6 @@
-import { Offer } from '../shared/types/offers';
+import { Place } from '../shared/types/places';
 
-export const offers: Offer[] = [
+export const offers: Place[] = [
   {
     id: 'bcd01499-c2fa-4b9e-8920-d3d162b7836a',
     title: 'Nice, cozy, warm big bed apartment',
@@ -43,7 +43,7 @@ export const offers: Offer[] = [
       longitude: 2.330499,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: true,
     rating: 2.4
   },
