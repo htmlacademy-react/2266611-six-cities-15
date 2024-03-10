@@ -3,7 +3,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import { AppRoute } from '../../shared/const';
 import { ScrollToTop } from '../../shared/lib';
 import { getAuthorizationStatus } from '../../mocks/authorization-status';
-import { Place } from '../../shared/types/places';
+import { OfferType } from '../../shared/types/offer';
 
 import PrivateRoute from './private-route';
 import Main from '../../pages/main';
@@ -13,7 +13,7 @@ import Offer from '../../pages/offer';
 import NotFound from '../../pages/not-found';
 
 type AppRoutesProps = {
-  offers: Place[];
+  offers: OfferType[];
 }
 
 const AppRoutes = ({ offers }: AppRoutesProps): JSX.Element => (

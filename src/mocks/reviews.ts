@@ -1,4 +1,4 @@
-import { Review } from '../shared/types/reviews';
+import { Review } from '../shared/types/review';
 
 export const reviews: Review[] = [
   {

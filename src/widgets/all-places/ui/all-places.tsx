@@ -2,44 +2,52 @@ import Sort from '../../../features/sort';
 import Map from '../../../features/map';
 import Bookmark from '../../../features/bookmark';
 import Card from '../../../entities/card';
-import { Place } from '../../../shared/types/places';
+import { OfferType } from '../../../shared/types/offer';
+import { useState } from 'react';
 
 type AllPlacesProps = {
-  offers: Place[];
+  offers: OfferType[];
 };
 
-const AllPlaces = ({ offers }: AllPlacesProps): JSX.Element => (
-  <div className="cities">
-    <div className="cities__places-container container">
-      <section className="cities__places places">
-        <h2 className="visually-hidden">Places</h2>
-        <b className="places__found">312 places to stay in Amsterdam</b>
-        <Sort />
-        <div className="cities__places-list places__list tabs__content">
+const AllPlaces = ({ offers }: AllPlacesProps): JSX.Element => {
+  const [activeCard, setActiveCard] = useState<OfferType | null>(null);
+  const handleCardHover = (offer: OfferType | null) => setActiveCard(offer);
+  console.log(activeCard); // eslint-disable-line
 
-          {offers.map((offer) => (
-            <Card
-              key={offer.id}
-              offer={offer}
-              sectionName='cities'
-              userAction={
-                <Bookmark
-                  sectionName="place-card"
-                  isFavorite={offer.isFavorite}
-                />
-              }
-            />
-          ))}
+  return (
+    <div className="cities">
+      <div className="cities__places-container container">
+        <section className="cities__places places">
+          <h2 className="visually-hidden">Places</h2>
+          <b className="places__found">312 places to stay in Amsterdam</b>
+          <Sort />
+          <div className="cities__places-list places__list tabs__content">
 
+            {offers.map((offer) => (
+              <Card
+                key={offer.id}
+                offer={offer}
+                sectionName='cities'
+                userAction={
+                  <Bookmark
+                    sectionName="place-card"
+                    isFavorite={offer.isFavorite}
+                  />
+                }
+                onCardHover={handleCardHover}
+              />
+            ))}
+
+          </div>
+        </section>
+        <div className="cities__right-section">
+          <Map
+            type="cities"
+          />
         </div>
-      </section>
-      <div className="cities__right-section">
-        <Map
-          type="cities"
-        />
       </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default AllPlaces;

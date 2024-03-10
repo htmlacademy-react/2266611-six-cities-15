@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import { ReactNode } from 'react';
 import { Link, generatePath } from 'react-router-dom';
-import { Place } from '../../../shared/types/places';
+import { OfferType } from '../../../shared/types/offer';
 import { capitalizeFirstLetter } from '../../../shared/lib';
 import { AppRoute } from '../../../shared/const';
 import { getImageSize } from '../lib';
@@ -9,17 +9,22 @@ import StarRating from '../../../shared/ui/star-rating';
 import PremiumBadge from '../../../shared/ui/premium-badge';
 
 type CardProps = {
-  offer: Place;
+  offer: OfferType;
   sectionName: string;
   userAction: ReactNode;
+  onCardHover?: (offer: OfferType | null) => void;
 }
 
-const Card = ({ offer, sectionName, userAction }: CardProps): JSX.Element => {
+const Card = ({ offer, sectionName, userAction, onCardHover }: CardProps): JSX.Element => {
   const { id, title, type, price, previewImage, isPremium, rating } = offer;
   const { width, height } = getImageSize(sectionName);
 
   return (
-    <article className={clsx(`${sectionName}__card`, 'place-card')}>
+    <article
+      className={clsx(`${sectionName}__card`, 'place-card')}
+      onMouseEnter={() => onCardHover?.(offer)}
+      onMouseLeave={() => onCardHover?.(null)}
+    >
 
       {/* Premium значок */}
       {isPremium && <PremiumBadge sectionName="place-card" />}

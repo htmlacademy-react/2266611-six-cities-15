@@ -1,8 +1,8 @@
 import AppRoutes from './router/app-routes';
-import { Place } from '../shared/types/places';
+import { OfferType } from '../shared/types/offer';
 
 type AppProps = {
-  offers: Place[];
+  offers: OfferType[];
 }
 
 const App = ({ offers }: AppProps): JSX.Element => (

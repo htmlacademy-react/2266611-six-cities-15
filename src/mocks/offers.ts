@@ -1,4 +1,4 @@
-import { Place } from '../shared/types/places';
+import { Place } from '../shared/types/offer';
 
 export const offers: Place[] = [
   {
