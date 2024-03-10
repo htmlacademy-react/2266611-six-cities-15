@@ -1,2 +1,2 @@
-import Main from './main.tsx';
+import Main from './main';
 export default Main;

@@ -1,2 +1,2 @@
-import Feedback from './ui/feedback.tsx';
+import Feedback from './ui/feedback';
 export default Feedback;

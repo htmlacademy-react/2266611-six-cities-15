@@ -1,2 +1,2 @@
-export * from './common.ts';
-export * from './scroll-to-top.tsx';
+export * from './common';
+export * from './scroll-to-top';

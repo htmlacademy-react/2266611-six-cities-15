@@ -1,2 +1,2 @@
-import Offer from './offer.tsx';
+import Offer from './offer';
 export default Offer;

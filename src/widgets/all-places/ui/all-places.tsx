@@ -1,5 +1,6 @@
 import Sort from '../../../features/sort';
 import Map from '../../../features/map';
+import Bookmark from '../../../features/bookmark';
 import Card from '../../../entities/card';
 import { Place } from '../../../shared/types/places';
 
@@ -16,7 +17,19 @@ const AllPlaces = ({ offers }: AllPlacesProps): JSX.Element => (
         <Sort />
         <div className="cities__places-list places__list tabs__content">
 
-          {offers.map((offer) => <Card key={offer.id} offer={offer} />)}
+          {offers.map((offer) => (
+            <Card
+              key={offer.id}
+              offer={offer}
+              sectionName='cities'
+              userAction={
+                <Bookmark
+                  sectionName="place-card"
+                  isFavorite={offer.isFavorite}
+                />
+              }
+            />
+          ))}
 
         </div>
       </section>

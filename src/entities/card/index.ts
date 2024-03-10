@@ -1,2 +1,2 @@
-import Card from './ui/card.tsx';
+import Card from './ui/card';
 export default Card;

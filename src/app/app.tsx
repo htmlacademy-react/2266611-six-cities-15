@@ -1,5 +1,5 @@
-import AppRoutes from './router/app-routes.tsx';
-import { Place } from '../shared/types/places.ts';
+import AppRoutes from './router/app-routes';
+import { Place } from '../shared/types/places';
 
 type AppProps = {
   offers: Place[];

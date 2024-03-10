@@ -1,2 +1,2 @@
-import Register from './ui/register.tsx';
+import Register from './ui/register';
 export default Register;

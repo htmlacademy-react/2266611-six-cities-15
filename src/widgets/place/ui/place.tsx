@@ -1,7 +1,7 @@
 import Map from '../../../features/map';
 import Review from '../../../entities/review';
 import Feedback from '../../../features/feedback';
-import Badge from '../../../shared/ui/badge';
+import PremiumBadge from '../../../shared/ui/premium-badge';
 import { AuthorizationStatus } from '../../../shared/const';
 import { getAuthorizationStatus } from '../../../mocks/authorization-status';
 
@@ -37,10 +37,7 @@ const Place = (): JSX.Element => {
       <div className="offer__container container">
         <div className="offer__wrapper">
 
-          <Badge
-            className="offer__mark"
-            text="Premium"
-          />
+          <PremiumBadge sectionName="offer" />
 
           <div className="offer__name-wrapper">
             <h1 className="offer__name">
@@ -153,9 +150,7 @@ const Place = (): JSX.Element => {
         </div>
       </div>
 
-      <Map
-        type="offer"
-      />
+      <Map type="offer" />
 
     </section>
   );

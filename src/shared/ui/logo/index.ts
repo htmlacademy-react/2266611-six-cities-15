@@ -1,2 +1,2 @@
-import Logo from './ui/logo.tsx';
+import Logo from './ui/logo';
 export default Logo;

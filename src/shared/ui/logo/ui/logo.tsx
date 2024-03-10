@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import getLogoSize from '../lib';
+import { getLogoSize } from '../lib';
 
 type LogoProps = {
   type: 'header' | 'footer';
@@ -8,8 +8,8 @@ type LogoProps = {
 }
 
 const Logo = ({ type, isActive = false, to }: LogoProps): JSX.Element => {
-  const size = getLogoSize(type);
-  const image = <img className={`${type}__logo`} src="img/logo.svg" alt="6 cities logo" width={size.width} height={size.height} />;
+  const { width, height } = getLogoSize(type);
+  const image = <img className={`${type}__logo`} src="img/logo.svg" alt="6 cities logo" width={width} height={height} />;
 
   if (isActive) {
     return (

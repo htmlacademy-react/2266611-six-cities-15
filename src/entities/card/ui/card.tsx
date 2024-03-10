@@ -1,57 +1,68 @@
-import { Link } from 'react-router-dom';
+import clsx from 'clsx';
+import { ReactNode } from 'react';
+import { Link, generatePath } from 'react-router-dom';
 import { Place } from '../../../shared/types/places';
-import { capitalizeFirstLetter, calculateRatingPercent } from '../../../shared/lib';
-import Badge from '../../../shared/ui/badge';
+import { capitalizeFirstLetter } from '../../../shared/lib';
+import { AppRoute } from '../../../shared/const';
+import { getImageSize } from '../lib';
+import StarRating from '../../../shared/ui/star-rating';
+import PremiumBadge from '../../../shared/ui/premium-badge';
 
 type CardProps = {
   offer: Place;
+  sectionName: string;
+  userAction: ReactNode;
 }
 
-const Card = ({ offer }: CardProps): JSX.Element => {
-  const { title, type, price, previewImage, isFavorite, isPremium, rating } = offer;
+const Card = ({ offer, sectionName, userAction }: CardProps): JSX.Element => {
+  const { id, title, type, price, previewImage, isPremium, rating } = offer;
+  const { width, height } = getImageSize(sectionName);
+
   return (
-    <article className="cities__card place-card">
+    <article className={clsx(`${sectionName}__card`, 'place-card')}>
 
-      {isPremium ? <Badge className="place-card__mark" text="Premium" /> : null}
+      {/* Premium значок */}
+      {isPremium && <PremiumBadge sectionName="place-card" />}
 
-      <div className="cities__image-wrapper place-card__image-wrapper">
-        <Link to="/">
-          <img className="place-card__image" src={previewImage} width="260" height="200" alt="Place image" />
+      {/* Изображение-ссылка */}
+      <div className={clsx(`${sectionName}__image-wrapper`, 'place-card__image-wrapper')}>
+        <Link to={generatePath(AppRoute.Offer, { id: id })}>
+          <img
+            className="place-card__image"
+            src={previewImage}
+            width={width}
+            height={height}
+            alt="Place image"
+          />
         </Link>
       </div>
 
       <div className="place-card__info">
-
         <div className="place-card__price-wrapper">
 
+          {/* Цена */}
           <div className="place-card__price">
             <b className="place-card__price-value">&euro;{price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
 
-          <button className={`place-card__bookmark-button ${isFavorite ? 'place-card__bookmark-button--active' : ''} button`} type="button">
-            <svg className="place-card__bookmark-icon" width="18" height="19">
-              <use xlinkHref="#icon-bookmark"></use>
-            </svg>
-            <span className="visually-hidden">To bookmarks</span>
-          </button>
+          {/* Кнопка "Добавить в закладки" */}
+          {userAction}
 
         </div>
 
-        <div className="place-card__rating rating">
-          <div className="place-card__stars rating__stars">
-            <span style={{ width: `${calculateRatingPercent(rating)}%` }}></span>
-            <span className="visually-hidden">Rating</span>
-          </div>
-        </div>
+        {/* Звёздный рейтинг */}
+        <StarRating sectionName='place-card' rating={rating} />
 
+        {/* Заголовок-ссылка */}
         <h2 className="place-card__name">
-          <Link to="/">{title}</Link>
+          <Link to={generatePath(AppRoute.Offer, { id: id })}>{title}</Link>
         </h2>
 
+        {/* Тип жилья */}
         <p className="place-card__type">{capitalizeFirstLetter(type)}</p>
-
       </div>
+
     </article>
   );
 };
