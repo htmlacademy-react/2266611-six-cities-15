@@ -1,6 +1,6 @@
-import { Place } from '../shared/types/offer';
+import { OfferType } from '../shared/types/offer';
 
-export const offers: Place[] = [
+export const offers: OfferType[] = [
   {
     id: 'bcd01499-c2fa-4b9e-8920-d3d162b7836a',
     title: 'Nice, cozy, warm big bed apartment',
