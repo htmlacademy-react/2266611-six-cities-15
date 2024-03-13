@@ -1,2 +1,2 @@
-import SavedList from './ui/saved-list.tsx';
+import SavedList from './ui/saved-list';
 export default SavedList;

@@ -1,2 +1,2 @@
-import Map from './ui/map.tsx';
+import Map from './ui/map';
 export default Map;

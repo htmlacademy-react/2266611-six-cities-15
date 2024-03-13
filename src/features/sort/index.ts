@@ -1,2 +1,2 @@
-import Sort from './ui/sort.tsx';
+import Sort from './ui/sort';
 export default Sort;

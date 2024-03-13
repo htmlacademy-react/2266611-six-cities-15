@@ -1,2 +1,2 @@
-import NearPlaces from './ui/near-places.tsx';
+import NearPlaces from './ui/near-places';
 export default NearPlaces;

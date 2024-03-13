@@ -1,2 +1,2 @@
-import Place from './ui/place.tsx';
+import Place from './ui/place';
 export default Place;

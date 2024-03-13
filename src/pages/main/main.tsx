@@ -2,17 +2,22 @@ import Layout from '../../shared/layout';
 import Header from '../../widgets/header';
 import Filter from '../../features/filter';
 import AllPlaces from '../../widgets/all-places';
+import { OfferType } from '../../shared/types/offer';
 
-const Main = (): JSX.Element => (
+type MainProps = {
+  offers: OfferType[];
+};
+
+const Main = ({ offers }: MainProps): JSX.Element => (
   <Layout
     wrapper="page page--gray page--main"
     title="6 cities"
-    header={<Header />}
+    header={<Header activeLogo />}
     content={
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
         <Filter />
-        <AllPlaces />
+        <AllPlaces offers={offers} />
       </main>
     }
     footer={false}

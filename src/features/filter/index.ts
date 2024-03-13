@@ -1,2 +1,2 @@
-import Filter from './ui/filter.tsx';
+import Filter from './ui/filter';
 export default Filter;

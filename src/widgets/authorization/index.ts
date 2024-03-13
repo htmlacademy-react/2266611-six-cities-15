@@ -1,2 +1,2 @@
-import Authorization from './ui/authorization.tsx';
+import Authorization from './ui/authorization';
 export default Authorization;

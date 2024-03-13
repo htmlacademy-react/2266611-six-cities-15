@@ -1,2 +1,2 @@
-import Review from './ui/review.tsx';
+import Review from './ui/review';
 export default Review;
