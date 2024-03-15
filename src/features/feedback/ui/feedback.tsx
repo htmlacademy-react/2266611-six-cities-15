@@ -1,5 +1,5 @@
 import { useState, ChangeEvent, FormEvent } from 'react';
-import { ratings } from '../const';
+import { ratings } from '../const/const';
 import FormRating from '../../../shared/ui/form-rating';
 
 const Feedback = (): JSX.Element => {

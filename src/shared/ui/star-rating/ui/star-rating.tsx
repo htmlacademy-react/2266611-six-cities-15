@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { calculateRatingPercent } from '../lib';
+import { calculateRatingPercent } from '../lib/calculate-rating-percent';
 
 type StarRatingProps = {
   sectionName: string;

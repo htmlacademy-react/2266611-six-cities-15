@@ -4,7 +4,7 @@ import { Link, generatePath } from 'react-router-dom';
 import { OfferType } from '../../../shared/types/offer';
 import { capitalizeFirstLetter } from '../../../shared/lib';
 import { AppRoute } from '../../../shared/const';
-import { getImageSize } from '../lib';
+import { getImageSize } from '../lib/get-image-size';
 import StarRating from '../../../shared/ui/star-rating';
 import PremiumBadge from '../../../shared/ui/premium-badge';
 

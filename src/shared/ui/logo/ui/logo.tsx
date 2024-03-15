@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { getLogoSize } from '../lib';
+import { getLogoSize } from '../lib/get-logo-size';
 
 type LogoProps = {
   type: 'header' | 'footer';

@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { getIconSize } from '../lib';
+import { getIconSize } from '../lib/get-icon-size';
 
 type BookmarkProps = {
   sectionName: string;
