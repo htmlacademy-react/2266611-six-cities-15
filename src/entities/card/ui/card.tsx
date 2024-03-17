@@ -7,12 +7,13 @@ import { AppRoute } from '../../../shared/const';
 import { getImageSize } from '../lib/get-image-size';
 import StarRating from '../../../shared/ui/star-rating';
 import PremiumBadge from '../../../shared/ui/premium-badge';
+import { Nullable } from 'vitest';
 
 type CardProps = {
   offer: OfferType;
   sectionName: string;
   userAction: ReactNode;
-  onCardHover?: (offer: OfferType | null) => void;
+  onCardHover?: (offer: Nullable<OfferType>) => void;
 }
 
 const Card = ({ offer, sectionName, userAction, onCardHover }: CardProps): JSX.Element => {

@@ -4,14 +4,15 @@ import Bookmark from '../../../features/bookmark';
 import Card from '../../../entities/card';
 import { OfferType } from '../../../shared/types/offer';
 import { useState } from 'react';
+import { Nullable } from 'vitest';
 
 type AllPlacesProps = {
   offers: OfferType[];
 };
 
 const AllPlaces = ({ offers }: AllPlacesProps): JSX.Element => {
-  const [activeCard, setActiveCard] = useState<OfferType | null>(null);
-  const handleCardHover = (offer: OfferType | null) => setActiveCard(offer);
+  const [activeCard, setActiveCard] = useState<Nullable<OfferType>>(null);
+  const handleCardHover = (offer: Nullable<OfferType>) => setActiveCard(offer);
   console.log(activeCard); // eslint-disable-line
 
   return (
