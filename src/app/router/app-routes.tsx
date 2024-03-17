@@ -36,7 +36,7 @@ const AppRoutes = ({ offers, comments }: AppRoutesProps): JSX.Element => (
           </PrivateRoute>
         }
         />
-        <Route path={AppRoute.Offer} element={<Offer comments={comments} />} />
+        <Route path={AppRoute.Offer} element={<Offer offers={offers} comments={comments} />} />
         <Route path={AppRoute.NotFound} element={<NotFound />} />
       </Routes>
     </BrowserRouter>

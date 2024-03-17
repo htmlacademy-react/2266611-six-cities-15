@@ -11,11 +11,11 @@ import { FullOfferType } from '../../../shared/types/full-offer';
 import { Comment } from '../../../shared/types/comment';
 
 type PlaceProps = {
-  offer: FullOfferType;
+  currentOffer: FullOfferType;
   currentComments: Comment[];
 }
 
-const Place = ({ offer, currentComments }: PlaceProps): JSX.Element => {
+const Place = ({ currentOffer, currentComments }: PlaceProps): JSX.Element => {
   const authorizationStatus = getAuthorizationStatus();
   const {
     title,
@@ -30,7 +30,7 @@ const Place = ({ offer, currentComments }: PlaceProps): JSX.Element => {
     rating,
     bedrooms,
     maxAdults
-  } = offer;
+  } = currentOffer;
 
   return (
     <section className="offer">
