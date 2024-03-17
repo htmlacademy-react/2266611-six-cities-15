@@ -32,7 +32,7 @@ const AppRoutes = ({ offers, comments }: AppRoutesProps): JSX.Element => (
         />
         <Route path={AppRoute.Favorites} element={
           <PrivateRoute authorizationStatus={getAuthorizationStatus()}>
-            <Favorites />
+            <Favorites offers={offers} />
           </PrivateRoute>
         }
         />
