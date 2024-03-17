@@ -1,33 +1,33 @@
-import { Review } from '../shared/types/review';
+import { Comment } from '../shared/types/comment';
 
-export const reviews: Review[] = [
+export const comments: Comment[] = [
   {
-    id: '68fd3918-2cdb-44d2-a1b2-301704d0a029',
+    id: '6ab3c459-4d22-4a21-bc08-24a9e3c5c811',
     comment: 'This villa is perfect in every way: the view on mountains and waterfalls, the hot tub and the villa itself. The evening here became a great continuation of our journeys over country.',
-    date: '2024-02-14T21:00:00.679Z',
+    date: '2024-01-17T21:00:00.679Z',
     rating: 4,
     user: {
-      name: 'Christina',
-      avatarUrl: 'https://15.design.htmlacademy.pro/static/avatar/1.jpg',
+      name: 'Maria',
+      avatarUrl: 'https://15.design.htmlacademy.pro/static/avatar/8.jpg',
       isPro: false
     }
   },
   {
-    id: 'abbe68b8-69b9-4a47-b10e-0e9ef084d5a8',
+    id: '6ab3c459-4d22-4a21-bc08-24a9e3c5c811',
     comment: 'I stayed here for one night and it was an unpleasant experience.',
-    date: '2024-02-14T21:00:00.679Z',
-    rating: 4,
+    date: '2024-05-03T21:00:00.679Z',
+    rating: 2,
     user: {
       name: 'Jack',
-      avatarUrl: 'https://15.design.htmlacademy.pro/static/avatar/8.jpg',
+      avatarUrl: 'https://15.design.htmlacademy.pro/static/avatar/1.jpg',
       isPro: true
     }
   },
   {
-    id: '2c742558-79f9-4bd2-8aa4-2eee4e8e0f02',
+    id: '7c5e6aa8-94e8-40ed-8206-9497a4bf309d',
     comment: 'This villa is perfect in every way: the view on mountains and waterfalls, the hot tub and the villa itself. The evening here became a great continuation of our journeys over country.',
     date: '2024-02-14T21:00:00.679Z',
-    rating: 4,
+    rating: 3,
     user: {
       name: 'Jack',
       avatarUrl: 'https://15.design.htmlacademy.pro/static/avatar/1.jpg',
@@ -35,12 +35,12 @@ export const reviews: Review[] = [
     }
   },
   {
-    id: '000b413b-11e4-41fa-bdf5-507ef1502729',
-    comment: 'he hot tub and the villa itself. The evening here became a great continuation of our journ',
+    id: '15d72e45-9a51-47fc-ac36-6c8a22f570ef',
+    comment: 'He hot tub and the villa itself. The evening here became a great continuation of our journ',
     date: '2024-03-09T11:50:37.202Z',
-    rating: 4,
+    rating: 5,
     user: {
-      name: 'Oliver Conner',
+      name: 'Sara',
       avatarUrl: 'https://15.design.htmlacademy.pro/static/avatar/7.jpg',
       isPro: false
     }

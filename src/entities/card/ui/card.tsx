@@ -13,7 +13,7 @@ type CardProps = {
   offer: OfferType;
   sectionName: string;
   userAction: ReactNode;
-  onCardHover?: (offer: Nullable<OfferType>) => void;
+  onCardHover: (offer: Nullable<OfferType>) => void;
 }
 
 const Card = ({ offer, sectionName, userAction, onCardHover }: CardProps): JSX.Element => {
@@ -23,8 +23,8 @@ const Card = ({ offer, sectionName, userAction, onCardHover }: CardProps): JSX.E
   return (
     <article
       className={clsx(`${sectionName}__card`, 'place-card')}
-      onMouseEnter={() => onCardHover?.(offer)}
-      onMouseLeave={() => onCardHover?.(null)}
+      onMouseEnter={() => onCardHover(offer)}
+      onMouseLeave={() => onCardHover(null)}
     >
 
       {/* Premium значок */}

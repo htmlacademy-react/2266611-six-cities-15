@@ -8,12 +8,14 @@ import { capitalizeFirstLetter } from '../../../shared/lib';
 import { AuthorizationStatus } from '../../../shared/const';
 import { getAuthorizationStatus } from '../../../mocks/authorization-status';
 import { FullOfferType } from '../../../shared/types/full-offer';
+import { Comment } from '../../../shared/types/comment';
 
 type PlaceProps = {
   offer: FullOfferType;
+  currentComments: Comment[];
 }
 
-const Place = ({ offer }: PlaceProps): JSX.Element => {
+const Place = ({ offer, currentComments }: PlaceProps): JSX.Element => {
   const authorizationStatus = getAuthorizationStatus();
   const {
     title,
@@ -112,11 +114,15 @@ const Place = ({ offer }: PlaceProps): JSX.Element => {
           </div>
 
           <section className="offer__reviews reviews">
-            <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">1</span></h2>
+            <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{currentComments.length}</span></h2>
 
             <ul className="reviews__list">
-              <Review />
-              <Review />
+              {currentComments.map((currentComment) => (
+                <Review
+                  key={currentComment.id}
+                  currentComment={currentComment}
+                />)
+              )}
             </ul>
 
             {authorizationStatus === AuthorizationStatus.Auth ? (<Feedback />) : null}

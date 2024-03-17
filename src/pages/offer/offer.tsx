@@ -5,10 +5,16 @@ import NearPlaces from '../../widgets/near-places';
 import { getFullOffer } from '../../mocks/full-offers';
 import { Navigate, useParams } from 'react-router-dom';
 import { AppRoute } from '../../shared/const';
+import { Comment } from '../../shared/types/comment';
 
-const Offer = (): JSX.Element => {
+type OfferProps = {
+  comments: Comment[];
+}
+
+const Offer = ({ comments }: OfferProps): JSX.Element => {
   const { id: offerId } = useParams();
   const currentOffer = getFullOffer(offerId);
+  const currentComments = comments.filter((comment) => comment.id === offerId);
 
   if (!currentOffer) {
     return <Navigate to={AppRoute.NotFound} replace />;
@@ -24,6 +30,7 @@ const Offer = (): JSX.Element => {
 
           <Place
             offer={currentOffer}
+            currentComments={currentComments}
           />
 
           <div className="container">
