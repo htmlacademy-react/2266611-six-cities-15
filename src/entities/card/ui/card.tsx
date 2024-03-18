@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import { ReactNode } from 'react';
 import { Link, generatePath } from 'react-router-dom';
-import { OfferType } from '../../../shared/types/offer';
+import { PreviewOfferType } from '../../../shared/types/offer';
 import { capitalizeFirstLetter } from '../../../shared/lib';
 import { AppRoute } from '../../../shared/const';
 import { getImageSize } from '../lib/get-image-size';
@@ -10,10 +10,10 @@ import PremiumBadge from '../../../shared/ui/premium-badge';
 import { Nullable } from 'vitest';
 
 type CardProps = {
-  offer: OfferType;
+  offer: PreviewOfferType;
   sectionName: string;
   userAction: ReactNode;
-  onCardHover?: (offer: Nullable<OfferType>) => void;
+  onCardHover?: (offer: Nullable<PreviewOfferType>) => void;
 }
 
 const Card = ({ offer, sectionName, userAction, onCardHover }: CardProps): JSX.Element => {

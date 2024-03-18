@@ -1,6 +1,6 @@
-import { OfferType } from '../shared/types/offer';
+import { PreviewOfferType } from '../shared/types/offer';
 
-export const offers: OfferType[] = [
+export const offers: PreviewOfferType[] = [
   {
     id: '6ab3c459-4d22-4a21-bc08-24a9e3c5c811',
     title: 'House in countryside',

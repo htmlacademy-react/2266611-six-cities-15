@@ -3,11 +3,11 @@ import { Comment } from '../../../shared/types/comment';
 import StarRating from '../../../shared/ui/star-rating';
 
 type ReviewProps = {
-  currentComment: Comment;
+  sortedComment: Comment;
 }
 
-const Review = ({ currentComment }: ReviewProps): JSX.Element => {
-  const { comment, date, rating, user } = currentComment;
+const Review = ({ sortedComment }: ReviewProps): JSX.Element => {
+  const { comment, date, rating, user } = sortedComment;
 
   return (
     <li className="reviews__item">

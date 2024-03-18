@@ -1,28 +1,34 @@
 import Map from '../../../features/map';
-import Review from '../../../entities/review';
 import Feedback from '../../../features/feedback';
-import PremiumBadge from '../../../shared/ui/premium-badge';
 import Bookmark from '../../../features/bookmark';
+import Review from '../../../entities/review';
+import PremiumBadge from '../../../shared/ui/premium-badge';
 import StarRating from '../../../shared/ui/star-rating';
 import { capitalizeFirstLetter } from '../../../shared/lib';
 import { AuthorizationStatus } from '../../../shared/const';
 import { getAuthorizationStatus } from '../../../mocks/authorization-status';
-import { FullOfferType } from '../../../shared/types/full-offer';
+import { FullOfferType } from '../../../shared/types/offer';
+import { PreviewOfferType } from '../../../shared/types/offer';
 import { Comment } from '../../../shared/types/comment';
+import { sortByDate } from '../lib/sort-by-date';
+import { MAX_COMMENT_COUNT } from '../const/const';
 
 type PlaceProps = {
   currentOffer: FullOfferType;
-  currentComments: Comment[];
+  comments: Comment[];
+  offers: PreviewOfferType[];
 }
 
-const Place = ({ currentOffer, currentComments }: PlaceProps): JSX.Element => {
+const Place = ({ currentOffer, comments, offers }: PlaceProps): JSX.Element => {
   const authorizationStatus = getAuthorizationStatus();
+  const sortedComments = [...comments].sort(sortByDate).slice(0, MAX_COMMENT_COUNT);
   const {
     title,
     description,
     type,
     price,
     images,
+    city,
     goods,
     host,
     isPremium,
@@ -114,13 +120,13 @@ const Place = ({ currentOffer, currentComments }: PlaceProps): JSX.Element => {
           </div>
 
           <section className="offer__reviews reviews">
-            <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{currentComments.length}</span></h2>
+            <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{sortedComments.length}</span></h2>
 
             <ul className="reviews__list">
-              {currentComments.map((currentComment) => (
+              {sortedComments.map((sortedComment) => (
                 <Review
-                  key={currentComment.id}
-                  currentComment={currentComment}
+                  key={sortedComment.id}
+                  sortedComment={sortedComment}
                 />)
               )}
             </ul>
@@ -132,7 +138,12 @@ const Place = ({ currentOffer, currentComments }: PlaceProps): JSX.Element => {
         </div>
       </div>
 
-      <Map type="offer" />
+      <Map
+        sectionName="offer"
+        balloonId={currentOffer.id}
+        city={city}
+        offers={offers}
+      />
 
     </section>
   );

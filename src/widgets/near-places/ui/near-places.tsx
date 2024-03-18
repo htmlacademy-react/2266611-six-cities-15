@@ -1,17 +1,18 @@
-import { OfferType } from '../../../shared/types/offer';
-import { FullOfferType } from '../../../shared/types/full-offer';
+import { PreviewOfferType } from '../../../shared/types/offer';
+import { FullOfferType } from '../../../shared/types/offer';
 import Card from '../../../entities/card';
 import Bookmark from '../../../features/bookmark';
 
 type NearPlacesProps = {
   currentOffer: FullOfferType;
-  offers: OfferType[];
+  offers: PreviewOfferType[];
 }
 
 const NearPlaces = ({ currentOffer, offers }: NearPlacesProps): JSX.Element => (
   <section className="near-places places">
     <h2 className="near-places__title">Other places in the neighbourhood</h2>
     <div className="near-places__list places__list">
+
       {offers
         .filter((offer) => offer.id !== currentOffer.id)
         .slice(0, 3)

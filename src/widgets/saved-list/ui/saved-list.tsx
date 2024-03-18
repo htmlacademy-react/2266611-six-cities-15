@@ -1,10 +1,10 @@
-import { OfferType } from '../../../shared/types/offer';
+import { PreviewOfferType } from '../../../shared/types/offer';
 import { getSortedOffersByCity } from '../lib/get-sorted-offers-by-city';
 import Card from '../../../entities/card';
 import Bookmark from '../../../features/bookmark';
 
 type SavedListProps = {
-  offers: OfferType[];
+  offers: PreviewOfferType[];
 }
 
 const SavedList = ({ offers }: SavedListProps): JSX.Element => {

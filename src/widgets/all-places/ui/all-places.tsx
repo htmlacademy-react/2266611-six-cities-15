@@ -2,18 +2,17 @@ import Sort from '../../../features/sort';
 import Map from '../../../features/map';
 import Bookmark from '../../../features/bookmark';
 import Card from '../../../entities/card';
-import { OfferType } from '../../../shared/types/offer';
+import { PreviewOfferType } from '../../../shared/types/offer';
 import { useState } from 'react';
 import { Nullable } from 'vitest';
 
 type AllPlacesProps = {
-  offers: OfferType[];
+  offers: PreviewOfferType[];
 };
 
 const AllPlaces = ({ offers }: AllPlacesProps): JSX.Element => {
-  const [activeCard, setActiveCard] = useState<Nullable<OfferType>>(null);
-  const handleCardHover = (offer: Nullable<OfferType>) => setActiveCard(offer);
-  console.log(activeCard); // eslint-disable-line
+  const [activeCard, setActiveCard] = useState<Nullable<PreviewOfferType>>(null);
+  const handleCardHover = (offer: Nullable<PreviewOfferType>) => setActiveCard(offer);
 
   return (
     <div className="cities">
@@ -43,7 +42,10 @@ const AllPlaces = ({ offers }: AllPlacesProps): JSX.Element => {
         </section>
         <div className="cities__right-section">
           <Map
-            type="cities"
+            sectionName="cities"
+            offers={offers}
+            balloonId={activeCard?.id}
+            city={offers[0].city}
           />
         </div>
       </div>

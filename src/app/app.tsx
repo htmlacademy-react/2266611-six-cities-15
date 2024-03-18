@@ -1,9 +1,9 @@
 import AppRoutes from './router/app-routes';
-import { OfferType } from '../shared/types/offer';
+import { PreviewOfferType } from '../shared/types/offer';
 import { Comment } from '../shared/types/comment';
 
 type AppProps = {
-  offers: OfferType[];
+  offers: PreviewOfferType[];
   comments: Comment[];
 }
 

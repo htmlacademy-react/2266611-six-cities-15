@@ -13,7 +13,7 @@ export const comments: Comment[] = [
     }
   },
   {
-    id: '6ab3c459-4d22-4a21-bc08-24a9e3c5c811',
+    id: '6ab3c459-4d22-4a21-bc08-24a9e3c5c818',
     comment: 'I stayed here for one night and it was an unpleasant experience.',
     date: '2024-05-03T21:00:00.679Z',
     rating: 2,
@@ -42,6 +42,17 @@ export const comments: Comment[] = [
     user: {
       name: 'Sara',
       avatarUrl: 'https://15.design.htmlacademy.pro/static/avatar/7.jpg',
+      isPro: false
+    }
+  },
+  {
+    id: '15d72e45-9a51-47fc-ac36-78yu22f570ef',
+    comment: 'The rooms were clean, very comfortable, and the staff was amazing. They went over and beyond to help make our stay enjoyable. I highly recommend this hotel for anyone visiting downtown.',
+    date: '2024-07-09T11:50:37.202Z',
+    rating: 2,
+    user: {
+      name: 'Mila',
+      avatarUrl: 'https://15.design.htmlacademy.pro/static/avatar/6.jpg',
       isPro: false
     }
   }

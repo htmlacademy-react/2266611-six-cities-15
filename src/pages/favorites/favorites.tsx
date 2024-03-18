@@ -2,10 +2,10 @@ import Layout from '../../shared/layout';
 import Header from '../../widgets/header';
 import Footer from '../../widgets/footer';
 import SavedList from '../../widgets/saved-list';
-import { OfferType } from '../../shared/types/offer';
+import { PreviewOfferType } from '../../shared/types/offer';
 
 type FavoritesProps = {
-  offers: OfferType[];
+  offers: PreviewOfferType[];
 }
 
 const Favorites = ({ offers }: FavoritesProps): JSX.Element => (
