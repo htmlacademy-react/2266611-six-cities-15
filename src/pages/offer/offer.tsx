@@ -5,8 +5,15 @@ import NearPlaces from '../../widgets/near-places';
 import { getFullOffer } from '../../mocks/full-offers';
 import { Navigate, useParams } from 'react-router-dom';
 import { AppRoute } from '../../shared/const';
+import { Comment } from '../../shared/types/comment';
+import { PreviewOfferType } from '../../shared/types/offer';
 
-const Offer = (): JSX.Element => {
+type OfferProps = {
+  offers: PreviewOfferType[];
+  comments: Comment[];
+}
+
+const Offer = ({ offers, comments }: OfferProps): JSX.Element => {
   const { id: offerId } = useParams();
   const currentOffer = getFullOffer(offerId);
 
@@ -23,11 +30,16 @@ const Offer = (): JSX.Element => {
         <main className="page__main page__main--offer">
 
           <Place
-            offer={currentOffer}
+            currentOffer={currentOffer}
+            comments={comments}
+            offers={offers}
           />
 
           <div className="container">
-            <NearPlaces />
+            <NearPlaces
+              currentOffer={currentOffer}
+              offers={offers}
+            />
           </div>
 
         </main>

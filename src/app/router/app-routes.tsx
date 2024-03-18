@@ -3,7 +3,8 @@ import { HelmetProvider } from 'react-helmet-async';
 import { AppRoute } from '../../shared/const';
 import { ScrollToTop } from '../../shared/lib';
 import { getAuthorizationStatus } from '../../mocks/authorization-status';
-import { OfferType } from '../../shared/types/offer';
+import { PreviewOfferType } from '../../shared/types/offer';
+import { Comment } from '../../shared/types/comment';
 
 import PrivateRoute from './private-route';
 import Main from '../../pages/main';
@@ -13,10 +14,11 @@ import Offer from '../../pages/offer';
 import NotFound from '../../pages/not-found';
 
 type AppRoutesProps = {
-  offers: OfferType[];
+  offers: PreviewOfferType[];
+  comments: Comment[];
 }
 
-const AppRoutes = ({ offers }: AppRoutesProps): JSX.Element => (
+const AppRoutes = ({ offers, comments }: AppRoutesProps): JSX.Element => (
   <HelmetProvider>
     <BrowserRouter>
       <ScrollToTop />
@@ -30,11 +32,11 @@ const AppRoutes = ({ offers }: AppRoutesProps): JSX.Element => (
         />
         <Route path={AppRoute.Favorites} element={
           <PrivateRoute authorizationStatus={getAuthorizationStatus()}>
-            <Favorites />
+            <Favorites offers={offers} />
           </PrivateRoute>
         }
         />
-        <Route path={AppRoute.Offer} element={<Offer />} />
+        <Route path={AppRoute.Offer} element={<Offer offers={offers} comments={comments} />} />
         <Route path={AppRoute.NotFound} element={<NotFound />} />
       </Routes>
     </BrowserRouter>

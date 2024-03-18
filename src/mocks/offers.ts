@@ -1,6 +1,6 @@
-import { OfferType } from '../shared/types/offer';
+import { PreviewOfferType } from '../shared/types/offer';
 
-export const offers: OfferType[] = [
+export const offers: PreviewOfferType[] = [
   {
     id: '6ab3c459-4d22-4a21-bc08-24a9e3c5c811',
     title: 'House in countryside',
@@ -43,7 +43,7 @@ export const offers: OfferType[] = [
       longitude: 2.330499,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: false,
     rating: 4.8
   },
@@ -66,7 +66,7 @@ export const offers: OfferType[] = [
       longitude: 9.982654,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: true,
     rating: 1.2
   },
@@ -112,7 +112,7 @@ export const offers: OfferType[] = [
       longitude: 4.363696999999999,
       zoom: 16
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: false,
     rating: 4.1
   }

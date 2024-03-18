@@ -1,4 +1,4 @@
-import { FullOfferType } from '../shared/types/full-offer';
+import { FullOfferType } from '../shared/types/offer';
 
 const fullOffers: FullOfferType[] = [
   {

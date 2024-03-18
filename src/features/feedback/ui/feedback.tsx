@@ -1,11 +1,11 @@
 import { useState, ChangeEvent, FormEvent } from 'react';
-import { ratings } from '../const';
+import { ratings, MIN_COMMENT_LENGTH, MAX_COMMENT_LENGTH } from '../const/const';
 import FormRating from '../../../shared/ui/form-rating';
 
 const Feedback = (): JSX.Element => {
   const [formData, setFormData] = useState({
-    review: '',
-    rating: '0'
+    rating: '0',
+    review: ''
   });
 
   const handleFormDataChange = (evt: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -16,6 +16,8 @@ const Feedback = (): JSX.Element => {
   const handleFormSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
   };
+
+  const isFormInvalid = formData.review.length < MIN_COMMENT_LENGTH || +formData.rating === 0;
 
   return (
     <form
@@ -43,6 +45,7 @@ const Feedback = (): JSX.Element => {
         name="review"
         id="review"
         placeholder="Tell how was your stay, what you like and what can be improved"
+        maxLength={MAX_COMMENT_LENGTH}
         value={formData.review}
         onChange={handleFormDataChange}
       >
@@ -52,7 +55,13 @@ const Feedback = (): JSX.Element => {
         <p className="reviews__help">
           To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">50 characters</b>.
         </p>
-        <button className="reviews__submit form__submit button" type="submit">Submit</button>
+        <button
+          className="reviews__submit form__submit button"
+          type="submit"
+          disabled={isFormInvalid}
+        >
+        Submit
+        </button>
       </div>
 
     </form>

@@ -2,10 +2,10 @@ import Layout from '../../shared/layout';
 import Header from '../../widgets/header';
 import Filter from '../../features/filter';
 import AllPlaces from '../../widgets/all-places';
-import { OfferType } from '../../shared/types/offer';
+import { PreviewOfferType } from '../../shared/types/offer';
 
 type MainProps = {
-  offers: OfferType[];
+  offers: PreviewOfferType[];
 };
 
 const Main = ({ offers }: MainProps): JSX.Element => (

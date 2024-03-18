@@ -2,8 +2,13 @@ import Layout from '../../shared/layout';
 import Header from '../../widgets/header';
 import Footer from '../../widgets/footer';
 import SavedList from '../../widgets/saved-list';
+import { PreviewOfferType } from '../../shared/types/offer';
 
-const Favorites = (): JSX.Element => (
+type FavoritesProps = {
+  offers: PreviewOfferType[];
+}
+
+const Favorites = ({ offers }: FavoritesProps): JSX.Element => (
   <Layout
     wrapper="page"
     title="6 cities: favorites"
@@ -11,7 +16,7 @@ const Favorites = (): JSX.Element => (
     content={
       <main className="page__main page__main--favorites">
         <div className="page__favorites-container container">
-          <SavedList />
+          <SavedList offers={offers}/>
         </div>
       </main>
     }
