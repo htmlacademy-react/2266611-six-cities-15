@@ -1,7 +1,7 @@
 import Layout from '../../shared/layout';
 import Header from '../../widgets/header';
 import Filter from '../../features/filter';
-import AllPlaces from '../../widgets/all-places';
+import AllOffers from '../../widgets/all-offers';
 import { PreviewOfferType } from '../../shared/types/offer';
 
 type MainProps = {
@@ -17,7 +17,7 @@ const Main = ({ offers }: MainProps): JSX.Element => (
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
         <Filter />
-        <AllPlaces offers={offers} />
+        <AllOffers offers={offers} />
       </main>
     }
     footer={false}

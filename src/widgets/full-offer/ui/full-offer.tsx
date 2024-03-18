@@ -13,13 +13,13 @@ import { Comment } from '../../../shared/types/comment';
 import { sortByDate } from '../lib/sort-by-date';
 import { MAX_COMMENT_COUNT } from '../const/const';
 
-type PlaceProps = {
+type FullOfferProps = {
   currentOffer: FullOfferType;
   comments: Comment[];
   offers: PreviewOfferType[];
 }
 
-const Place = ({ currentOffer, comments, offers }: PlaceProps): JSX.Element => {
+const FullOffer = ({ currentOffer, comments, offers }: FullOfferProps): JSX.Element => {
   const authorizationStatus = getAuthorizationStatus();
   const sortedComments = [...comments].sort(sortByDate).slice(0, MAX_COMMENT_COUNT);
   const {
@@ -149,4 +149,4 @@ const Place = ({ currentOffer, comments, offers }: PlaceProps): JSX.Element => {
   );
 };
 
-export default Place;
+export default FullOffer;

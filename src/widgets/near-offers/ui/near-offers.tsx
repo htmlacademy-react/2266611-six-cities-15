@@ -3,12 +3,12 @@ import { FullOfferType } from '../../../shared/types/offer';
 import Card from '../../../entities/card';
 import Bookmark from '../../../features/bookmark';
 
-type NearPlacesProps = {
+type NearOffersProps = {
   currentOffer: FullOfferType;
   offers: PreviewOfferType[];
 }
 
-const NearPlaces = ({ currentOffer, offers }: NearPlacesProps): JSX.Element => (
+const NearOffers = ({ currentOffer, offers }: NearOffersProps): JSX.Element => (
   <section className="near-places places">
     <h2 className="near-places__title">Other places in the neighbourhood</h2>
     <div className="near-places__list places__list">
@@ -34,4 +34,4 @@ const NearPlaces = ({ currentOffer, offers }: NearPlacesProps): JSX.Element => (
   </section>
 );
 
-export default NearPlaces;
+export default NearOffers;
