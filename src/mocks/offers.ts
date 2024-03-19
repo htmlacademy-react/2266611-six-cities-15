@@ -46,7 +46,8 @@ export const offers: PreviewOfferType[] = [
     isFavorite: true,
     isPremium: false,
     rating: 4.8
-  }, {
+  },
+  {
     id: '61921343-9ab5-410e-a29e-f604b14baf81',
     title: 'Penthouse, 4-5 rooms + 5 balconies',
     type: 'house',

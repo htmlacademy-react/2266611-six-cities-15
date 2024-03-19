@@ -22,6 +22,8 @@ type FullOfferProps = {
 const FullOffer = ({ currentOffer, comments, offers }: FullOfferProps): JSX.Element => {
   const authorizationStatus = getAuthorizationStatus();
   const sortedComments = [...comments].sort(sortByDate).slice(0, MAX_COMMENT_COUNT);
+  const nearOffers = [...offers].filter((offer) => offer.city.name === currentOffer.city.name).slice(0, 4);
+
   const {
     title,
     description,
@@ -142,7 +144,7 @@ const FullOffer = ({ currentOffer, comments, offers }: FullOfferProps): JSX.Elem
         sectionName="offer"
         balloonId={currentOffer.id}
         city={city}
-        offers={offers}
+        offers={nearOffers}
       />
 
     </section>
