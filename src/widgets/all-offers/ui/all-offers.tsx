@@ -6,11 +6,11 @@ import { PreviewOfferType } from '../../../shared/types/offer';
 import { useState } from 'react';
 import { Nullable } from 'vitest';
 
-type AllPlacesProps = {
+type AllOffersProps = {
   offers: PreviewOfferType[];
 };
 
-const AllPlaces = ({ offers }: AllPlacesProps): JSX.Element => {
+const AllOffers = ({ offers }: AllOffersProps): JSX.Element => {
   const [activeCard, setActiveCard] = useState<Nullable<PreviewOfferType>>(null);
   const handleCardHover = (offer: Nullable<PreviewOfferType>) => setActiveCard(offer);
 
@@ -53,4 +53,4 @@ const AllPlaces = ({ offers }: AllPlacesProps): JSX.Element => {
   );
 };
 
-export default AllPlaces;
+export default AllOffers;

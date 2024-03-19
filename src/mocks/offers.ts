@@ -48,6 +48,75 @@ export const offers: PreviewOfferType[] = [
     rating: 4.8
   },
   {
+    id: '61921343-9ab5-410e-a29e-f604b14baf81',
+    title: 'Penthouse, 4-5 rooms + 5 balconies',
+    type: 'house',
+    price: 766,
+    previewImage: 'https://15.design.htmlacademy.pro/static/hotel/3.jpg',
+    city: {
+      name: 'Paris',
+      location: {
+        latitude: 48.85661,
+        longitude: 2.351499,
+        zoom: 13
+      }
+    },
+    location: {
+      latitude: 48.837610000000005,
+      longitude: 2.3454990000000002,
+      zoom: 16
+    },
+    isFavorite: false,
+    isPremium: true,
+    rating: 4.6
+  },
+  {
+    id: '06b98496-95d4-42df-b0b3-a4da1c40b364',
+    title: 'Canal View Prinsengracht',
+    type: 'apartment',
+    price: 112,
+    previewImage: 'https://15.design.htmlacademy.pro/static/hotel/15.jpg',
+    city: {
+      name: 'Paris',
+      location: {
+        latitude: 48.85661,
+        longitude: 2.351499,
+        zoom: 13
+      }
+    },
+    location: {
+      latitude: 48.84761,
+      longitude: 2.356499,
+      zoom: 16
+    },
+    isFavorite: false,
+    isPremium: true,
+    rating: 2.8
+  },
+  {
+    id: 'd163130b-2cdb-4a8a-be6a-98767381ede4',
+    title: 'Waterfront with extraordinary view',
+    type: 'room',
+    price: 270,
+    previewImage: 'https://15.design.htmlacademy.pro/static/hotel/19.jpg',
+    city: {
+      name: 'Paris',
+      location: {
+        latitude: 48.85661,
+        longitude: 2.351499,
+        zoom: 13
+      }
+    },
+    location: {
+      latitude: 48.837610000000005,
+      longitude: 2.364499,
+      zoom: 16
+    },
+    isFavorite: false,
+    isPremium: false,
+    rating: 2.2
+  },
+  {
     id: '15d72e45-9a51-47fc-ac36-6c8a22f570ef',
     title: 'Tile House',
     type: 'room',
@@ -92,28 +161,5 @@ export const offers: PreviewOfferType[] = [
     isFavorite: false,
     isPremium: true,
     rating: 1.9
-  },
-  {
-    id: '13d32658-3d5f-446c-b0cd-951946713848',
-    title: 'Penthouse, 4-5 rooms + 5 balconies',
-    type: 'room',
-    price: 160,
-    previewImage: 'https://15.design.htmlacademy.pro/static/hotel/6.jpg',
-    city: {
-      name: 'Brussels',
-      location: {
-        latitude: 50.846557,
-        longitude: 4.351697,
-        zoom: 13
-      }
-    },
-    location: {
-      latitude: 50.842557,
-      longitude: 4.363696999999999,
-      zoom: 16
-    },
-    isFavorite: true,
-    isPremium: false,
-    rating: 4.1
   }
 ];

@@ -1,4 +1,4 @@
-const NoPlaces = (): JSX.Element => (
+const NoOffers = (): JSX.Element => (
   <div className="cities">
     <div className="cities__places-container cities__places-container--empty container">
       <section className="cities__no-places">
@@ -12,4 +12,4 @@ const NoPlaces = (): JSX.Element => (
   </div>
 );
 
-export default NoPlaces;
+export default NoOffers;

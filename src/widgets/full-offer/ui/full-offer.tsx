@@ -13,15 +13,17 @@ import { Comment } from '../../../shared/types/comment';
 import { sortByDate } from '../lib/sort-by-date';
 import { MAX_COMMENT_COUNT } from '../const/const';
 
-type PlaceProps = {
+type FullOfferProps = {
   currentOffer: FullOfferType;
   comments: Comment[];
   offers: PreviewOfferType[];
 }
 
-const Place = ({ currentOffer, comments, offers }: PlaceProps): JSX.Element => {
+const FullOffer = ({ currentOffer, comments, offers }: FullOfferProps): JSX.Element => {
   const authorizationStatus = getAuthorizationStatus();
   const sortedComments = [...comments].sort(sortByDate).slice(0, MAX_COMMENT_COUNT);
+  const nearOffers = [...offers].filter((offer) => offer.city.name === currentOffer.city.name).slice(0, 4);
+
   const {
     title,
     description,
@@ -120,7 +122,9 @@ const Place = ({ currentOffer, comments, offers }: PlaceProps): JSX.Element => {
           </div>
 
           <section className="offer__reviews reviews">
-            <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{sortedComments.length}</span></h2>
+            <h2 className="reviews__title">Reviews &middot;
+              <span className="reviews__amount">{sortedComments.length}</span>
+            </h2>
 
             <ul className="reviews__list">
               {sortedComments.map((sortedComment) => (
@@ -131,7 +135,7 @@ const Place = ({ currentOffer, comments, offers }: PlaceProps): JSX.Element => {
               )}
             </ul>
 
-            {authorizationStatus === AuthorizationStatus.Auth ? (<Feedback />) : null}
+            {authorizationStatus === AuthorizationStatus.Auth && (<Feedback />)}
 
           </section>
 
@@ -142,11 +146,11 @@ const Place = ({ currentOffer, comments, offers }: PlaceProps): JSX.Element => {
         sectionName="offer"
         balloonId={currentOffer.id}
         city={city}
-        offers={offers}
+        offers={nearOffers}
       />
 
     </section>
   );
 };
 
-export default Place;
+export default FullOffer;

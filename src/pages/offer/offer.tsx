@@ -1,7 +1,7 @@
 import Layout from '../../shared/layout';
 import Header from '../../widgets/header';
-import Place from '../../widgets/place';
-import NearPlaces from '../../widgets/near-places';
+import FullOffer from '../../widgets/full-offer';
+import NearOffers from '../../widgets/near-offers';
 import { getFullOffer } from '../../mocks/full-offers';
 import { Navigate, useParams } from 'react-router-dom';
 import { AppRoute } from '../../shared/const';
@@ -29,14 +29,14 @@ const Offer = ({ offers, comments }: OfferProps): JSX.Element => {
       content={
         <main className="page__main page__main--offer">
 
-          <Place
+          <FullOffer
             currentOffer={currentOffer}
             comments={comments}
             offers={offers}
           />
 
           <div className="container">
-            <NearPlaces
+            <NearOffers
               currentOffer={currentOffer}
               offers={offers}
             />
