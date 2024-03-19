@@ -122,7 +122,9 @@ const FullOffer = ({ currentOffer, comments, offers }: FullOfferProps): JSX.Elem
           </div>
 
           <section className="offer__reviews reviews">
-            <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{sortedComments.length}</span></h2>
+            <h2 className="reviews__title">Reviews &middot;
+              <span className="reviews__amount">{sortedComments.length}</span>
+            </h2>
 
             <ul className="reviews__list">
               {sortedComments.map((sortedComment) => (
@@ -133,7 +135,7 @@ const FullOffer = ({ currentOffer, comments, offers }: FullOfferProps): JSX.Elem
               )}
             </ul>
 
-            {authorizationStatus === AuthorizationStatus.Auth ? (<Feedback />) : null}
+            {authorizationStatus === AuthorizationStatus.Auth && (<Feedback />)}
 
           </section>
 
