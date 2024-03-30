@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Nullable } from 'vitest';
 import { useAppSelector } from '../../../shared/lib/redux';
 import { TPreviewOffer } from '../../../shared/types/offer';
-import { getFilteredOffersByCity } from '../../../entities/offers';
+import { getCurrentOffers } from '../../../entities/offers';
 import { getCurrentCity } from '../../../shared/lib/redux';
 
 import Sort from '../../../features/sort';
@@ -17,7 +17,7 @@ const AllOffers = (): JSX.Element => {
 
   const currentCity = useAppSelector(getCurrentCity);
   const { name, location } = currentCity;
-  const currentOffers = useAppSelector(getFilteredOffersByCity);
+  const currentOffers = useAppSelector(getCurrentOffers);
 
   if (!currentOffers.length) {
     return <NoOffers city={name}/>;
