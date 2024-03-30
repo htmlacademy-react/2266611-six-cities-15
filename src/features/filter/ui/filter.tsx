@@ -1,14 +1,16 @@
 import clsx from 'clsx';
-import { changeCity, CITIES } from '../../../entities/city';
+import { Link } from 'react-router-dom';
+import { AppRoute } from '../../../shared/const';
+import { cityActions, CITIES } from '../../../entities/city';
 import { getCurrentCity } from '../../../shared/lib/redux';
-import { useAppDispatch, useAppSelector } from '../../../shared/lib/redux';
+import { useAppSelector, useActionCreators } from '../../../shared/lib/redux';
 import { TCity } from '../../../shared/types/offer';
 
 const Filter = (): JSX.Element => {
-  const dispatch = useAppDispatch();
+  const {changeCity} = useActionCreators(cityActions);
   const currentCity = useAppSelector(getCurrentCity);
 
-  const handleTabClick = (city: TCity) => dispatch(changeCity(city));
+  const handleTabClick = (city: TCity) => changeCity(city);
 
   return (
     <div className="tabs">
@@ -16,13 +18,13 @@ const Filter = (): JSX.Element => {
         <ul className="locations__list tabs__list">
           {CITIES.map((city) => (
             <li key={city.name} className="locations__item">
-              <a
+              <Link
                 className={clsx('locations__item-link tabs__item', { 'tabs__item--active': city.name === currentCity.name })}
                 onClick={() => handleTabClick(city)}
-                href="#"
+                to={AppRoute.Root}
               >
                 <span>{city.name}</span>
-              </a>
+              </Link>
             </li>
           ))}
         </ul>

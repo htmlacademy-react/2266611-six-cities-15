@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Nullable } from 'vitest';
 import { useAppSelector } from '../../../shared/lib/redux';
 import { TPreviewOffer } from '../../../shared/types/offer';
-import { getFilteredOffersByCity } from '../../../entities/offers';
+import { getCurrentOffers } from '../../../entities/offers';
 import { getCurrentCity } from '../../../shared/lib/redux';
 
 import Sort from '../../../features/sort';
@@ -17,7 +17,7 @@ const AllOffers = (): JSX.Element => {
 
   const currentCity = useAppSelector(getCurrentCity);
   const { name, location } = currentCity;
-  const currentOffers = useAppSelector(getFilteredOffersByCity);
+  const currentOffers = useAppSelector(getCurrentOffers);
 
   if (!currentOffers.length) {
     return <NoOffers city={name}/>;
@@ -28,7 +28,7 @@ const AllOffers = (): JSX.Element => {
       <div className="cities__places-container container">
         <section className="cities__places places">
           <h2 className="visually-hidden">Places</h2>
-          <b className="places__found">{currentOffers.length} places to stay in {name}</b>
+          <b className="places__found">{currentOffers.length} place{currentOffers.length > 1 && 's'} to stay in {name}</b>
           <Sort />
           <div className="cities__places-list places__list tabs__content">
 

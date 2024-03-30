@@ -33,4 +33,4 @@ export const offersSlice = createSlice({
   },
 });
 
-export const { changeSortOption } = offersSlice.actions;
+export const offersActions = offersSlice.actions;
