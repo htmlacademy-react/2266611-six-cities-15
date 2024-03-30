@@ -7,8 +7,8 @@ export const getFilteredOffersByCity = createSelector(
 );
 
 const getSortedOffers = createSelector(
-  [getCurrentSortOption, getFilteredOffersByCity],
-  (sortOption, filteredOffers) => {
+  [getFilteredOffersByCity, getCurrentSortOption],
+  (filteredOffers, sortOption) => {
     switch (sortOption) {
       case 'Price: low to high':
         return filteredOffers.toSorted((a, b) => a.price - b.price);

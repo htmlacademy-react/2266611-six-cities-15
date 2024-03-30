@@ -1,17 +1,16 @@
 import clsx from 'clsx';
 import { useState } from 'react';
-import { SORT_OPTIONS } from '../../../entities/offers';
-import { useAppDispatch, useAppSelector, getCurrentSortOption } from '../../../shared/lib/redux';
-import { changeSortOption } from '../../../entities/offers';
-import { useOutsideClick } from '../../../shared/lib/react/hooks/use-outside-click';
+import { SORT_OPTIONS, offersActions } from '../../../entities/offers';
+import { useAppSelector, getCurrentSortOption, useActionCreators } from '../../../shared/lib/redux';
+import { useOutsideClick } from '../../../shared/lib/react';
 
 const Sort = (): JSX.Element => {
-  const dispatch = useAppDispatch();
+  const { changeSortOption } = useActionCreators(offersActions);
   const currentSortOption = useAppSelector(getCurrentSortOption);
   const [isOpenedSortOptions, setIsOpenedSortOptions] = useState(false);
 
   const handleSortOptionChange = (option: string) => {
-    dispatch(changeSortOption(option));
+    changeSortOption(option);
     setIsOpenedSortOptions(false);
   };
 

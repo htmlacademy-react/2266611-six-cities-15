@@ -1,9 +1,9 @@
-import { useAppDispatch } from './hooks/use-app-dispatch';
 import { useAppSelector } from './hooks/use-app-selector';
+import { useActionCreators } from './hooks/use-action-creators';
 
 export * from './selectors/selectors';
 
 export {
-  useAppDispatch,
-  useAppSelector
+  useAppSelector,
+  useActionCreators
 };
