@@ -1,4 +1,4 @@
-import { options } from '../const/const';
+import { SORT_OPTIONS } from '../../../entities/offers';
 
 const Sort = (): JSX.Element => (
   <form className="places__sorting" action="#" method="get">
@@ -10,7 +10,7 @@ const Sort = (): JSX.Element => (
       </svg>
     </span>
     <ul className="places__options places__options--custom places__options--opened">
-      {options.map((option) => (
+      {SORT_OPTIONS.map((option) => (
         <li key={option} className="places__option" tabIndex={0}>{option}</li>
       ))}
     </ul>

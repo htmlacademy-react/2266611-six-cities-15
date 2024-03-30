@@ -1,6 +1,7 @@
-import Register from '../../../features/register';
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../../shared/const';
+
+import Register from '../../../features/register';
 
 const Authorization = (): JSX.Element => (
   <div className="page__login-container container">

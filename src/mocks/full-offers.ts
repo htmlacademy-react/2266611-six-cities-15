@@ -1,6 +1,6 @@
-import { FullOfferType } from '../shared/types/offer';
+import { TFullOffer } from '../shared/types/offer';
 
-const fullOffers: FullOfferType[] = [
+const fullOffers: TFullOffer[] = [
   {
     id: '7c5e6aa8-94e8-40ed-8206-9497a4bf309d',
     title: 'Amazing and Extremely Central Flat',
@@ -235,6 +235,4 @@ const fullOffers: FullOfferType[] = [
   }
 ];
 
-const getFullOffer = (offerId?: string) => fullOffers.find((offer) => offer.id === offerId);
-
-export { fullOffers, getFullOffer };
+export { fullOffers };

@@ -1,13 +1,13 @@
-import { RefObject, useEffect, useState, useRef } from 'react';
-import { TileLayerSetup } from '../const/const';
-import { Nullable } from 'vitest';
-import { Location } from '../../../shared/types/offer';
 import leaflet, { Map } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
+import { RefObject, useEffect, useState, useRef } from 'react';
+import { TileLayerSetup } from '../const';
+import { Nullable } from 'vitest';
+import { TLocation } from '../../../shared/types/offer';
 
 export const useMap = (
   containerRef: RefObject<HTMLElement | null>,
-  location: Location
+  location: TLocation
 ) => {
   const [map, setMap] = useState<Nullable<Map>>(null);
   const isRenderedRef = useRef(false);

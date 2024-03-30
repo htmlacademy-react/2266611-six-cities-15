@@ -11,3 +11,10 @@ export enum AuthorizationStatus {
   NoAuth = 'NoAuth',
   Unknown = 'Unknown',
 }
+
+export enum NameSpace {
+  Offers = 'offers',
+  Reviews = 'reviews',
+  User = 'user',
+  City = 'city'
+}

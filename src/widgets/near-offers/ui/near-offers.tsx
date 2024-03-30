@@ -1,14 +1,15 @@
-import { PreviewOfferType } from '../../../shared/types/offer';
-import { FullOfferType } from '../../../shared/types/offer';
+import { useAppSelector, getPreviewOffers } from '../../../shared/lib/redux';
+import { TFullOffer } from '../../../shared/types/offer';
+
 import Card from '../../../entities/card';
 import Bookmark from '../../../features/bookmark';
 
 type NearOffersProps = {
-  currentOffer: FullOfferType;
-  offers: PreviewOfferType[];
+  currentOffer: TFullOffer;
 }
 
-const NearOffers = ({ currentOffer, offers }: NearOffersProps): JSX.Element => {
+const NearOffers = ({ currentOffer }: NearOffersProps): JSX.Element => {
+  const offers = useAppSelector(getPreviewOffers);
   const nearOffers = [...offers].filter((offer) => offer.id !== currentOffer.id && offer.city.name === currentOffer.city.name).slice(0, 3);
 
   return (

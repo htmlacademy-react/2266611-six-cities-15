@@ -1,2 +1,4 @@
-export * from './common';
-export * from './scroll-to-top';
+import { ScrollToTop } from './scroll-to-top';
+import { capitalizeFirstLetter } from './common';
+
+export { ScrollToTop, capitalizeFirstLetter };

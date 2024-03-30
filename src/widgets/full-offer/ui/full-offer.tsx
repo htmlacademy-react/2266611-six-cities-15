@@ -1,28 +1,27 @@
+import { capitalizeFirstLetter } from '../../../shared/lib/utils';
+import { getPreviewOffers } from '../../../shared/lib/redux/selectors/selectors';
+import { useAppSelector } from '../../../shared/lib/redux';
+import { AuthorizationStatus } from '../../../shared/const';
+import { TFullOffer } from '../../../shared/types/offer';
+import { getSortedComments } from '../../../entities/reviews/model/selectors';
+import { getAuthorizationStatus } from '../../../mocks/authorization-status';
+
 import Map from '../../../features/map';
 import Feedback from '../../../features/feedback';
 import Bookmark from '../../../features/bookmark';
-import Review from '../../../entities/review';
+import Review from '../../../entities/reviews';
 import PremiumBadge from '../../../shared/ui/premium-badge';
 import StarRating from '../../../shared/ui/star-rating';
-import { capitalizeFirstLetter } from '../../../shared/lib';
-import { AuthorizationStatus } from '../../../shared/const';
-import { getAuthorizationStatus } from '../../../mocks/authorization-status';
-import { FullOfferType } from '../../../shared/types/offer';
-import { PreviewOfferType } from '../../../shared/types/offer';
-import { Comment } from '../../../shared/types/comment';
-import { sortByDate } from '../lib/sort-by-date';
-import { MAX_COMMENT_COUNT } from '../const/const';
 
 type FullOfferProps = {
-  currentOffer: FullOfferType;
-  comments: Comment[];
-  offers: PreviewOfferType[];
+  currentOffer: TFullOffer;
 }
 
-const FullOffer = ({ currentOffer, comments, offers }: FullOfferProps): JSX.Element => {
+const FullOffer = ({ currentOffer }: FullOfferProps): JSX.Element => {
   const authorizationStatus = getAuthorizationStatus();
-  const sortedComments = [...comments].sort(sortByDate).slice(0, MAX_COMMENT_COUNT);
+  const offers = useAppSelector(getPreviewOffers);
   const nearOffers = [...offers].filter((offer) => offer.city.name === currentOffer.city.name).slice(0, 4);
+  const sortedComments = useAppSelector(getSortedComments);
 
   const {
     title,
@@ -145,7 +144,7 @@ const FullOffer = ({ currentOffer, comments, offers }: FullOfferProps): JSX.Elem
       <Map
         sectionName="offer"
         balloonId={currentOffer.id}
-        city={city}
+        location={city.location}
         offers={nearOffers}
       />
 

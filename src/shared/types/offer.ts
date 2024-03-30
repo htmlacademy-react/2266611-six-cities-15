@@ -1,40 +1,40 @@
-export type Location = {
+export type TLocation = {
   latitude: number;
   longitude: number;
   zoom: number;
 }
-export type City = {
+export type TCity = {
   name: string;
-  location: Location;
+  location: TLocation;
 }
 
-type Host = {
+type THost = {
   name: string;
   avatarUrl: string;
   isPro: boolean;
 }
 
-type BasicOfferType = {
+type TBasicOffer = {
   id: string;
   title: string;
   type: string;
   price: number;
-  city: City;
-  location: Location;
+  city: TCity;
+  location: TLocation;
   isFavorite: boolean;
   isPremium: boolean;
   rating: number;
 }
 
-export type PreviewOfferType = BasicOfferType & {
+export type TPreviewOffer = TBasicOffer & {
   previewImage: string;
 };
 
-export type FullOfferType = BasicOfferType & {
+export type TFullOffer = TBasicOffer & {
   description: string;
   images: string[];
   goods: string[];
-  host: Host;
+  host: THost;
   bedrooms: number;
   maxAdults: number;
 }

@@ -1,19 +1,20 @@
 import clsx from 'clsx';
 import { ReactNode } from 'react';
 import { Link, generatePath } from 'react-router-dom';
-import { PreviewOfferType } from '../../../shared/types/offer';
-import { capitalizeFirstLetter } from '../../../shared/lib';
+import { TPreviewOffer } from '../../../shared/types/offer';
+import { capitalizeFirstLetter } from '../../../shared/lib/utils';
 import { AppRoute } from '../../../shared/const';
 import { getImageSize } from '../lib/get-image-size';
-import StarRating from '../../../shared/ui/star-rating';
-import PremiumBadge from '../../../shared/ui/premium-badge';
 import { Nullable } from 'vitest';
 
+import StarRating from '../../../shared/ui/star-rating';
+import PremiumBadge from '../../../shared/ui/premium-badge';
+
 type CardProps = {
-  offer: PreviewOfferType;
+  offer: TPreviewOffer;
   sectionName: string;
   userAction: ReactNode;
-  onCardHover?: (offer: Nullable<PreviewOfferType>) => void;
+  onCardHover?: (offer: Nullable<TPreviewOffer>) => void;
 }
 
 const Card = ({ offer, sectionName, userAction, onCardHover }: CardProps): JSX.Element => {
