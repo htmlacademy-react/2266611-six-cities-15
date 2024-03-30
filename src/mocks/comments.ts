@@ -1,6 +1,6 @@
-import { Comment } from '../shared/types/comment';
+import { TComment } from '../shared/types/comment';
 
-export const comments: Comment[] = [
+export const comments: TComment[] = [
   {
     id: '6ab3c459-4d22-4a21-bc08-24a9e3c5c811',
     comment: 'This villa is perfect in every way: the view on mountains and waterfalls, the hot tub and the villa itself. The evening here became a great continuation of our journeys over country.',

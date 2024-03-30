@@ -1,6 +1,6 @@
-import { PreviewOfferType } from '../../../shared/types/offer';
+import { TPreviewOffer } from '../../../shared/types/offer';
 
-export const getSortedOffersByCity = (offers: PreviewOfferType[]) => offers.reduce((accumulator: { [key: string]: PreviewOfferType[] }, offer) => {
+export const getSortedOffersByCity = (offers: TPreviewOffer[]) => offers.reduce((accumulator: { [key: string]: TPreviewOffer[] }, offer) => {
   if (!offer.isFavorite) {
     return accumulator;
   }

@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
-import { AuthorizationStatus } from '../../../shared/const';
+import { AuthorizationStatus, AppRoute } from '../../../shared/const';
 import { getAuthorizationStatus } from '../../../mocks/authorization-status';
-import { AppRoute } from '../../../shared/const';
+
 import Logo from '../../../shared/ui/logo';
 
 type HeaderProps = {

@@ -1,11 +1,11 @@
 import { Map } from 'leaflet';
 import { useEffect } from 'react';
 import { Nullable } from 'vitest';
-import { Location } from '../../../shared/types/offer';
+import { TLocation } from '../../../shared/types/offer';
 
 export const useMapView = (
   map: Nullable<Map>,
-  location: Location
+  location: TLocation
 ) => {
   useEffect(() => {
     if (map) {

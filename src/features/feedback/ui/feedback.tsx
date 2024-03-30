@@ -1,5 +1,6 @@
 import { useState, ChangeEvent, FormEvent } from 'react';
-import { ratings, MIN_COMMENT_LENGTH, MAX_COMMENT_LENGTH } from '../const/const';
+import { RATINGS, MIN_COMMENT_LENGTH, MAX_COMMENT_LENGTH } from '../const';
+
 import FormRating from '../../../shared/ui/form-rating';
 
 const Feedback = (): JSX.Element => {
@@ -29,7 +30,7 @@ const Feedback = (): JSX.Element => {
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
 
       <div className="reviews__rating-form form__rating">
-        {ratings.map(({ value, title }) => (
+        {RATINGS.map(({ value, title }) => (
           <FormRating
             key={title}
             title={title}

@@ -1,13 +1,11 @@
-import { PreviewOfferType } from '../../../shared/types/offer';
 import { getSortedOffersByCity } from '../lib/get-sorted-offers-by-city';
+import { useAppSelector, getPreviewOffers } from '../../../shared/lib/redux';
+
 import Card from '../../../entities/card';
 import Bookmark from '../../../features/bookmark';
 
-type SavedListProps = {
-  offers: PreviewOfferType[];
-}
-
-const SavedList = ({ offers }: SavedListProps): JSX.Element => {
+const SavedList = (): JSX.Element => {
+  const offers = useAppSelector(getPreviewOffers);
   const favoriteOffers = getSortedOffersByCity(offers);
 
   return (

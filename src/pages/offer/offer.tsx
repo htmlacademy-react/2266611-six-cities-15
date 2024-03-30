@@ -1,21 +1,16 @@
+import { Navigate, useParams } from 'react-router-dom';
+import { AppRoute } from '../../shared/const';
+import { useAppSelector, getFullOffers } from '../../shared/lib/redux';
+
 import Layout from '../../shared/layout';
 import Header from '../../widgets/header';
 import FullOffer from '../../widgets/full-offer';
 import NearOffers from '../../widgets/near-offers';
-import { getFullOffer } from '../../mocks/full-offers';
-import { Navigate, useParams } from 'react-router-dom';
-import { AppRoute } from '../../shared/const';
-import { Comment } from '../../shared/types/comment';
-import { PreviewOfferType } from '../../shared/types/offer';
 
-type OfferProps = {
-  offers: PreviewOfferType[];
-  comments: Comment[];
-}
-
-const Offer = ({ offers, comments }: OfferProps): JSX.Element => {
+const Offer = (): JSX.Element => {
   const { id: offerId } = useParams();
-  const currentOffer = getFullOffer(offerId);
+  const fullOffers = useAppSelector(getFullOffers);
+  const currentOffer = fullOffers.find((offer) => offer.id === offerId);
 
   if (!currentOffer) {
     return <Navigate to={AppRoute.NotFound} replace />;
@@ -31,14 +26,11 @@ const Offer = ({ offers, comments }: OfferProps): JSX.Element => {
 
           <FullOffer
             currentOffer={currentOffer}
-            comments={comments}
-            offers={offers}
           />
 
           <div className="container">
             <NearOffers
               currentOffer={currentOffer}
-              offers={offers}
             />
           </div>
 

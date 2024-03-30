@@ -1,4 +1,4 @@
-const ratings: { value: string; title: string }[] = [
+const RATINGS: { value: string; title: string }[] = [
   {
     value: '5',
     title: 'perfect'
@@ -24,4 +24,4 @@ const ratings: { value: string; title: string }[] = [
 const MIN_COMMENT_LENGTH = 50;
 const MAX_COMMENT_LENGTH = 300;
 
-export { ratings, MIN_COMMENT_LENGTH, MAX_COMMENT_LENGTH };
+export { RATINGS, MIN_COMMENT_LENGTH, MAX_COMMENT_LENGTH };

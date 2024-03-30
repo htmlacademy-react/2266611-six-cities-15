@@ -1,12 +1,12 @@
 import { useEffect } from 'react';
-import { activeBalloonIcon, defaultBalloonIcon } from '../const/const';
+import { activeBalloonIcon, defaultBalloonIcon } from '../const';
 import leaflet, { Map, layerGroup } from 'leaflet';
 import { Nullable } from 'vitest';
-import { PreviewOfferType } from '../../../shared/types/offer';
+import { TPreviewOffer } from '../../../shared/types/offer';
 
 export const useMapMarkers = (
   map: Nullable<Map>,
-  offers: PreviewOfferType[],
+  offers: TPreviewOffer[],
   balloonId: Nullable<string>
 ) => {
   useEffect(() => {

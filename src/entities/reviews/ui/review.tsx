@@ -1,9 +1,9 @@
 import dayjs from 'dayjs';
-import { Comment } from '../../../shared/types/comment';
+import { TComment } from '../../../shared/types/comment';
 import StarRating from '../../../shared/ui/star-rating';
 
 type ReviewProps = {
-  sortedComment: Comment;
+  sortedComment: TComment;
 }
 
 const Review = ({ sortedComment }: ReviewProps): JSX.Element => {
