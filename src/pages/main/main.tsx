@@ -1,6 +1,8 @@
 import clsx from 'clsx';
-import { useAppSelector } from '../../shared/lib/redux';
+import { useEffect } from 'react';
+import { useAppSelector, useAppDispatch } from '../../shared/lib/redux';
 import { getCurrentOffers } from '../../entities/offers';
+import { fetchPreviewOffers } from '../../entities/offers/api/thunks';
 
 import Layout from '../../shared/layout';
 import Header from '../../widgets/header';
@@ -8,7 +10,12 @@ import Filter from '../../features/filter';
 import AllOffers from '../../widgets/all-offers';
 
 const Main = (): JSX.Element => {
+  const dispatch = useAppDispatch();
   const currentOffers = useAppSelector(getCurrentOffers);
+
+  useEffect(() => {
+    dispatch(fetchPreviewOffers());
+  }, []);
 
   return (
     <Layout
