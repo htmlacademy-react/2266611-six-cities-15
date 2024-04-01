@@ -15,7 +15,7 @@ const Main = (): JSX.Element => {
 
   useEffect(() => {
     dispatch(fetchPreviewOffers());
-  }, []);
+  }, [dispatch]);
 
   return (
     <Layout
