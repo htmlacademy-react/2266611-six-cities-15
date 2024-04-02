@@ -1,6 +1,8 @@
 import { TRootState } from '../types/store-types';
 
 export const getPreviewOffers = (state: TRootState) => state.offers.previewOffers;
+export const getPreviewOffersStatus = (state: TRootState) => state.offers.previewOffersStatus;
+
 export const getFullOffers = (state: TRootState) => state.offers.fullOffers;
 
 export const getCurrentSortOption = (state: TRootState) => state.offers.currentSortOption;
