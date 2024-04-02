@@ -1,8 +1,8 @@
 import clsx from 'clsx';
 import { useEffect } from 'react';
-import { useAppSelector, useAppDispatch, getPreviewOffersStatus } from '../../shared/lib/redux';
-import { getCurrentOffers } from '../../entities/offers';
-import { fetchPreviewOffers } from '../../entities/offers/api/thunks';
+import { useAppSelector, getPreviewOffersStatus, useActionCreators } from '../../shared/lib/redux';
+import { getCurrentOffers, offersActions } from '../../entities/offers';
+// import { fetchPreviewOffers } from '../../entities/offers/api/thunks';
 import { APIStatus } from '../../shared/const';
 
 import Layout from '../../shared/layout';
@@ -12,14 +12,14 @@ import AllOffers from '../../widgets/all-offers';
 import Loader from '../../shared/ui/loader';
 
 const Main = (): JSX.Element => {
-  const dispatch = useAppDispatch();
   const currentOffers = useAppSelector(getCurrentOffers);
   const status = useAppSelector(getPreviewOffersStatus);
   const isLoading = status === APIStatus.Loading;
+  const { fetchPreviewOffers } = useActionCreators(offersActions);
 
   useEffect(() => {
-    dispatch(fetchPreviewOffers());
-  }, [dispatch]);
+    fetchPreviewOffers().unwrap();
+  }, [fetchPreviewOffers]);
 
   return (
     <Layout
