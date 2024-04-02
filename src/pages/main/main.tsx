@@ -2,7 +2,6 @@ import clsx from 'clsx';
 import { useEffect } from 'react';
 import { useAppSelector, getPreviewOffersStatus, useActionCreators } from '../../shared/lib/redux';
 import { getCurrentOffers, offersActions } from '../../entities/offers';
-// import { fetchPreviewOffers } from '../../entities/offers/api/thunks';
 import { APIStatus } from '../../shared/const';
 
 import Layout from '../../shared/layout';
