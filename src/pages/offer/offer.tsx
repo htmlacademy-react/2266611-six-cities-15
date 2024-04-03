@@ -1,6 +1,8 @@
 import { Navigate, useParams } from 'react-router-dom';
 import { AppRoute } from '../../shared/const';
-import { useAppSelector, getFullOffers } from '../../shared/lib/redux';
+import { useAppSelector, getFullOffer, useActionCreators } from '../../shared/lib/redux';
+import { useEffect } from 'react';
+import { offersActions } from '../../entities/offers';
 
 import Layout from '../../shared/layout';
 import Header from '../../widgets/header';
@@ -9,8 +11,12 @@ import NearOffers from '../../widgets/near-offers';
 
 const Offer = (): JSX.Element => {
   const { id: offerId } = useParams();
-  const fullOffers = useAppSelector(getFullOffers);
-  const currentOffer = fullOffers.find((offer) => offer.id === offerId);
+  const currentOffer = useAppSelector(getFullOffer);
+  const { fetchFullOffer } = useActionCreators(offersActions);
+
+  useEffect(() => {
+    fetchFullOffer(String(offerId)).unwrap();
+  }, [fetchFullOffer, offerId]);
 
   if (!currentOffer) {
     return <Navigate to={AppRoute.NotFound} replace />;

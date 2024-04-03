@@ -3,21 +3,22 @@ import { INITIAL_SORT_OPTION } from '../const';
 import { NameSpace } from '../../../shared/const';
 import { TPreviewOffer, TFullOffer } from '../../../shared/types/offer';
 import { APIStatus } from '../../../shared/const';
-import { fetchPreviewOffers } from '../api/thunks';
+import { fetchPreviewOffers, fetchFullOffer } from '../api/thunks';
+import { Nullable } from 'vitest';
 
 type OffersState = {
   previewOffers: TPreviewOffer[];
   previewOffersStatus: APIStatus;
-  fullOffers: TFullOffer[];
-  fullOffersStatus: APIStatus;
+  fullOffer: Nullable<TFullOffer>;
+  fullOfferStatus: APIStatus;
   currentSortOption: string;
 }
 
 const initialState: OffersState = {
   previewOffers: [],
   previewOffersStatus: APIStatus.Idle,
-  fullOffers: [],
-  fullOffersStatus: APIStatus.Idle,
+  fullOffer: null,
+  fullOfferStatus: APIStatus.Idle,
   currentSortOption: INITIAL_SORT_OPTION,
 };
 
@@ -40,8 +41,19 @@ export const offersSlice = createSlice({
       })
       .addCase(fetchPreviewOffers.rejected, (state) => {
         state.previewOffersStatus = APIStatus.Failed;
+      })
+      .addCase(fetchFullOffer.pending, (state) => {
+        state.fullOfferStatus = APIStatus.Loading;
+      })
+      .addCase(fetchFullOffer.fulfilled, (state, action) => {
+        state.fullOfferStatus = APIStatus.Succeeded;
+        state.fullOffer = action.payload;
+      })
+      .addCase(fetchFullOffer.rejected, (state) => {
+        state.fullOfferStatus = APIStatus.Failed;
+        state.fullOffer = null;
       });
   },
 });
 
-export const offersActions = { ...offersSlice.actions, fetchPreviewOffers };
+export const offersActions = { ...offersSlice.actions, fetchPreviewOffers, fetchFullOffer };
