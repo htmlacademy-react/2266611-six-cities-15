@@ -1,8 +1,8 @@
+import { Navigate } from 'react-router-dom';
 import { capitalizeFirstLetter } from '../../../shared/lib/utils';
-import { getPreviewOffers } from '../../../shared/lib/redux/selectors/selectors';
+import { getPreviewOffers, getFullOffer } from '../../../shared/lib/redux/selectors/selectors';
 import { useAppSelector } from '../../../shared/lib/redux';
-import { AuthorizationStatus } from '../../../shared/const';
-import { TFullOffer } from '../../../shared/types/offer';
+import { AuthorizationStatus, AppRoute } from '../../../shared/const';
 import { getSortedComments } from '../../../entities/reviews/model/selectors';
 import { getAuthorizationStatus } from '../../../mocks/authorization-status';
 
@@ -13,15 +13,16 @@ import Review from '../../../entities/reviews';
 import PremiumBadge from '../../../shared/ui/premium-badge';
 import StarRating from '../../../shared/ui/star-rating';
 
-type FullOfferProps = {
-  currentOffer: TFullOffer;
-}
-
-const FullOffer = ({ currentOffer }: FullOfferProps): JSX.Element => {
+const FullOffer = (): JSX.Element => {
+  const currentOffer = useAppSelector(getFullOffer);
   const authorizationStatus = getAuthorizationStatus();
   const offers = useAppSelector(getPreviewOffers);
-  const nearOffers = [...offers].filter((offer) => offer.city.name === currentOffer.city.name).slice(0, 4);
+  const nearOffers = [...offers].filter((offer) => offer.city.name === currentOffer?.city.name).slice(0, 4);
   const sortedComments = useAppSelector(getSortedComments);
+
+  if (!currentOffer) {
+    return <Navigate to={AppRoute.NotFound} replace />;
+  }
 
   const {
     title,

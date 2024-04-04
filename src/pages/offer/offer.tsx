@@ -1,44 +1,42 @@
-import { Navigate, useParams } from 'react-router-dom';
-import { AppRoute } from '../../shared/const';
-import { useAppSelector, getFullOffer, useActionCreators } from '../../shared/lib/redux';
+import clsx from 'clsx';
+import { useParams } from 'react-router-dom';
+import { APIStatus } from '../../shared/const';
+import { useAppSelector, useActionCreators } from '../../shared/lib/redux';
 import { useEffect } from 'react';
 import { offersActions } from '../../entities/offers';
+import { getFullOfferStatus } from '../../shared/lib/redux';
 
 import Layout from '../../shared/layout';
 import Header from '../../widgets/header';
 import FullOffer from '../../widgets/full-offer';
 import NearOffers from '../../widgets/near-offers';
+import SquareLoader from '../../shared/ui/loader/square-loader';
 
 const Offer = (): JSX.Element => {
   const { id: offerId } = useParams();
-  const currentOffer = useAppSelector(getFullOffer);
   const { fetchFullOffer } = useActionCreators(offersActions);
+  const status = useAppSelector(getFullOfferStatus);
+  const isLoading = status === APIStatus.Loading;
 
   useEffect(() => {
     fetchFullOffer(String(offerId)).unwrap();
-  }, [fetchFullOffer, offerId]);
-
-  if (!currentOffer) {
-    return <Navigate to={AppRoute.NotFound} replace />;
-  }
+  }, [offerId, fetchFullOffer]);
 
   return (
     <Layout
-      wrapper="page"
+      wrapper={clsx('page', { 'page--main': isLoading })}
       title="6 cities: offer"
       header={<Header />}
       content={
-        <main className="page__main page__main--offer">
+        <main className={clsx('page__main', { 'page__main--index': isLoading, 'page__main--offer': !isLoading })}>
 
-          <FullOffer
-            currentOffer={currentOffer}
-          />
+          {isLoading && <SquareLoader />}
+          {!isLoading && <FullOffer />}
 
+          {!isLoading &&
           <div className="container">
-            <NearOffers
-              currentOffer={currentOffer}
-            />
-          </div>
+            <NearOffers />
+          </div>}
 
         </main>
       }
