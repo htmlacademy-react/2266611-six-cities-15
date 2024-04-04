@@ -10,6 +10,7 @@ export const getNearbyOffers = (state: TRootState) => state.offers.nearbyOffers;
 export const getNearbyOffersStatus = (state: TRootState) => state.offers.nearbyOffersStatus;
 
 export const getComments = (state: TRootState) => state.reviews.comments;
+export const getCommentsStatus = (state: TRootState) => state.reviews.commentsStatus;
 
 export const getCurrentCity = (state: TRootState) => state.city.currentCity;
 

@@ -4,7 +4,8 @@ import { APIStatus } from '../../shared/const';
 import { useAppSelector, useActionCreators } from '../../shared/lib/redux';
 import { useEffect } from 'react';
 import { offersActions } from '../../entities/offers';
-import { getFullOfferStatus, getNearbyOffersStatus } from '../../shared/lib/redux';
+import { reviewsActions } from '../../entities/reviews';
+import { getFullOfferStatus, getNearbyOffersStatus, getCommentsStatus } from '../../shared/lib/redux';
 
 import Layout from '../../shared/layout';
 import Header from '../../widgets/header';
@@ -15,15 +16,18 @@ import SquareLoader from '../../shared/ui/loader/square-loader';
 const Offer = (): JSX.Element => {
   const { id: offerId } = useParams();
   const { fetchFullOffer, fetchNearbyOffers } = useActionCreators(offersActions);
+  const { fetchReviews } = useActionCreators(reviewsActions);
 
   const offerStatus = useAppSelector(getFullOfferStatus);
   const nearbyOfferStatus = useAppSelector(getNearbyOffersStatus);
-  const isLoading = offerStatus && nearbyOfferStatus === APIStatus.Loading;
+  const commentsStatus = useAppSelector(getCommentsStatus);
+  const isLoading = offerStatus && nearbyOfferStatus && commentsStatus === APIStatus.Loading;
 
   useEffect(() => {
     fetchFullOffer(String(offerId)).unwrap();
     fetchNearbyOffers(String(offerId)).unwrap();
-  }, [offerId, fetchFullOffer, fetchNearbyOffers]);
+    fetchReviews(String(offerId)).unwrap();
+  }, [offerId, fetchFullOffer, fetchNearbyOffers, fetchReviews]);
 
   return (
     <Layout

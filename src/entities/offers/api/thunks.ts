@@ -21,7 +21,7 @@ export const fetchFullOffer = createAppAsyncThunk<TFullOffer, string>(
 );
 
 export const fetchNearbyOffers = createAppAsyncThunk<TPreviewOffer[], string>(
-  'api/fetchNearbyOffers',
+  'fetchOffers/nearby',
   async (offerId, { extra: api }) => {
     const { data } = await api.get<TPreviewOffer[]>(`${APIRoute.Offers}/${offerId}${APIRoute.Nearby}`);
 
