@@ -1,5 +1,6 @@
 import clsx from 'clsx';
-import { useParams } from 'react-router-dom';
+import { useParams, Navigate } from 'react-router-dom';
+import { AppRoute } from '../../shared/const';
 import { APIStatus } from '../../shared/const';
 import { useAppSelector, useActionCreators } from '../../shared/lib/redux';
 import { useEffect } from 'react';
@@ -24,10 +25,16 @@ const Offer = (): JSX.Element => {
   const isLoading = offerStatus && nearbyOfferStatus && commentsStatus === APIStatus.Loading;
 
   useEffect(() => {
-    fetchFullOffer(String(offerId)).unwrap();
-    fetchNearbyOffers(String(offerId)).unwrap();
-    fetchReviews(String(offerId)).unwrap();
-  }, [offerId, fetchFullOffer, fetchNearbyOffers, fetchReviews]);
+    Promise.all([
+      fetchFullOffer(String(offerId)),
+      fetchNearbyOffers(String(offerId)),
+      fetchReviews(String(offerId))
+    ]);
+  }, [fetchFullOffer, fetchNearbyOffers, fetchReviews, offerId]);
+
+  if (offerStatus === APIStatus.Failed) {
+    return <Navigate to={AppRoute.NotFound} replace />;
+  }
 
   return (
     <Layout
