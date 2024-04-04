@@ -1,9 +1,10 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { INITIAL_SORT_OPTION } from '../const';
+import { INITIAL_SORT_OPTION, NEARBY_OFFERS_COUNT } from '../const';
 import { NameSpace } from '../../../shared/const';
+import { getRandomItemsFromArray } from '../../../shared/lib/utils';
 import { TPreviewOffer, TFullOffer } from '../../../shared/types/offer';
 import { APIStatus } from '../../../shared/const';
-import { fetchPreviewOffers, fetchFullOffer } from '../api/thunks';
+import { fetchPreviewOffers, fetchFullOffer, fetchNearbyOffers } from '../api/thunks';
 import { Nullable } from 'vitest';
 
 type OffersState = {
@@ -11,6 +12,8 @@ type OffersState = {
   previewOffersStatus: APIStatus;
   fullOffer: Nullable<TFullOffer>;
   fullOfferStatus: APIStatus;
+  nearbyOffers: TPreviewOffer[];
+  nearbyOffersStatus: APIStatus;
   currentSortOption: string;
 }
 
@@ -19,6 +22,8 @@ const initialState: OffersState = {
   previewOffersStatus: APIStatus.Idle,
   fullOffer: null,
   fullOfferStatus: APIStatus.Idle,
+  nearbyOffers: [],
+  nearbyOffersStatus: APIStatus.Idle,
   currentSortOption: INITIAL_SORT_OPTION,
 };
 
@@ -52,8 +57,19 @@ export const offersSlice = createSlice({
       .addCase(fetchFullOffer.rejected, (state) => {
         state.fullOfferStatus = APIStatus.Failed;
         state.fullOffer = null;
+      })
+      .addCase(fetchNearbyOffers.pending, (state) => {
+        state.nearbyOffersStatus = APIStatus.Loading;
+      })
+      .addCase(fetchNearbyOffers.fulfilled, (state, action) => {
+        state.nearbyOffersStatus = APIStatus.Succeeded;
+        state.nearbyOffers = getRandomItemsFromArray(action.payload, NEARBY_OFFERS_COUNT);
+      })
+      .addCase(fetchNearbyOffers.rejected, (state) => {
+        state.nearbyOffersStatus = APIStatus.Failed;
+        state.nearbyOffers = [];
       });
   },
 });
 
-export const offersActions = { ...offersSlice.actions, fetchPreviewOffers, fetchFullOffer };
+export const offersActions = { ...offersSlice.actions, fetchPreviewOffers, fetchFullOffer, fetchNearbyOffers };

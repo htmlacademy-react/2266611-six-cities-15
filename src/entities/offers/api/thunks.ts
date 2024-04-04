@@ -1,9 +1,8 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
+import { createAppAsyncThunk } from '../../../shared/lib/redux/hooks/create-app-async-thunk';
 import { APIRoute } from '../../../shared/const';
 import { TPreviewOffer, TFullOffer } from '../../../shared/types/offer';
-import { AxiosInstance } from 'axios';
 
-export const fetchPreviewOffers = createAsyncThunk<TPreviewOffer[], undefined, { extra: AxiosInstance }>(
+export const fetchPreviewOffers = createAppAsyncThunk<TPreviewOffer[], undefined>(
   'fetchOffers/preview',
   async (_arg, { extra: api }) => {
     const { data } = await api.get<TPreviewOffer[]>(APIRoute.Offers);
@@ -12,10 +11,19 @@ export const fetchPreviewOffers = createAsyncThunk<TPreviewOffer[], undefined, {
   }
 );
 
-export const fetchFullOffer = createAsyncThunk<TFullOffer, string, { extra: AxiosInstance }>(
+export const fetchFullOffer = createAppAsyncThunk<TFullOffer, string>(
   'fetchOffers/full',
   async (offerId, { extra: api }) => {
     const { data } = await api.get<TFullOffer>(`${APIRoute.Offers}/${offerId}`);
+
+    return data;
+  }
+);
+
+export const fetchNearbyOffers = createAppAsyncThunk<TPreviewOffer[], string>(
+  'api/fetchNearbyOffers',
+  async (offerId, { extra: api }) => {
+    const { data } = await api.get<TPreviewOffer[]>(`${APIRoute.Offers}/${offerId}${APIRoute.Nearby}`);
 
     return data;
   }

@@ -4,7 +4,7 @@ import { APIStatus } from '../../shared/const';
 import { useAppSelector, useActionCreators } from '../../shared/lib/redux';
 import { useEffect } from 'react';
 import { offersActions } from '../../entities/offers';
-import { getFullOfferStatus } from '../../shared/lib/redux';
+import { getFullOfferStatus, getNearbyOffersStatus } from '../../shared/lib/redux';
 
 import Layout from '../../shared/layout';
 import Header from '../../widgets/header';
@@ -14,13 +14,16 @@ import SquareLoader from '../../shared/ui/loader/square-loader';
 
 const Offer = (): JSX.Element => {
   const { id: offerId } = useParams();
-  const { fetchFullOffer } = useActionCreators(offersActions);
-  const status = useAppSelector(getFullOfferStatus);
-  const isLoading = status === APIStatus.Loading;
+  const { fetchFullOffer, fetchNearbyOffers } = useActionCreators(offersActions);
+
+  const offerStatus = useAppSelector(getFullOfferStatus);
+  const nearbyOfferStatus = useAppSelector(getNearbyOffersStatus);
+  const isLoading = offerStatus && nearbyOfferStatus === APIStatus.Loading;
 
   useEffect(() => {
     fetchFullOffer(String(offerId)).unwrap();
-  }, [offerId, fetchFullOffer]);
+    fetchNearbyOffers(String(offerId)).unwrap();
+  }, [offerId, fetchFullOffer, fetchNearbyOffers]);
 
   return (
     <Layout
@@ -31,8 +34,8 @@ const Offer = (): JSX.Element => {
         <main className={clsx('page__main', { 'page__main--index': isLoading, 'page__main--offer': !isLoading })}>
 
           {isLoading && <SquareLoader />}
-          {!isLoading && <FullOffer />}
 
+          {!isLoading && <FullOffer />}
           {!isLoading &&
           <div className="container">
             <NearOffers />

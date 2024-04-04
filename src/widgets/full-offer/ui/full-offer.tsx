@@ -1,6 +1,6 @@
 import { Navigate } from 'react-router-dom';
 import { capitalizeFirstLetter } from '../../../shared/lib/utils';
-import { getPreviewOffers, getFullOffer } from '../../../shared/lib/redux/selectors/selectors';
+import { getPreviewOffers, getFullOffer, getNearbyOffers } from '../../../shared/lib/redux/selectors/selectors';
 import { useAppSelector } from '../../../shared/lib/redux';
 import { AuthorizationStatus, AppRoute } from '../../../shared/const';
 import { getSortedComments } from '../../../entities/reviews/model/selectors';
@@ -14,13 +14,16 @@ import PremiumBadge from '../../../shared/ui/premium-badge';
 import StarRating from '../../../shared/ui/star-rating';
 
 const FullOffer = (): JSX.Element => {
-  const currentOffer = useAppSelector(getFullOffer);
-  const authorizationStatus = getAuthorizationStatus();
+  const currentFullOffer = useAppSelector(getFullOffer);
+  const nearbyOffers = useAppSelector(getNearbyOffers);
   const offers = useAppSelector(getPreviewOffers);
-  const nearOffers = [...offers].filter((offer) => offer.city.name === currentOffer?.city.name).slice(0, 4);
+  const currentOffer = [...offers].filter((offer) => offer.id === currentFullOffer?.id);
+  const currentAndNearbyOffers = [...nearbyOffers, ...currentOffer];
   const sortedComments = useAppSelector(getSortedComments);
 
-  if (!currentOffer) {
+  const authorizationStatus = getAuthorizationStatus();
+
+  if (!currentFullOffer) {
     return <Navigate to={AppRoute.NotFound} replace />;
   }
 
@@ -38,7 +41,7 @@ const FullOffer = (): JSX.Element => {
     rating,
     bedrooms,
     maxAdults
-  } = currentOffer;
+  } = currentFullOffer;
 
   return (
     <section className="offer">
@@ -144,9 +147,9 @@ const FullOffer = (): JSX.Element => {
 
       <Map
         sectionName="offer"
-        balloonId={currentOffer.id}
+        balloonId={currentFullOffer.id}
         location={city.location}
-        offers={nearOffers}
+        offers={currentAndNearbyOffers}
       />
 
     </section>
