@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { useActionCreators } from '../../../shared/lib/redux';
+import { useActionCreators, useAppSelector, getLoginStatusObject } from '../../../shared/lib/redux';
 import { userActions } from '../../../entities/user';
 import { FormEvent, useState } from 'react';
 import { validateEmail, validatePassword } from '../lib/validate-form';
@@ -7,6 +7,7 @@ import styles from './styles.module.css';
 
 const Register = (): JSX.Element => {
   const { loginAction } = useActionCreators(userActions);
+  const loginStatus = useAppSelector(getLoginStatusObject);
   const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
   const [emailValue, setEmailValue] = useState('');
@@ -67,9 +68,9 @@ const Register = (): JSX.Element => {
       <button
         className="login__submit form__submit button"
         type="submit"
-        disabled={isFormInvalid}
+        disabled={loginStatus.isLoading || isFormInvalid}
       >
-        Sign in
+        {loginStatus.isLoading ? 'Sending...' : 'Sign in'}
       </button>
     </form>
   );

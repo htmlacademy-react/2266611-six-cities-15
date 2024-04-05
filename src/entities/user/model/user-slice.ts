@@ -3,14 +3,17 @@ import { Nullable } from 'vitest';
 import { AuthorizationStatus, NameSpace } from '../../../shared/enum';
 import { checkAuthAction, logOutAction, loginAction } from '../api/thunk';
 import { TUser } from '../../../shared/types/user';
+import { APIStatus } from '../../../shared/enum';
 
 type UserProcess = {
   authorizationStatus: AuthorizationStatus;
+  loginStatus: APIStatus;
   userData: Nullable<TUser>;
 }
 
 const initialState: UserProcess = {
   authorizationStatus: AuthorizationStatus.Unknown,
+  loginStatus: APIStatus.Idle,
   userData: null,
 };
 
@@ -27,12 +30,17 @@ export const userSlice = createSlice({
       .addCase(checkAuthAction.rejected, (state) => {
         state.authorizationStatus = AuthorizationStatus.NoAuth;
       })
+      .addCase(loginAction.pending, (state) => {
+        state.loginStatus = APIStatus.Loading;
+      })
       .addCase(loginAction.fulfilled, (state, action) => {
         state.authorizationStatus = AuthorizationStatus.Auth;
+        state.loginStatus = APIStatus.Succeeded;
         state.userData = action.payload;
       })
       .addCase(loginAction.rejected, (state) => {
         state.authorizationStatus = AuthorizationStatus.NoAuth;
+        state.loginStatus = APIStatus.Failed;
       })
       .addCase(logOutAction.fulfilled, (state) => {
         state.authorizationStatus = AuthorizationStatus.NoAuth;
