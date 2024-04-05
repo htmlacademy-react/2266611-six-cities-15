@@ -1,0 +1,39 @@
+.container {
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.wrapper {
+  padding-top: 62px;
+  text-align: center;
+  background-image: url("../img/ico-no-results.svg");
+  background-size: 45px 47px;
+  background-position: center top;
+  background-repeat: no-repeat;
+}
+
+.title {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 32px;
+  line-height: 1.1875;
+}
+
+.button {
+  background-color:#4481c3;
+  padding: 10px 15px 10px 12px;
+  border-radius: 3px;
+  color: #ffffff;
+  font-weight: 600;
+  font-style: oblique -15deg;
+  transform: skew(-15deg);
+  border: none;
+  margin-top: 25px;
+  cursor: pointer;
+}
+
+.description {
+  width: 500px;
+  font-size: 18px;
+}
