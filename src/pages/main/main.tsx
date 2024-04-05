@@ -1,8 +1,7 @@
 import clsx from 'clsx';
 import { useEffect } from 'react';
-import { useAppSelector, getPreviewOffersStatus, useActionCreators } from '../../shared/lib/redux';
+import { useAppSelector, getPreviewOffersStatusObject, useActionCreators } from '../../shared/lib/redux';
 import { getCurrentOffers, offersActions } from '../../entities/offers';
-import { APIStatus } from '../../shared/const';
 
 import Layout from '../../shared/layout';
 import Header from '../../widgets/header';
@@ -12,8 +11,8 @@ import BalloonLoader from '../../shared/ui/loader/balloon-loader';
 
 const Main = (): JSX.Element => {
   const currentOffers = useAppSelector(getCurrentOffers);
-  const status = useAppSelector(getPreviewOffersStatus);
-  const isLoading = status === APIStatus.Loading;
+  const previewOffersStatus = useAppSelector(getPreviewOffersStatusObject);
+  const isLoading = previewOffersStatus.isUncompleted;
   const { fetchPreviewOffers } = useActionCreators(offersActions);
 
   useEffect(() => {

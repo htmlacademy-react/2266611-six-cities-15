@@ -1,4 +1,4 @@
-import { createAppAsyncThunk } from '../../../shared/lib/redux/hooks/create-app-async-thunk';
+import { createAppAsyncThunk } from '../../../shared/lib/redux';
 import { APIRoute } from '../../../shared/const';
 import { TPreviewOffer, TFullOffer } from '../../../shared/types/offer';
 

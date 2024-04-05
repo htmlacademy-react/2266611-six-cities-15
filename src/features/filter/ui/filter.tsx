@@ -7,7 +7,7 @@ import { useAppSelector, useActionCreators } from '../../../shared/lib/redux';
 import { TCity } from '../../../shared/types/offer';
 
 const Filter = (): JSX.Element => {
-  const {changeCity} = useActionCreators(cityActions);
+  const { changeCity } = useActionCreators(cityActions);
   const currentCity = useAppSelector(getCurrentCity);
 
   const handleTabClick = (city: TCity) => changeCity(city);

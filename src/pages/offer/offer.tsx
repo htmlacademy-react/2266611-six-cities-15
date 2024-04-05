@@ -1,12 +1,10 @@
 import clsx from 'clsx';
-import { useParams, Navigate } from 'react-router-dom';
-import { AppRoute } from '../../shared/const';
-import { APIStatus } from '../../shared/const';
+import { useParams } from 'react-router-dom';
 import { useAppSelector, useActionCreators } from '../../shared/lib/redux';
 import { useEffect } from 'react';
 import { offersActions } from '../../entities/offers';
 import { reviewsActions } from '../../entities/reviews';
-import { getFullOfferStatus, getNearbyOffersStatus, getCommentsStatus } from '../../shared/lib/redux';
+import { getFullOfferStatusObject, getNearbyOffersStatusObject, getCommentsStatusObject } from '../../shared/lib/redux';
 
 import Layout from '../../shared/layout';
 import Header from '../../widgets/header';
@@ -19,10 +17,10 @@ const Offer = (): JSX.Element => {
   const { fetchFullOffer, fetchNearbyOffers } = useActionCreators(offersActions);
   const { fetchReviews } = useActionCreators(reviewsActions);
 
-  const offerStatus = useAppSelector(getFullOfferStatus);
-  const nearbyOfferStatus = useAppSelector(getNearbyOffersStatus);
-  const commentsStatus = useAppSelector(getCommentsStatus);
-  const isLoading = offerStatus && nearbyOfferStatus && commentsStatus === APIStatus.Loading;
+  const fullOfferStatus = useAppSelector(getFullOfferStatusObject);
+  const nearbyOfferStatus = useAppSelector(getNearbyOffersStatusObject);
+  const commentsStatus = useAppSelector(getCommentsStatusObject);
+  const isLoading = fullOfferStatus.isUncompleted || nearbyOfferStatus.isUncompleted || commentsStatus.isUncompleted;
 
   useEffect(() => {
     Promise.all([
@@ -31,10 +29,6 @@ const Offer = (): JSX.Element => {
       fetchReviews(String(offerId))
     ]);
   }, [fetchFullOffer, fetchNearbyOffers, fetchReviews, offerId]);
-
-  if (offerStatus === APIStatus.Failed) {
-    return <Navigate to={AppRoute.NotFound} replace />;
-  }
 
   return (
     <Layout

@@ -4,7 +4,7 @@ import { getPreviewOffers, getFullOffer, getNearbyOffers } from '../../../shared
 import { useAppSelector } from '../../../shared/lib/redux';
 import { AuthorizationStatus, AppRoute } from '../../../shared/const';
 import { getSortedComments } from '../../../entities/reviews/model/selectors';
-import { getAuthorizationStatus } from '../../../mocks/authorization-status';
+import { getAuthorizationStatus } from '../../../shared/lib/redux/selectors/selectors';
 
 import Map from '../../../features/map';
 import Feedback from '../../../features/feedback';
@@ -21,7 +21,7 @@ const FullOffer = (): JSX.Element => {
   const currentAndNearbyOffers = [...nearbyOffers, ...currentOffer];
   const sortedComments = useAppSelector(getSortedComments);
 
-  const authorizationStatus = getAuthorizationStatus();
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
 
   if (!currentFullOffer) {
     return <Navigate to={AppRoute.NotFound} replace />;
