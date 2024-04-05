@@ -1,4 +1,4 @@
-import { AppRoute } from '../../../shared/const';
+import { AppRoute } from '../../../shared/enum';
 
 import Logo from '../../../shared/ui/logo';
 

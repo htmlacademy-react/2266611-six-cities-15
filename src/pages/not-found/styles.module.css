@@ -57,6 +57,6 @@
   border-radius: 3px;
   color: #4481c3;
   font-weight: 600;
-  font-style: oblique;
+  font-style: oblique -15deg;
   transform: skew(-15deg);
 }

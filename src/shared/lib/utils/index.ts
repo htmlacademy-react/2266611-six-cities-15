@@ -1,4 +1,9 @@
 import { ScrollToTop } from './scroll-to-top';
-import { capitalizeFirstLetter } from './common';
+import { capitalizeFirstLetter, getRandomItemsFromArray, getRandomItemFromArray } from './common';
 
-export { ScrollToTop, capitalizeFirstLetter };
+export {
+  ScrollToTop,
+  capitalizeFirstLetter,
+  getRandomItemsFromArray,
+  getRandomItemFromArray
+};

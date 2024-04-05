@@ -1,6 +1,6 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { INITIAL_CITY } from '../const';
-import { NameSpace } from '../../../shared/const';
+import { NameSpace } from '../../../shared/enum';
 import { TCity } from '../../../shared/types/offer';
 
 type CityState = {

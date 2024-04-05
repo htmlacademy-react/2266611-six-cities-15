@@ -1,13 +1,13 @@
 import clsx from 'clsx';
 import { Link } from 'react-router-dom';
-import { AppRoute } from '../../../shared/const';
+import { AppRoute } from '../../../shared/enum';
 import { cityActions, CITIES } from '../../../entities/city';
 import { getCurrentCity } from '../../../shared/lib/redux';
 import { useAppSelector, useActionCreators } from '../../../shared/lib/redux';
 import { TCity } from '../../../shared/types/offer';
 
 const Filter = (): JSX.Element => {
-  const {changeCity} = useActionCreators(cityActions);
+  const { changeCity } = useActionCreators(cityActions);
   const currentCity = useAppSelector(getCurrentCity);
 
   const handleTabClick = (city: TCity) => changeCity(city);

@@ -1,23 +1,29 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { INITIAL_SORT_OPTION } from '../const';
-import { NameSpace } from '../../../shared/const';
+import { INITIAL_SORT_OPTION, NEARBY_OFFERS_COUNT } from '../const';
+import { NameSpace } from '../../../shared/enum';
+import { getRandomItemsFromArray } from '../../../shared/lib/utils';
 import { TPreviewOffer, TFullOffer } from '../../../shared/types/offer';
-import { APIStatus } from '../../../shared/const';
-import { fetchPreviewOffers } from '../api/thunks';
+import { APIStatus } from '../../../shared/enum';
+import { fetchPreviewOffers, fetchFullOffer, fetchNearbyOffers } from '../api/thunks';
+import { Nullable } from 'vitest';
 
 type OffersState = {
   previewOffers: TPreviewOffer[];
   previewOffersStatus: APIStatus;
-  fullOffers: TFullOffer[];
-  fullOffersStatus: APIStatus;
+  fullOffer: Nullable<TFullOffer>;
+  fullOfferStatus: APIStatus;
+  nearbyOffers: TPreviewOffer[];
+  nearbyOffersStatus: APIStatus;
   currentSortOption: string;
 }
 
 const initialState: OffersState = {
   previewOffers: [],
   previewOffersStatus: APIStatus.Idle,
-  fullOffers: [],
-  fullOffersStatus: APIStatus.Idle,
+  fullOffer: null,
+  fullOfferStatus: APIStatus.Idle,
+  nearbyOffers: [],
+  nearbyOffersStatus: APIStatus.Idle,
   currentSortOption: INITIAL_SORT_OPTION,
 };
 
@@ -40,8 +46,30 @@ export const offersSlice = createSlice({
       })
       .addCase(fetchPreviewOffers.rejected, (state) => {
         state.previewOffersStatus = APIStatus.Failed;
+      })
+      .addCase(fetchFullOffer.pending, (state) => {
+        state.fullOfferStatus = APIStatus.Loading;
+      })
+      .addCase(fetchFullOffer.fulfilled, (state, action) => {
+        state.fullOfferStatus = APIStatus.Succeeded;
+        state.fullOffer = action.payload;
+      })
+      .addCase(fetchFullOffer.rejected, (state) => {
+        state.fullOfferStatus = APIStatus.Failed;
+        state.fullOffer = null;
+      })
+      .addCase(fetchNearbyOffers.pending, (state) => {
+        state.nearbyOffersStatus = APIStatus.Loading;
+      })
+      .addCase(fetchNearbyOffers.fulfilled, (state, action) => {
+        state.nearbyOffersStatus = APIStatus.Succeeded;
+        state.nearbyOffers = getRandomItemsFromArray(action.payload, NEARBY_OFFERS_COUNT);
+      })
+      .addCase(fetchNearbyOffers.rejected, (state) => {
+        state.nearbyOffersStatus = APIStatus.Failed;
+        state.nearbyOffers = [];
       });
   },
 });
 
-export const offersActions = { ...offersSlice.actions, fetchPreviewOffers };
+export const offersActions = { ...offersSlice.actions, fetchPreviewOffers, fetchFullOffer, fetchNearbyOffers };

@@ -4,20 +4,26 @@ import { useAppSelector } from '../../../shared/lib/redux';
 import { TPreviewOffer } from '../../../shared/types/offer';
 import { getCurrentOffers } from '../../../entities/offers';
 import { getCurrentCity } from '../../../shared/lib/redux';
+import { getPreviewOffersStatusObject } from '../../../shared/lib/redux';
 
 import Sort from '../../../features/sort';
 import Map from '../../../features/map';
 import Bookmark from '../../../features/bookmark';
 import Card from '../../../entities/card';
 import NoOffers from './no-offers';
+import ErrorOffers from './error-offers';
 
 const AllOffers = (): JSX.Element => {
   const [activeCard, setActiveCard] = useState<Nullable<TPreviewOffer>>(null);
   const handleCardHover = (offer: Nullable<TPreviewOffer>) => setActiveCard(offer);
-
   const currentCity = useAppSelector(getCurrentCity);
   const { name, location } = currentCity;
   const currentOffers = useAppSelector(getCurrentOffers);
+  const previewOffersStatus = useAppSelector(getPreviewOffersStatusObject);
+
+  if (previewOffersStatus.isFailed) {
+    return <ErrorOffers />;
+  }
 
   if (!currentOffers.length) {
     return <NoOffers city={name}/>;

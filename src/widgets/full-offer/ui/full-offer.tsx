@@ -1,10 +1,12 @@
+import clsx from 'clsx';
+import { Navigate } from 'react-router-dom';
 import { capitalizeFirstLetter } from '../../../shared/lib/utils';
-import { getPreviewOffers } from '../../../shared/lib/redux/selectors/selectors';
+import { getPreviewOffers, getFullOffer, getNearbyOffers } from '../../../shared/lib/redux/selectors/selectors';
 import { useAppSelector } from '../../../shared/lib/redux';
-import { AuthorizationStatus } from '../../../shared/const';
-import { TFullOffer } from '../../../shared/types/offer';
+import { AuthorizationStatus, AppRoute } from '../../../shared/enum';
 import { getSortedComments } from '../../../entities/reviews/model/selectors';
-import { getAuthorizationStatus } from '../../../mocks/authorization-status';
+import { getAuthorizationStatus } from '../../../shared/lib/redux/selectors/selectors';
+import { MAX_IMAGES_COUNT } from '../const';
 
 import Map from '../../../features/map';
 import Feedback from '../../../features/feedback';
@@ -13,15 +15,19 @@ import Review from '../../../entities/reviews';
 import PremiumBadge from '../../../shared/ui/premium-badge';
 import StarRating from '../../../shared/ui/star-rating';
 
-type FullOfferProps = {
-  currentOffer: TFullOffer;
-}
-
-const FullOffer = ({ currentOffer }: FullOfferProps): JSX.Element => {
-  const authorizationStatus = getAuthorizationStatus();
+const FullOffer = (): JSX.Element => {
+  const currentFullOffer = useAppSelector(getFullOffer);
+  const nearbyOffers = useAppSelector(getNearbyOffers);
   const offers = useAppSelector(getPreviewOffers);
-  const nearOffers = [...offers].filter((offer) => offer.city.name === currentOffer.city.name).slice(0, 4);
+  const currentOffer = [...offers].filter((offer) => offer.id === currentFullOffer?.id);
+  const currentAndNearbyOffers = [...nearbyOffers, ...currentOffer];
   const sortedComments = useAppSelector(getSortedComments);
+
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
+
+  if (!currentFullOffer) {
+    return <Navigate to={AppRoute.NotFound} replace />;
+  }
 
   const {
     title,
@@ -37,14 +43,14 @@ const FullOffer = ({ currentOffer }: FullOfferProps): JSX.Element => {
     rating,
     bedrooms,
     maxAdults
-  } = currentOffer;
+  } = currentFullOffer;
 
   return (
     <section className="offer">
 
       <div className="offer__gallery-container container">
         <div className="offer__gallery">
-          {images.map((image) => (
+          {images.slice(0, MAX_IMAGES_COUNT).map((image) => (
             <div key={image} className="offer__image-wrapper">
               <img className="offer__image" src={image} alt="Photo studio" />
             </div>
@@ -105,7 +111,7 @@ const FullOffer = ({ currentOffer }: FullOfferProps): JSX.Element => {
           <div className="offer__host">
             <h2 className="offer__host-title">Meet the host</h2>
             <div className="offer__host-user user">
-              <div className="offer__avatar-wrapper offer__avatar-wrapper--pro user__avatar-wrapper">
+              <div className={clsx('offer__avatar-wrapper user__avatar-wrapper', { 'offer__avatar-wrapper--pro': host.isPro })}>
                 <img className="offer__avatar user__avatar" src={host.avatarUrl} width="74" height="74" alt="Host avatar" />
               </div>
               <span className="offer__user-name">
@@ -143,9 +149,9 @@ const FullOffer = ({ currentOffer }: FullOfferProps): JSX.Element => {
 
       <Map
         sectionName="offer"
-        balloonId={currentOffer.id}
+        balloonId={currentFullOffer.id}
         location={city.location}
-        offers={nearOffers}
+        offers={currentAndNearbyOffers}
       />
 
     </section>

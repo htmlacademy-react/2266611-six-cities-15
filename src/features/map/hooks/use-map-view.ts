@@ -9,7 +9,7 @@ export const useMapView = (
 ) => {
   useEffect(() => {
     if (map) {
-      map.setView([location.latitude, location.longitude], location.zoom);
+      map.flyTo([location.latitude, location.longitude], location.zoom);
     }
   }, [map, location]);
 };

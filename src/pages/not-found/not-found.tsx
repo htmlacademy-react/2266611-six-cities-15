@@ -1,5 +1,5 @@
 import { Helmet } from 'react-helmet-async';
-import { AppRoute } from '../../shared/const';
+import { AppRoute } from '../../shared/enum';
 import { Link } from 'react-router-dom';
 import styles from './styles.module.css';
 
