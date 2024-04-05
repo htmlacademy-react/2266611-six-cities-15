@@ -1,5 +1,5 @@
 import { createSelector } from '@reduxjs/toolkit';
-import { APIStatus } from '../../../const';
+import { APIStatus } from '../../../enum';
 import { TRootState } from '../types/store-types';
 
 export const createStatusObject = (getStatusSelector: (state: TRootState) => APIStatus) => createSelector(

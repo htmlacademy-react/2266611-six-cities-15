@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
-import { AppRoute } from '../../shared/const';
+import { AppRoute } from '../../shared/enum';
 import { ScrollToTop } from '../../shared/lib/utils';
 import { useAppSelector } from '../../shared/lib/redux';
 import { getAuthorizationStatus } from '../../shared/lib/redux';

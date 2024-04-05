@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { AuthorizationStatus, AppRoute } from '../../../shared/const';
+import { AuthorizationStatus, AppRoute } from '../../../shared/enum';
 import { useAppSelector, getUserData } from '../../../shared/lib/redux';
 import { getAuthorizationStatus, useActionCreators } from '../../../shared/lib/redux';
 import { userActions } from '../../../entities/user';

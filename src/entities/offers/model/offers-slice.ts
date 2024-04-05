@@ -1,9 +1,9 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { INITIAL_SORT_OPTION, NEARBY_OFFERS_COUNT } from '../const';
-import { NameSpace } from '../../../shared/const';
+import { NameSpace } from '../../../shared/enum';
 import { getRandomItemsFromArray } from '../../../shared/lib/utils';
 import { TPreviewOffer, TFullOffer } from '../../../shared/types/offer';
-import { APIStatus } from '../../../shared/const';
+import { APIStatus } from '../../../shared/enum';
 import { fetchPreviewOffers, fetchFullOffer, fetchNearbyOffers } from '../api/thunks';
 import { Nullable } from 'vitest';
 

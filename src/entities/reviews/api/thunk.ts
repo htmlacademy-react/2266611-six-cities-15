@@ -1,5 +1,5 @@
 import { createAppAsyncThunk } from '../../../shared/lib/redux';
-import { APIRoute } from '../../../shared/const';
+import { APIRoute } from '../../../shared/enum';
 import { TComment } from '../../../shared/types/comment';
 
 export const fetchReviews = createAppAsyncThunk<TComment[], string>(

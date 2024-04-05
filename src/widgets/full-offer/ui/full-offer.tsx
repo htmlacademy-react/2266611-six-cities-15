@@ -1,10 +1,12 @@
+import clsx from 'clsx';
 import { Navigate } from 'react-router-dom';
 import { capitalizeFirstLetter } from '../../../shared/lib/utils';
 import { getPreviewOffers, getFullOffer, getNearbyOffers } from '../../../shared/lib/redux/selectors/selectors';
 import { useAppSelector } from '../../../shared/lib/redux';
-import { AuthorizationStatus, AppRoute } from '../../../shared/const';
+import { AuthorizationStatus, AppRoute } from '../../../shared/enum';
 import { getSortedComments } from '../../../entities/reviews/model/selectors';
 import { getAuthorizationStatus } from '../../../shared/lib/redux/selectors/selectors';
+import { MAX_IMAGES_COUNT } from '../const';
 
 import Map from '../../../features/map';
 import Feedback from '../../../features/feedback';
@@ -48,7 +50,7 @@ const FullOffer = (): JSX.Element => {
 
       <div className="offer__gallery-container container">
         <div className="offer__gallery">
-          {images.map((image) => (
+          {images.slice(0, MAX_IMAGES_COUNT).map((image) => (
             <div key={image} className="offer__image-wrapper">
               <img className="offer__image" src={image} alt="Photo studio" />
             </div>
@@ -109,7 +111,7 @@ const FullOffer = (): JSX.Element => {
           <div className="offer__host">
             <h2 className="offer__host-title">Meet the host</h2>
             <div className="offer__host-user user">
-              <div className="offer__avatar-wrapper offer__avatar-wrapper--pro user__avatar-wrapper">
+              <div className={clsx('offer__avatar-wrapper user__avatar-wrapper', { 'offer__avatar-wrapper--pro': host.isPro })}>
                 <img className="offer__avatar user__avatar" src={host.avatarUrl} width="74" height="74" alt="Host avatar" />
               </div>
               <span className="offer__user-name">

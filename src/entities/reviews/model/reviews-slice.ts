@@ -1,7 +1,7 @@
 import { TComment } from '../../../shared/types/comment';
 import { createSlice } from '@reduxjs/toolkit';
-import { NameSpace } from '../../../shared/const';
-import { APIStatus } from '../../../shared/const';
+import { NameSpace } from '../../../shared/enum';
+import { APIStatus } from '../../../shared/enum';
 import { fetchReviews } from '../api/thunk';
 
 type ReviewsState = {

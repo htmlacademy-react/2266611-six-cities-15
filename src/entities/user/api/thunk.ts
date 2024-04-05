@@ -1,5 +1,5 @@
 import { createAppAsyncThunk } from '../../../shared/lib/redux';
-import { APIRoute } from '../../../shared/const';
+import { APIRoute } from '../../../shared/enum';
 import { TUser, TAuthData } from '../../../shared/types/user';
 import { saveToken, dropToken } from '../../../shared/api/token';
 

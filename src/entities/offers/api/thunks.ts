@@ -1,5 +1,5 @@
 import { createAppAsyncThunk } from '../../../shared/lib/redux';
-import { APIRoute } from '../../../shared/const';
+import { APIRoute } from '../../../shared/enum';
 import { TPreviewOffer, TFullOffer } from '../../../shared/types/offer';
 
 export const fetchPreviewOffers = createAppAsyncThunk<TPreviewOffer[], undefined>(

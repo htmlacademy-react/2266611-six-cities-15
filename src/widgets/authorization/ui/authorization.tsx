@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { AppRoute } from '../../../shared/const';
+import { AppRoute } from '../../../shared/enum';
 import { getRandomItemFromArray } from '../../../shared/lib/utils';
 import { CITIES } from '../../../entities/city/const';
 import { useActionCreators } from '../../../shared/lib/redux';

@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { Nullable } from 'vitest';
-import { AuthorizationStatus, NameSpace } from '../../../shared/const';
+import { AuthorizationStatus, NameSpace } from '../../../shared/enum';
 import { checkAuthAction, logOutAction, loginAction } from '../api/thunk';
 import { TUser } from '../../../shared/types/user';
 

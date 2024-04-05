@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import { Link } from 'react-router-dom';
-import { AppRoute } from '../../../shared/const';
+import { AppRoute } from '../../../shared/enum';
 import { cityActions, CITIES } from '../../../entities/city';
 import { getCurrentCity } from '../../../shared/lib/redux';
 import { useAppSelector, useActionCreators } from '../../../shared/lib/redux';

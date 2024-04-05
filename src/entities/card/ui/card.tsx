@@ -3,7 +3,7 @@ import { ReactNode } from 'react';
 import { Link, generatePath } from 'react-router-dom';
 import { TPreviewOffer } from '../../../shared/types/offer';
 import { capitalizeFirstLetter } from '../../../shared/lib/utils';
-import { AppRoute } from '../../../shared/const';
+import { AppRoute } from '../../../shared/enum';
 import { getImageSize } from '../lib/get-image-size';
 import { Nullable } from 'vitest';
 
