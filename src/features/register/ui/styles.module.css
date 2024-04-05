@@ -1,0 +1,15 @@
+.wrapper {
+  position: relative;
+}
+
+.input {
+  border-color: red;
+}
+
+.text {
+  position: absolute;
+  color: red;
+  font-size: 11px;
+  left: 0;
+  bottom: 8px;
+}

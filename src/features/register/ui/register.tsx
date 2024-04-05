@@ -1,35 +1,76 @@
+import clsx from 'clsx';
 import { useActionCreators } from '../../../shared/lib/redux';
 import { userActions } from '../../../entities/user';
-import { useRef, FormEvent } from 'react';
+import { FormEvent, useState } from 'react';
+import { validateEmail, validatePassword } from '../lib/validate-form';
+import styles from './styles.module.css';
 
 const Register = (): JSX.Element => {
-  const formRef = useRef(null);
   const { loginAction } = useActionCreators(userActions);
+  const [emailError, setEmailError] = useState(false);
+  const [passwordError, setPasswordError] = useState(false);
+  const [emailValue, setEmailValue] = useState('');
+  const [passwordValue, setPasswordValue] = useState('');
 
-  const handleFormSubmit = (evt: FormEvent) => {
-    evt.preventDefault();
+  const handleEmailChange = ({ target }: { target: HTMLInputElement }) => {
+    setEmailValue(target.value);
 
-    if (formRef.current !== null) {
-      const formData = new FormData(formRef.current);
-
-      const email = formData.get('email') as string;
-      const password = formData.get('password') as string;
-
-      loginAction({ email, password });
+    if (!validateEmail(target.value)) {
+      setEmailError(true);
+    } else {
+      setEmailError(false);
     }
   };
 
+  const handlePasswordChange = ({ target }: { target: HTMLInputElement }) => {
+    setPasswordValue(target.value);
+
+    if (!validatePassword(target.value)) {
+      setPasswordError(true);
+    } else {
+      setPasswordError(false);
+    }
+  };
+
+  const handleFormSubmit = (evt: FormEvent) => {
+    evt.preventDefault();
+    loginAction({ email: emailValue, password: passwordValue });
+  };
+
+  const isFormInvalid = emailError || passwordError || !passwordValue || !emailValue;
+
   return (
-    <form className="login__form form" action="#" method="post" ref={formRef} onSubmit={handleFormSubmit}>
-      <div className="login__input-wrapper form__input-wrapper">
+    <form className="login__form form" action="#" method="post" onSubmit={handleFormSubmit}>
+      <div className={clsx('login__input-wrapper form__input-wrapper', { [styles.wrapper]: emailError })}>
         <label className="visually-hidden">E-mail</label>
-        <input className="login__input form__input" type="email" name="email" placeholder="Email" />
+        <input
+          onChange={(evt) => handleEmailChange(evt)}
+          className={clsx('login__input form__input', { [styles.input]: emailError })}
+          type="email"
+          name="email"
+          placeholder="Email"
+        />
+        {emailError && <span className={styles.text}>E-mail must be correct</span>}
       </div>
-      <div className="login__input-wrapper form__input-wrapper">
+
+      <div className={clsx('login__input-wrapper form__input-wrapper', { [styles.wrapper]: passwordError })}>
         <label className="visually-hidden">Password</label>
-        <input className="login__input form__input" type="password" name="password" placeholder="Password" />
+        <input
+          onChange={(evt) => handlePasswordChange(evt)}
+          className={clsx('login__input form__input', { [styles.input]: passwordError })}
+          type="password"
+          name="password"
+          placeholder="Password"
+        />
+        {passwordError && <span className={styles.text}>Password must consist of at least one digit and one letter</span>}
       </div>
-      <button className="login__submit form__submit button" type="submit">Sign in</button>
+      <button
+        className="login__submit form__submit button"
+        type="submit"
+        disabled={isFormInvalid}
+      >
+        Sign in
+      </button>
     </form>
   );
 };
