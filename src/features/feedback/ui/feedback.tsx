@@ -70,6 +70,7 @@ const Feedback = ({ offerId }: FeedbackProps): JSX.Element => {
             value={value}
             checked={value === formData.rating}
             onChange={handleFormDataChange}
+            disabled={addCommentStatus.isLoading}
           />
         ))}
       </div>
@@ -82,6 +83,7 @@ const Feedback = ({ offerId }: FeedbackProps): JSX.Element => {
           maxLength={MAX_COMMENT_LENGTH}
           value={formData.review}
           onChange={handleFormDataChange}
+          disabled={addCommentStatus.isLoading}
         >
         </textarea>
         {formError && <span className={styles.text}>Oops... Something went wrong. Please try again.</span>}
@@ -94,9 +96,9 @@ const Feedback = ({ offerId }: FeedbackProps): JSX.Element => {
         <button
           className="reviews__submit form__submit button"
           type="submit"
-          disabled={isFormInvalid}
+          disabled={addCommentStatus.isLoading || isFormInvalid}
         >
-          Submit
+          {addCommentStatus.isLoading ? 'Sending...' : 'Submit'}
         </button>
       </div>
 
