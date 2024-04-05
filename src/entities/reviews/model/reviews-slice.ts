@@ -2,16 +2,18 @@ import { TComment } from '../../../shared/types/comment';
 import { createSlice } from '@reduxjs/toolkit';
 import { NameSpace } from '../../../shared/enum';
 import { APIStatus } from '../../../shared/enum';
-import { fetchReviews } from '../api/thunk';
+import { fetchReviews, addReview } from '../api/thunk';
 
 type ReviewsState = {
   comments: TComment[];
   commentsStatus: APIStatus;
+  addCommentStatus: APIStatus;
 }
 
 const initialState: ReviewsState = {
   comments: [],
   commentsStatus: APIStatus.Idle,
+  addCommentStatus: APIStatus.Idle,
 };
 
 export const reviewsSlice = createSlice({
@@ -30,8 +32,18 @@ export const reviewsSlice = createSlice({
       .addCase(fetchReviews.rejected, (state) => {
         state.commentsStatus = APIStatus.Failed;
         state.comments = [];
+      })
+      .addCase(addReview.pending, (state) => {
+        state.addCommentStatus = APIStatus.Loading;
+      })
+      .addCase(addReview.fulfilled, (state, action) => {
+        state.addCommentStatus = APIStatus.Succeeded;
+        state.comments.push(action.payload);
+      })
+      .addCase(addReview.rejected, (state) => {
+        state.addCommentStatus = APIStatus.Failed;
       });
   },
 });
 
-export const reviewsActions = { fetchReviews };
+export const reviewsActions = { fetchReviews, addReview };

@@ -1,9 +1,17 @@
 import { useState, ChangeEvent, FormEvent } from 'react';
 import { RATINGS, MIN_COMMENT_LENGTH, MAX_COMMENT_LENGTH } from '../const';
+import { useActionCreators } from '../../../shared/lib/redux';
+import { reviewsActions } from '../../../entities/reviews';
 
 import FormRating from '../../../shared/ui/form-rating';
 
-const Feedback = (): JSX.Element => {
+type FeedbackProps = {
+  offerId: string;
+}
+
+const Feedback = ({ offerId }: FeedbackProps): JSX.Element => {
+  const { addReview } = useActionCreators(reviewsActions);
+
   const [formData, setFormData] = useState({
     rating: '0',
     review: ''
@@ -16,6 +24,12 @@ const Feedback = (): JSX.Element => {
 
   const handleFormSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
+
+    addReview({
+      offerId,
+      comment: formData.review,
+      rating: +formData.rating,
+    });
   };
 
   const isFormInvalid = formData.review.length < MIN_COMMENT_LENGTH || +formData.rating === 0;
