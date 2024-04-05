@@ -12,8 +12,10 @@ export const getNearbyOffersStatus = (state: TRootState) => state.offers.nearbyO
 
 export const getComments = (state: TRootState) => state.reviews.comments;
 export const getCommentsStatus = (state: TRootState) => state.reviews.commentsStatus;
+export const getAddCommentStatus = (state: TRootState) => state.reviews.addCommentStatus;
 
 export const getAuthorizationStatus = (state: TRootState) => state.user.authorizationStatus;
+export const getLoginStatus = (state: TRootState) => state.user.loginStatus;
 export const getUserData = (state: TRootState) => state.user.userData;
 
 export const getCurrentCity = (state: TRootState) => state.city.currentCity;
@@ -24,3 +26,5 @@ export const getPreviewOffersStatusObject = createStatusObject(getPreviewOffersS
 export const getFullOfferStatusObject = createStatusObject(getFullOfferStatus);
 export const getNearbyOffersStatusObject = createStatusObject(getNearbyOffersStatus);
 export const getCommentsStatusObject = createStatusObject(getCommentsStatus);
+export const getAddCommentStatusObject = createStatusObject(getAddCommentStatus);
+export const getLoginStatusObject = createStatusObject(getLoginStatus);

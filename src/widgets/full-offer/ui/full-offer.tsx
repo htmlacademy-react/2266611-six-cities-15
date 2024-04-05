@@ -140,7 +140,7 @@ const FullOffer = (): JSX.Element => {
               )}
             </ul>
 
-            {authorizationStatus === AuthorizationStatus.Auth && (<Feedback />)}
+            {authorizationStatus === AuthorizationStatus.Auth && (<Feedback offerId={currentFullOffer.id} />)}
 
           </section>
 

@@ -9,3 +9,9 @@ export type TComment = {
     isPro: boolean;
   };
 }
+
+export type TReviewData = {
+  offerId: string;
+  comment: string;
+  rating: number;
+}

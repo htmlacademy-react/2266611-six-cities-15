@@ -5,9 +5,10 @@ type FormRatingProps = {
   title: string;
   checked: boolean;
   onChange?: (evt: ChangeEvent<HTMLInputElement>) => void;
+  disabled?: boolean;
 }
 
-const FormRating = ({value, title, checked, onChange}: FormRatingProps): JSX.Element => {
+const FormRating = ({value, title, checked, onChange, disabled}: FormRatingProps): JSX.Element => {
   const starsCount = `${value}-stars`;
 
   return (
@@ -20,6 +21,7 @@ const FormRating = ({value, title, checked, onChange}: FormRatingProps): JSX.Ele
         type="radio"
         checked={checked}
         onChange={onChange}
+        disabled={disabled}
       />
       <label
         htmlFor={starsCount}

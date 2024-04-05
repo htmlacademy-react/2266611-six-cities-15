@@ -1,6 +1,6 @@
 import { createAppAsyncThunk } from '../../../shared/lib/redux';
 import { APIRoute } from '../../../shared/enum';
-import { TComment } from '../../../shared/types/comment';
+import { TComment, TReviewData } from '../../../shared/types/comment';
 
 export const fetchReviews = createAppAsyncThunk<TComment[], string>(
   'fetchReviews/comments',
@@ -9,4 +9,12 @@ export const fetchReviews = createAppAsyncThunk<TComment[], string>(
 
     return data;
   }
+);
+
+export const addReview = createAppAsyncThunk<TComment, TReviewData>(
+  'addReview/comment',
+  async ({ offerId, comment, rating }, { extra: api }) => {
+    const { data } = await api.post<TComment>(`${APIRoute.Reviews}/${offerId}`, { comment, rating });
+    return data;
+  },
 );
