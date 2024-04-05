@@ -3,7 +3,7 @@ export enum AppRoute {
   Login = '/login',
   Favorites = '/favorites',
   Offer = '/offer/:id',
-  NotFound = '*'
+  NotFound = '/*',
 }
 
 export enum APIRoute {
@@ -32,5 +32,11 @@ export enum NameSpace {
   Offers = 'offers',
   Reviews = 'reviews',
   User = 'user',
-  City = 'city'
+  City = 'city',
+}
+
+export enum SortOption {
+  LowToHigh = 'Price: low to high',
+  HighToLow = 'Price: high to low',
+  TopRated = 'Top rated first',
 }

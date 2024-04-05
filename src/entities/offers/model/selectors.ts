@@ -1,5 +1,6 @@
 import { createSelector } from '@reduxjs/toolkit';
 import { getPreviewOffers, getCurrentCity, getCurrentSortOption } from '../../../shared/lib/redux';
+import { SortOption } from '../../../shared/enum';
 
 export const getFilteredOffersByCity = createSelector(
   [getPreviewOffers, getCurrentCity],
@@ -10,12 +11,12 @@ const getSortedOffers = createSelector(
   [getFilteredOffersByCity, getCurrentSortOption],
   (filteredOffers, sortOption) => {
     switch (sortOption) {
-      case 'Price: low to high':
-        return filteredOffers.toSorted((a, b) => a.price - b.price);
-      case 'Price: high to low':
-        return filteredOffers.toSorted((a, b) => b.price - a.price);
-      case 'Top rated first':
-        return filteredOffers.toSorted((a, b) => b.rating - a.rating);
+      case SortOption.LowToHigh:
+        return filteredOffers.toSorted((first, second) => first.price - second.price);
+      case SortOption.HighToLow:
+        return filteredOffers.toSorted((first, second) => second.price - first.price);
+      case SortOption.TopRated:
+        return filteredOffers.toSorted((first, second) => second.rating - first.rating);
       default:
         return filteredOffers;
     }
