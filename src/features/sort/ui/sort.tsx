@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { useState } from 'react';
+import { useState, memo } from 'react';
 import { SORT_OPTIONS, offersActions } from '../../../entities/offers';
 import { useAppSelector, getCurrentSortOption, useActionCreators } from '../../../shared/lib/redux';
 import { useOutsideClick } from '../../../shared/lib/react';
@@ -49,4 +49,6 @@ const Sort = (): JSX.Element => {
   );
 };
 
-export default Sort;
+const MemoizedSort = memo(Sort);
+
+export default MemoizedSort;

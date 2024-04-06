@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import { memo } from 'react';
 import { getIconSize } from '../lib/get-icon-size';
 
 type BookmarkProps = {
@@ -22,4 +23,6 @@ const Bookmark = ({ sectionName, isFavorite }: BookmarkProps): JSX.Element => {
   );
 };
 
-export default Bookmark;
+const MemoizedBookmark = memo(Bookmark);
+
+export default MemoizedBookmark;

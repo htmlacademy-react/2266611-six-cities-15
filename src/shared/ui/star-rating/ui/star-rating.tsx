@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import { memo } from 'react';
 import { calculateRatingPercent } from '../lib/calculate-rating-percent';
 
 type StarRatingProps = {
@@ -22,4 +23,6 @@ const StarRating = ({ sectionName, rating, hasInitialValue = false }: StarRating
   </div>
 );
 
-export default StarRating;
+const MemoizedStarRating = memo(StarRating);
+
+export default MemoizedStarRating;

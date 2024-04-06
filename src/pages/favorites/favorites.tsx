@@ -1,6 +1,6 @@
 import Layout from '../../shared/layout';
 import Header from '../../widgets/header';
-import Footer from '../../widgets/footer';
+import MemoizedFooter from '../../widgets/footer';
 import SavedList from '../../widgets/saved-list';
 
 const Favorites = (): JSX.Element => (
@@ -15,7 +15,7 @@ const Favorites = (): JSX.Element => (
         </div>
       </main>
     }
-    footer={<Footer />}
+    footer={<MemoizedFooter />}
   />
 );
 

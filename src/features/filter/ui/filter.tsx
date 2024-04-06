@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import { memo } from 'react';
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../../shared/enum';
 import { cityActions, CITIES } from '../../../entities/city';
@@ -33,4 +34,6 @@ const Filter = (): JSX.Element => {
   );
 };
 
-export default Filter;
+const MemoizedFilter = memo(Filter);
+
+export default MemoizedFilter;

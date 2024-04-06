@@ -6,10 +6,10 @@ import { getCurrentOffers } from '../../../entities/offers';
 import { getCurrentCity } from '../../../shared/lib/redux';
 import { getPreviewOffersStatusObject } from '../../../shared/lib/redux';
 
-import Sort from '../../../features/sort';
+import MemoizedSort from '../../../features/sort';
 import Map from '../../../features/map';
-import Bookmark from '../../../features/bookmark';
-import Card from '../../../entities/card';
+import MemoizedBookmark from '../../../features/bookmark';
+import MemoizedCard from '../../../entities/card';
 import NoOffers from './no-offers';
 import ErrorOffers from './error-offers';
 
@@ -35,16 +35,16 @@ const AllOffers = (): JSX.Element => {
         <section className="cities__places places">
           <h2 className="visually-hidden">Places</h2>
           <b className="places__found">{currentOffers.length} place{currentOffers.length > 1 && 's'} to stay in {name}</b>
-          <Sort />
+          <MemoizedSort />
           <div className="cities__places-list places__list tabs__content">
 
             {currentOffers.map((offer) => (
-              <Card
+              <MemoizedCard
                 key={offer.id}
                 offer={offer}
                 sectionName='cities'
                 userAction={
-                  <Bookmark
+                  <MemoizedBookmark
                     sectionName="place-card"
                     isFavorite={offer.isFavorite}
                   />

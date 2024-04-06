@@ -1,3 +1,5 @@
+import { memo } from 'react';
+
 type PremiumBadgeProps = {
   sectionName: string;
 }
@@ -8,4 +10,6 @@ const PremiumBadge = ({ sectionName }: PremiumBadgeProps): JSX.Element => (
   </div>
 );
 
-export default PremiumBadge;
+const MemoizedPremiumBadge = memo(PremiumBadge);
+
+export default MemoizedPremiumBadge;

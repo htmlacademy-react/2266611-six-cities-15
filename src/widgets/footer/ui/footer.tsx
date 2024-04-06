@@ -1,14 +1,17 @@
 import { AppRoute } from '../../../shared/enum';
+import { memo } from 'react';
 
-import Logo from '../../../shared/ui/logo';
+import MemoizedLogo from '../../../shared/ui/logo';
 
 const Footer = (): JSX.Element => (
   <footer className="footer container">
-    <Logo
+    <MemoizedLogo
       type="footer"
       to={AppRoute.Root}
     />
   </footer>
 );
 
-export default Footer;
+const MemoizedFooter = memo(Footer);
+
+export default MemoizedFooter;

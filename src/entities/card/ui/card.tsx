@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { ReactNode } from 'react';
+import { ReactNode, memo } from 'react';
 import { Link, generatePath } from 'react-router-dom';
 import { TPreviewOffer } from '../../../shared/types/offer';
 import { capitalizeFirstLetter } from '../../../shared/lib/utils';
@@ -7,8 +7,8 @@ import { AppRoute } from '../../../shared/enum';
 import { getImageSize } from '../lib/get-image-size';
 import { Nullable } from 'vitest';
 
-import StarRating from '../../../shared/ui/star-rating';
-import PremiumBadge from '../../../shared/ui/premium-badge';
+import MemoizedStarRating from '../../../shared/ui/star-rating';
+import MemoizedPremiumBadge from '../../../shared/ui/premium-badge';
 
 type CardProps = {
   offer: TPreviewOffer;
@@ -29,7 +29,7 @@ const Card = ({ offer, sectionName, userAction, onCardHover }: CardProps): JSX.E
     >
 
       {/* Premium значок */}
-      {isPremium && <PremiumBadge sectionName="place-card" />}
+      {isPremium && <MemoizedPremiumBadge sectionName="place-card" />}
 
       {/* Изображение-ссылка */}
       <div className={clsx(`${sectionName}__image-wrapper`, 'place-card__image-wrapper')}>
@@ -59,7 +59,7 @@ const Card = ({ offer, sectionName, userAction, onCardHover }: CardProps): JSX.E
         </div>
 
         {/* Звёздный рейтинг */}
-        <StarRating sectionName='place-card' rating={rating} />
+        <MemoizedStarRating sectionName='place-card' rating={rating} />
 
         {/* Заголовок-ссылка */}
         <h2 className="place-card__name">
@@ -74,4 +74,6 @@ const Card = ({ offer, sectionName, userAction, onCardHover }: CardProps): JSX.E
   );
 };
 
-export default Card;
+const MemoizedCard = memo(Card);
+
+export default MemoizedCard;

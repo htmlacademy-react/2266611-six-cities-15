@@ -4,7 +4,7 @@ import { useAppSelector, getUserData } from '../../../shared/lib/redux';
 import { getAuthorizationStatus, useActionCreators } from '../../../shared/lib/redux';
 import { userActions } from '../../../entities/user';
 
-import Logo from '../../../shared/ui/logo';
+import MemoizedLogo from '../../../shared/ui/logo';
 
 type HeaderProps = {
   withToolbar?: boolean;
@@ -26,7 +26,7 @@ const Header = ({ withToolbar = true, activeLogo = false }: HeaderProps): JSX.El
         <div className="container">
           <div className="header__wrapper">
             <div className="header__left">
-              <Logo
+              <MemoizedLogo
                 type="header"
                 to={AppRoute.Root}
               />
@@ -42,7 +42,7 @@ const Header = ({ withToolbar = true, activeLogo = false }: HeaderProps): JSX.El
       <div className="container">
         <div className="header__wrapper">
           <div className="header__left">
-            <Logo
+            <MemoizedLogo
               type="header"
               isActive={activeLogo}
               to={AppRoute.Root}

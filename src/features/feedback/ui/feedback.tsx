@@ -5,7 +5,7 @@ import { getAddCommentStatusObject } from '../../../shared/lib/redux';
 import { reviewsActions } from '../../../entities/reviews';
 import styles from './styles.module.css';
 
-import FormRating from '../../../shared/ui/form-rating';
+import MemoizedFormRating from '../../../shared/ui/form-rating';
 
 type FeedbackProps = {
   offerId: string;
@@ -64,7 +64,7 @@ const Feedback = ({ offerId }: FeedbackProps): JSX.Element => {
 
       <div className="reviews__rating-form form__rating">
         {RATINGS.map(({ value, title }) => (
-          <FormRating
+          <MemoizedFormRating
             key={title}
             title={title}
             value={value}

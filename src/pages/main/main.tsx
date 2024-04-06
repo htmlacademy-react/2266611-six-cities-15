@@ -5,7 +5,7 @@ import { getCurrentOffers, offersActions } from '../../entities/offers';
 
 import Layout from '../../shared/layout';
 import Header from '../../widgets/header';
-import Filter from '../../features/filter';
+import MemoizedFilter from '../../features/filter';
 import AllOffers from '../../widgets/all-offers';
 import BalloonLoader from '../../shared/ui/loader/balloon-loader';
 
@@ -28,7 +28,7 @@ const Main = (): JSX.Element => {
         <main className={clsx('page__main page__main--index', { 'page__main--index-empty': !currentOffers.length })}>
           <h1 className="visually-hidden">Cities</h1>
           {isLoading && <BalloonLoader />}
-          {!isLoading && <Filter />}
+          {!isLoading && <MemoizedFilter />}
           {!isLoading && <AllOffers />}
         </main>
       }
