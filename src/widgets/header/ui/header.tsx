@@ -1,3 +1,4 @@
+import { useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthorizationStatus, AppRoute } from '../../../shared/enum';
 import { useAppSelector, getUserData } from '../../../shared/lib/redux';
@@ -16,9 +17,9 @@ const Header = ({ withToolbar = true, activeLogo = false }: HeaderProps): JSX.El
   const userData = useAppSelector(getUserData);
   const { logOutAction } = useActionCreators(userActions);
 
-  const handleSignOutClick = () => {
+  const handleSignOutClick = useCallback(() => {
     logOutAction();
-  };
+  }, [logOutAction]);
 
   if (!withToolbar) {
     return (

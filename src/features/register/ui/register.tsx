@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import { useActionCreators, useAppSelector, getLoginStatusObject } from '../../../shared/lib/redux';
 import { userActions } from '../../../entities/user';
-import { FormEvent, useState } from 'react';
+import { FormEvent, useState, useCallback } from 'react';
 import { validateEmail, validatePassword } from '../lib/validate-form';
 import styles from './styles.module.css';
 
@@ -13,7 +13,7 @@ const Register = (): JSX.Element => {
   const [emailValue, setEmailValue] = useState('');
   const [passwordValue, setPasswordValue] = useState('');
 
-  const handleEmailChange = ({ target }: { target: HTMLInputElement }) => {
+  const handleEmailChange = useCallback(({ target }: { target: HTMLInputElement }) => {
     setEmailValue(target.value);
 
     if (!validateEmail(target.value)) {
@@ -21,9 +21,9 @@ const Register = (): JSX.Element => {
     } else {
       setEmailError(false);
     }
-  };
+  }, []);
 
-  const handlePasswordChange = ({ target }: { target: HTMLInputElement }) => {
+  const handlePasswordChange = useCallback(({ target }: { target: HTMLInputElement }) => {
     setPasswordValue(target.value);
 
     if (!validatePassword(target.value)) {
@@ -31,12 +31,12 @@ const Register = (): JSX.Element => {
     } else {
       setPasswordError(false);
     }
-  };
+  }, []);
 
-  const handleFormSubmit = (evt: FormEvent) => {
+  const handleFormSubmit = useCallback((evt: FormEvent) => {
     evt.preventDefault();
     loginAction({ email: emailValue, password: passwordValue });
-  };
+  }, [loginAction, emailValue, passwordValue]);
 
   const isFormInvalid = emailError || passwordError || !passwordValue || !emailValue;
 

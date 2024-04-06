@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { memo } from 'react';
+import { memo, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../../shared/enum';
 import { cityActions, CITIES } from '../../../entities/city';
@@ -11,7 +11,9 @@ const Filter = (): JSX.Element => {
   const { changeCity } = useActionCreators(cityActions);
   const currentCity = useAppSelector(getCurrentCity);
 
-  const handleTabClick = (city: TCity) => changeCity(city);
+  const handleTabClick = useCallback((city: TCity) => {
+    changeCity(city);
+  }, [changeCity]);
 
   return (
     <div className="tabs">

@@ -1,4 +1,4 @@
-import { useState, ChangeEvent, FormEvent, useEffect } from 'react';
+import { useState, ChangeEvent, FormEvent, useEffect, useCallback } from 'react';
 import { RATINGS, MIN_COMMENT_LENGTH, MAX_COMMENT_LENGTH } from '../const';
 import { useActionCreators, useAppSelector } from '../../../shared/lib/redux';
 import { getAddCommentStatusObject } from '../../../shared/lib/redux';
@@ -21,12 +21,12 @@ const Feedback = ({ offerId }: FeedbackProps): JSX.Element => {
     review: ''
   });
 
-  const handleFormDataChange = (evt: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleFormDataChange = useCallback((evt: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = evt.target;
     setFormData({ ...formData, [name]: value });
-  };
+  }, [formData]);
 
-  const handleFormSubmit = (evt: FormEvent<HTMLFormElement>) => {
+  const handleFormSubmit = useCallback((evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
 
     addReview({
@@ -34,7 +34,7 @@ const Feedback = ({ offerId }: FeedbackProps): JSX.Element => {
       comment: formData.review,
       rating: +formData.rating
     });
-  };
+  }, [addReview, formData, offerId]);
 
   const clearFormData = () => setFormData({
     rating: '0',
