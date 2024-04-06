@@ -7,7 +7,7 @@ import { reviewsActions } from '../../entities/reviews';
 import { getFullOfferStatusObject, getNearbyOffersStatusObject, getCommentsStatusObject } from '../../shared/lib/redux';
 
 import Layout from '../../shared/layout';
-import Header from '../../widgets/header';
+import MemoizedHeader from '../../widgets/header';
 import FullOffer from '../../widgets/full-offer';
 import NearOffers from '../../widgets/near-offers';
 import SquareLoader from '../../shared/ui/loader/square-loader';
@@ -34,7 +34,7 @@ const Offer = (): JSX.Element => {
     <Layout
       wrapper={clsx('page', { 'page--main': isLoading })}
       title="6 cities: offer"
-      header={<Header />}
+      header={<MemoizedHeader />}
       content={
         <main className={clsx('page__main', { 'page__main--index': isLoading, 'page__main--offer': !isLoading })}>
 

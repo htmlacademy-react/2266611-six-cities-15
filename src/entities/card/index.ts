@@ -1,2 +1,2 @@
-import Card from './ui/card';
-export default Card;
+import MemoizedCard from './ui/card';
+export default MemoizedCard;

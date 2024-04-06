@@ -1,2 +1,2 @@
-import Bookmark from './ui/bookmark';
-export default Bookmark;
+import MemoizedBookmark from './ui/bookmark';
+export default MemoizedBookmark;

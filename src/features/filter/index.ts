@@ -1,2 +1,2 @@
-import Filter from './ui/filter';
-export default Filter;
+import MemoizedFilter from './ui/filter';
+export default MemoizedFilter;

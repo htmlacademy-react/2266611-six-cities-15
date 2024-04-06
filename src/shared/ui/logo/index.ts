@@ -1,2 +1,2 @@
-import Logo from './ui/logo';
-export default Logo;
+import MemoizedLogo from './ui/logo';
+export default MemoizedLogo;
