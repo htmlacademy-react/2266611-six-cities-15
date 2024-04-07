@@ -1,4 +1,4 @@
-import { TRootState } from '../types/store-types';
+import { TRootState } from '../../../../types';
 import { createStatusObject } from './create-status-object';
 
 export const getPreviewOffers = (state: TRootState) => state.offers.previewOffers;

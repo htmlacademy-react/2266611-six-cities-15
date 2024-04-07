@@ -1,4 +1,4 @@
-import { store } from '../../../../app/store/app-store';
+import { store } from '../app/store/app-store';
 
 export type TRootState = ReturnType<typeof store.getState>;
 export type TAppDispatch = typeof store.dispatch;
