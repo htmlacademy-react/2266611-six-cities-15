@@ -1,11 +1,12 @@
 import clsx from 'clsx';
+import { useActionCreators } from '../../../shared/lib/redux';
+import { offersActions } from '../../offers';
 import { ReactNode, memo } from 'react';
 import { Link, generatePath } from 'react-router-dom';
 import { TPreviewOffer } from '../../../shared/types/offer';
 import { capitalizeFirstLetter } from '../../../shared/lib/utils';
 import { AppRoute } from '../../../shared/enum';
 import { getImageSize } from '../lib/get-image-size';
-import { Nullable } from 'vitest';
 
 import MemoizedStarRating from '../../../shared/ui/star-rating';
 import MemoizedPremiumBadge from '../../../shared/ui/premium-badge';
@@ -14,18 +15,19 @@ type CardProps = {
   offer: TPreviewOffer;
   sectionName: string;
   userAction: ReactNode;
-  onCardHover?: (offer: Nullable<TPreviewOffer>) => void;
+  hovered?: boolean;
 }
 
-const Card = ({ offer, sectionName, userAction, onCardHover }: CardProps): JSX.Element => {
+const Card = ({ offer, sectionName, userAction, hovered }: CardProps): JSX.Element => {
   const { id, title, type, price, previewImage, isPremium, rating } = offer;
   const { width, height } = getImageSize(sectionName);
+  const { setActiveId } = useActionCreators(offersActions);
 
   return (
     <article
       className={clsx(`${sectionName}__card`, 'place-card')}
-      onMouseEnter={() => onCardHover?.(offer)}
-      onMouseLeave={() => onCardHover?.(null)}
+      onMouseEnter={() => hovered && setActiveId(id)}
+      onMouseLeave={() => hovered && setActiveId(undefined)}
     >
 
       {/* Premium значок */}

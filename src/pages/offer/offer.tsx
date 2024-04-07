@@ -14,8 +14,13 @@ import SquareLoader from '../../shared/ui/loader/square-loader';
 
 const Offer = (): JSX.Element => {
   const { id: offerId } = useParams();
-  const { fetchFullOffer, fetchNearbyOffers } = useActionCreators(offersActions);
   const { fetchReviews } = useActionCreators(reviewsActions);
+  const {
+    fetchPreviewOffers,
+    fetchFullOffer,
+    fetchNearbyOffers,
+    setActiveId
+  } = useActionCreators(offersActions);
 
   const fullOfferStatus = useAppSelector(getFullOfferStatusObject);
   const nearbyOfferStatus = useAppSelector(getNearbyOffersStatusObject);
@@ -24,11 +29,20 @@ const Offer = (): JSX.Element => {
 
   useEffect(() => {
     Promise.all([
+      setActiveId(String(offerId)),
       fetchFullOffer(String(offerId)),
       fetchNearbyOffers(String(offerId)),
-      fetchReviews(String(offerId))
+      fetchReviews(String(offerId)),
+      fetchPreviewOffers()
     ]);
-  }, [fetchFullOffer, fetchNearbyOffers, fetchReviews, offerId]);
+  }, [
+    setActiveId,
+    fetchFullOffer,
+    fetchNearbyOffers,
+    fetchReviews,
+    fetchPreviewOffers,
+    offerId
+  ]);
 
   return (
     <Layout

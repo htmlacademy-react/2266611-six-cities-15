@@ -20,6 +20,8 @@ export const getUserData = (state: TRootState) => state.user.userData;
 
 export const getCurrentCity = (state: TRootState) => state.city.currentCity;
 
+export const getActiveId = (state: TRootState) => state.offers.activeId;
+
 export const getCurrentSortOption = (state: TRootState) => state.offers.currentSortOption;
 
 export const getPreviewOffersStatusObject = createStatusObject(getPreviewOffersStatus);

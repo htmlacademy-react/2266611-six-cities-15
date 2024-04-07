@@ -1,7 +1,4 @@
-import { useState, useCallback } from 'react';
-import { Nullable } from 'vitest';
 import { useAppSelector } from '../../../shared/lib/redux';
-import { TPreviewOffer } from '../../../shared/types/offer';
 import { getCurrentOffers } from '../../../entities/offers';
 import { getCurrentCity } from '../../../shared/lib/redux';
 import { getPreviewOffersStatusObject } from '../../../shared/lib/redux';
@@ -14,15 +11,10 @@ import NoOffers from './no-offers';
 import ErrorOffers from './error-offers';
 
 const AllOffers = (): JSX.Element => {
-  const [activeCard, setActiveCard] = useState<Nullable<TPreviewOffer>>(null);
   const currentCity = useAppSelector(getCurrentCity);
   const { name, location } = currentCity;
   const currentOffers = useAppSelector(getCurrentOffers);
   const previewOffersStatus = useAppSelector(getPreviewOffersStatusObject);
-
-  const handleCardHover = useCallback((offer: Nullable<TPreviewOffer>) => {
-    setActiveCard(offer);
-  }, []);
 
   if (previewOffersStatus.isFailed) {
     return <ErrorOffers />;
@@ -52,7 +44,7 @@ const AllOffers = (): JSX.Element => {
                     isFavorite={offer.isFavorite}
                   />
                 }
-                onCardHover={handleCardHover}
+                hovered
               />
             ))}
 
@@ -62,7 +54,6 @@ const AllOffers = (): JSX.Element => {
           <Map
             sectionName="cities"
             offers={currentOffers}
-            balloonId={activeCard?.id}
             location={location}
           />
         </div>

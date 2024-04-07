@@ -8,6 +8,7 @@ import { fetchPreviewOffers, fetchFullOffer, fetchNearbyOffers } from '../api/th
 import { Nullable } from 'vitest';
 
 type OffersState = {
+  activeId?: string;
   previewOffers: TPreviewOffer[];
   previewOffersStatus: APIStatus;
   fullOffer: Nullable<TFullOffer>;
@@ -18,6 +19,7 @@ type OffersState = {
 }
 
 const initialState: OffersState = {
+  activeId: undefined,
   previewOffers: [],
   previewOffersStatus: APIStatus.Idle,
   fullOffer: null,
@@ -33,7 +35,10 @@ export const offersSlice = createSlice({
   reducers: {
     changeSortOption(state, action: PayloadAction<string>) {
       state.currentSortOption = action.payload;
-    }
+    },
+    setActiveId(state, action: PayloadAction<string | undefined>) {
+      state.activeId = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder

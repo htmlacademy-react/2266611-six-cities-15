@@ -1,11 +1,10 @@
 import clsx from 'clsx';
 import { Navigate } from 'react-router-dom';
 import { capitalizeFirstLetter } from '../../../shared/lib/utils';
-import { getPreviewOffers, getFullOffer, getNearbyOffers } from '../../../shared/lib/redux/selectors/selectors';
+import { getPreviewOffers, getFullOffer, getNearbyOffers, getAuthorizationStatus } from '../../../shared/lib/redux/selectors/selectors';
 import { useAppSelector } from '../../../shared/lib/redux';
 import { AuthorizationStatus, AppRoute } from '../../../shared/enum';
 import { getSortedComments } from '../../../entities/reviews/model/selectors';
-import { getAuthorizationStatus } from '../../../shared/lib/redux/selectors/selectors';
 import { MAX_IMAGES_COUNT } from '../const';
 
 import Map from '../../../features/map';
@@ -149,7 +148,6 @@ const FullOffer = (): JSX.Element => {
 
       <Map
         sectionName="offer"
-        balloonId={currentFullOffer.id}
         location={city.location}
         offers={currentAndNearbyOffers}
       />
