@@ -16,7 +16,7 @@ type OffersState = {
   nearbyOffersStatus: APIStatus;
   favoriteOffers: TPreviewOffer[];
   favoriteOffersStatus: APIStatus;
-  changeFavoriteOfferStatus: APIStatus;
+  favoriteOfferStatus: APIStatus;
   currentSortOption: string;
 }
 
@@ -30,7 +30,7 @@ const initialState: OffersState = {
   nearbyOffersStatus: APIStatus.Idle,
   favoriteOffers: [],
   favoriteOffersStatus: APIStatus.Idle,
-  changeFavoriteOfferStatus: APIStatus.Idle,
+  favoriteOfferStatus: APIStatus.Idle,
   currentSortOption: INITIAL_SORT_OPTION,
 };
 
@@ -47,6 +47,8 @@ export const offersSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+      // Preview Offers
+      // --------
       .addCase(fetchPreviewOffers.pending, (state) => {
         state.previewOffersStatus = APIStatus.Loading;
       })
@@ -57,6 +59,8 @@ export const offersSlice = createSlice({
       .addCase(fetchPreviewOffers.rejected, (state) => {
         state.previewOffersStatus = APIStatus.Failed;
       })
+      // Full Offer
+      // --------
       .addCase(fetchFullOffer.pending, (state) => {
         state.fullOfferStatus = APIStatus.Loading;
       })
@@ -68,6 +72,8 @@ export const offersSlice = createSlice({
         state.fullOfferStatus = APIStatus.Failed;
         state.fullOffer = null;
       })
+      // Nearby Offers
+      // --------
       .addCase(fetchNearbyOffers.pending, (state) => {
         state.nearbyOffersStatus = APIStatus.Loading;
       })
@@ -79,6 +85,8 @@ export const offersSlice = createSlice({
         state.nearbyOffersStatus = APIStatus.Failed;
         state.nearbyOffers = [];
       })
+      // Favorite Offers
+      // --------
       .addCase(fetchFavoriteOffers.pending, (state) => {
         state.favoriteOffersStatus = APIStatus.Loading;
       })
@@ -89,11 +97,13 @@ export const offersSlice = createSlice({
       .addCase(fetchFavoriteOffers.rejected, (state) => {
         state.favoriteOffersStatus = APIStatus.Failed;
       })
+      // Favorite Offer
+      // --------
       .addCase(changeFavoriteOfferStatus.pending, (state) => {
-        state.changeFavoriteOfferStatus = APIStatus.Loading;
+        state.favoriteOfferStatus = APIStatus.Loading;
       })
       .addCase(changeFavoriteOfferStatus.fulfilled, (state, action) => {
-        state.changeFavoriteOfferStatus = APIStatus.Succeeded;
+        state.favoriteOfferStatus = APIStatus.Succeeded;
 
         state.fullOffer = action.payload;
         state.previewOffers = state.previewOffers.map((offer) => (offer.id === action.payload.id) ? action.payload : offer);
@@ -106,7 +116,7 @@ export const offersSlice = createSlice({
         }
       })
       .addCase(changeFavoriteOfferStatus.rejected, (state) => {
-        state.changeFavoriteOfferStatus = APIStatus.Failed;
+        state.favoriteOfferStatus = APIStatus.Failed;
       });
   },
 });

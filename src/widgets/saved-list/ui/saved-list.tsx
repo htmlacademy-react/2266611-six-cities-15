@@ -37,6 +37,7 @@ const SavedList = (): JSX.Element => {
                   userAction={
                     <MemoizedBookmark
                       sectionName="place-card"
+                      offerId={offer.id}
                       isFavorite={offer.isFavorite}
                     />
                   }

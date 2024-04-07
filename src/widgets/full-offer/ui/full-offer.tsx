@@ -74,6 +74,7 @@ const FullOffer = (): JSX.Element => {
 
             <MemoizedBookmark
               sectionName="offer"
+              offerId={currentFullOffer.id}
               isFavorite={isFavorite}
             />
           </div>

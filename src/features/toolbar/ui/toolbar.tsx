@@ -8,9 +8,10 @@ import {
 import { AuthorizationStatus, AppRoute } from '../../../shared/enum';
 import { userActions } from '../../../entities/user';
 import { useCallback, memo } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const Toolbar = (): JSX.Element => {
+  const location = useLocation();
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
   const favoriteOffers = useAppSelector(getFavoriteOffers);
   const userData = useAppSelector(getUserData);
@@ -43,7 +44,7 @@ const Toolbar = (): JSX.Element => {
               <li className="header__nav-item">
                 <Link
                   className="header__nav-link"
-                  to="/"
+                  to={location.pathname}
                   onClick={handleSignOutClick}
                 >
                   <span className="header__signout">Sign out</span>
