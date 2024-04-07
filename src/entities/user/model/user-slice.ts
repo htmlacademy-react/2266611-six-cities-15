@@ -1,9 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { Nullable } from 'vitest';
-import { AuthorizationStatus, NameSpace } from '../../../shared/enum';
+import { AuthorizationStatus, NameSpace, APIStatus } from '../../../shared/enum';
 import { checkAuthAction, logOutAction, loginAction } from '../api/thunk';
 import { TUser } from '../../../shared/types/user';
-import { APIStatus } from '../../../shared/enum';
 
 type UserProcess = {
   authorizationStatus: AuthorizationStatus;

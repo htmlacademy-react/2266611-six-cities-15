@@ -1,8 +1,8 @@
 import clsx from 'clsx';
-import { useActionCreators } from '../../../shared/lib/redux';
 import { offersActions } from '../../offers';
 import { ReactNode, memo } from 'react';
 import { Link, generatePath } from 'react-router-dom';
+import { useActionCreators } from '../../../shared/lib/redux';
 import { TPreviewOffer } from '../../../shared/types/offer';
 import { capitalizeFirstLetter } from '../../../shared/lib/utils';
 import { AppRoute } from '../../../shared/enum';

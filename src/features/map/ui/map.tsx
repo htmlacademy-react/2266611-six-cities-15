@@ -1,10 +1,9 @@
 import { useRef } from 'react';
-import { TPreviewOffer, TLocation } from '../../../shared/types/offer';
 import { useMap } from '../hooks/use-map';
 import { useMapMarkers } from '../hooks/use-map-markers';
 import { useMapView } from '../hooks/use-map-view';
-import { useAppSelector } from '../../../shared/lib/redux';
-import { getActiveId } from '../../../shared/lib/redux';
+import { useAppSelector, getActiveId } from '../../../shared/lib/redux';
+import { TPreviewOffer, TLocation } from '../../../shared/types/offer';
 
 type MapProps = {
   sectionName: 'cities' | 'offer';

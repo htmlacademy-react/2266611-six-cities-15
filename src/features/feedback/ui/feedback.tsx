@@ -1,7 +1,6 @@
 import { useState, ChangeEvent, FormEvent, useEffect, useCallback } from 'react';
 import { RATINGS, MIN_COMMENT_LENGTH, MAX_COMMENT_LENGTH } from '../const';
-import { useActionCreators, useAppSelector } from '../../../shared/lib/redux';
-import { getAddCommentStatusObject } from '../../../shared/lib/redux';
+import { useActionCreators, useAppSelector, getAddCommentStatusObject } from '../../../shared/lib/redux';
 import { reviewsActions } from '../../../entities/reviews';
 import styles from './styles.module.css';
 

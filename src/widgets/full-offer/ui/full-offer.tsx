@@ -1,8 +1,13 @@
 import clsx from 'clsx';
 import { Navigate } from 'react-router-dom';
 import { capitalizeFirstLetter } from '../../../shared/lib/utils';
-import { getPreviewOffers, getFullOffer, getNearbyOffers, getAuthorizationStatus } from '../../../shared/lib/redux/selectors/selectors';
-import { useAppSelector } from '../../../shared/lib/redux';
+import {
+  getPreviewOffers,
+  getFullOffer,
+  getNearbyOffers,
+  getAuthorizationStatus,
+  useAppSelector
+} from '../../../shared/lib/redux';
 import { AuthorizationStatus, AppRoute } from '../../../shared/enum';
 import { getSortedComments } from '../../../entities/reviews/model/selectors';
 import { MAX_IMAGES_COUNT } from '../const';

@@ -1,7 +1,9 @@
-import { useAppSelector } from '../../../shared/lib/redux';
 import { getCurrentOffers } from '../../../entities/offers';
-import { getCurrentCity } from '../../../shared/lib/redux';
-import { getPreviewOffersStatusObject } from '../../../shared/lib/redux';
+import {
+  getCurrentCity,
+  getPreviewOffersStatusObject,
+  useAppSelector
+} from '../../../shared/lib/redux';
 
 import MemoizedSort from '../../../features/sort';
 import Map from '../../../features/map';

@@ -1,10 +1,15 @@
 import clsx from 'clsx';
 import { useParams } from 'react-router-dom';
-import { useAppSelector, useActionCreators } from '../../shared/lib/redux';
 import { useEffect } from 'react';
 import { offersActions } from '../../entities/offers';
 import { reviewsActions } from '../../entities/reviews';
-import { getFullOfferStatusObject, getNearbyOffersStatusObject, getCommentsStatusObject } from '../../shared/lib/redux';
+import {
+  getFullOfferStatusObject,
+  getNearbyOffersStatusObject,
+  getCommentsStatusObject,
+  useAppSelector,
+  useActionCreators
+} from '../../shared/lib/redux';
 
 import Layout from '../../shared/layout';
 import MemoizedHeader from '../../widgets/header';

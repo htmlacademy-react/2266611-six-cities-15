@@ -4,10 +4,10 @@ import {
   getAuthorizationStatus,
   useActionCreators
 } from '../../../shared/lib/redux';
+import { AuthorizationStatus, AppRoute } from '../../../shared/enum';
 import { userActions } from '../../../entities/user';
 import { useCallback, memo } from 'react';
 import { Link } from 'react-router-dom';
-import { AuthorizationStatus, AppRoute } from '../../../shared/enum';
 
 const Toolbar = (): JSX.Element => {
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
