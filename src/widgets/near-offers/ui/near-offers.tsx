@@ -1,7 +1,7 @@
 import { useAppSelector, getNearbyOffers } from '../../../shared/lib/redux';
 
-import Card from '../../../entities/card';
-import Bookmark from '../../../features/bookmark';
+import MemoizedCard from '../../../entities/card';
+import MemoizedBookmark from '../../../features/bookmark';
 
 const NearOffers = (): JSX.Element => {
   const nearbyOffers = useAppSelector(getNearbyOffers);
@@ -13,12 +13,12 @@ const NearOffers = (): JSX.Element => {
 
         {nearbyOffers
           .map((offer) => (
-            <Card
+            <MemoizedCard
               key={offer.id}
               offer={offer}
               sectionName='near-places'
               userAction={
-                <Bookmark
+                <MemoizedBookmark
                   sectionName="place-card"
                   isFavorite={offer.isFavorite}
                 />

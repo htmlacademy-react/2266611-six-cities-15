@@ -1,4 +1,4 @@
-import { ChangeEvent } from 'react';
+import { ChangeEvent, memo } from 'react';
 
 type FormRatingProps = {
   value: string;
@@ -36,4 +36,6 @@ const FormRating = ({value, title, checked, onChange, disabled}: FormRatingProps
   );
 };
 
-export default FormRating;
+const MemoizedFormRating = memo(FormRating);
+
+export default MemoizedFormRating;

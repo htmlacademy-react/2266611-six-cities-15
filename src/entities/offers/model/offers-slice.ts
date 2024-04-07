@@ -1,13 +1,13 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { INITIAL_SORT_OPTION, NEARBY_OFFERS_COUNT } from '../const';
-import { NameSpace } from '../../../shared/enum';
+import { NameSpace, APIStatus } from '../../../shared/enum';
 import { getRandomItemsFromArray } from '../../../shared/lib/utils';
 import { TPreviewOffer, TFullOffer } from '../../../shared/types/offer';
-import { APIStatus } from '../../../shared/enum';
 import { fetchPreviewOffers, fetchFullOffer, fetchNearbyOffers } from '../api/thunks';
 import { Nullable } from 'vitest';
 
 type OffersState = {
+  activeId?: string;
   previewOffers: TPreviewOffer[];
   previewOffersStatus: APIStatus;
   fullOffer: Nullable<TFullOffer>;
@@ -18,6 +18,7 @@ type OffersState = {
 }
 
 const initialState: OffersState = {
+  activeId: undefined,
   previewOffers: [],
   previewOffersStatus: APIStatus.Idle,
   fullOffer: null,
@@ -33,7 +34,10 @@ export const offersSlice = createSlice({
   reducers: {
     changeSortOption(state, action: PayloadAction<string>) {
       state.currentSortOption = action.payload;
-    }
+    },
+    setActiveId(state, action: PayloadAction<string | undefined>) {
+      state.activeId = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder

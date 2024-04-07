@@ -1,16 +1,18 @@
 import clsx from 'clsx';
+import { memo, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../../shared/enum';
-import { cityActions, CITIES } from '../../../entities/city';
-import { getCurrentCity } from '../../../shared/lib/redux';
-import { useAppSelector, useActionCreators } from '../../../shared/lib/redux';
+import { useAppSelector, useActionCreators, getCurrentCity } from '../../../shared/lib/redux';
 import { TCity } from '../../../shared/types/offer';
+import { cityActions, CITIES } from '../../../entities/city';
 
 const Filter = (): JSX.Element => {
   const { changeCity } = useActionCreators(cityActions);
   const currentCity = useAppSelector(getCurrentCity);
 
-  const handleTabClick = (city: TCity) => changeCity(city);
+  const handleTabClick = useCallback((city: TCity) => {
+    changeCity(city);
+  }, [changeCity]);
 
   return (
     <div className="tabs">
@@ -33,4 +35,6 @@ const Filter = (): JSX.Element => {
   );
 };
 
-export default Filter;
+const MemoizedFilter = memo(Filter);
+
+export default MemoizedFilter;

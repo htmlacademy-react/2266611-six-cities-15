@@ -1,2 +1,2 @@
-import PremiumBadge from './ui/premium-badge';
-export default PremiumBadge;
+import MemoizedPremiumBadge from './ui/premium-badge';
+export default MemoizedPremiumBadge;

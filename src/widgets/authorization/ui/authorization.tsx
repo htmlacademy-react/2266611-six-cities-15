@@ -1,3 +1,4 @@
+import { useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../../shared/enum';
 import { getRandomItemFromArray } from '../../../shared/lib/utils';
@@ -12,9 +13,9 @@ const Authorization = (): JSX.Element => {
   const randomCity = getRandomItemFromArray(CITIES);
   const { name: city } = randomCity;
 
-  const handleLinkClick = () => {
+  const handleLinkClick = useCallback(() => {
     changeCity(randomCity);
-  };
+  }, [changeCity, randomCity]);
 
   return (
     <div className="page__login-container container">

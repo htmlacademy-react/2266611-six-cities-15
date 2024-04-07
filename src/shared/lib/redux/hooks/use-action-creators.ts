@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { TAppDispatch } from '../types/store-types';
+import { TAppDispatch } from '../../../../types';
 import { ActionCreatorsMapObject, bindActionCreators, AsyncThunk, ActionCreator } from '@reduxjs/toolkit';
 import { useMemo } from 'react';
 

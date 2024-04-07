@@ -1,2 +1,2 @@
-import Footer from './ui/footer';
-export default Footer;
+import MemoizedFooter from './ui/footer';
+export default MemoizedFooter;

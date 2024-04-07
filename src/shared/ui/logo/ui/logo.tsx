@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { getLogoSize } from '../lib/get-logo-size';
+import { memo } from 'react';
 
 type LogoProps = {
   type: 'header' | 'footer';
@@ -26,4 +27,6 @@ const Logo = ({ type, isActive = false, to }: LogoProps): JSX.Element => {
   );
 };
 
-export default Logo;
+const MemoizedLogo = memo(Logo);
+
+export default MemoizedLogo;

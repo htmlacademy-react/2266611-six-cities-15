@@ -43,7 +43,7 @@
   width: 24px;
   height: 4px;
   border-radius: 50%;
-  background: rgba(0, 0, 0, 0.2);
+  background: #00000033;
   animation: animShadow 0.4s ease-in-out infinite alternate;
 }
 

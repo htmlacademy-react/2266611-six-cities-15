@@ -1,8 +1,8 @@
 import { getSortedOffersByCity } from '../lib/get-sorted-offers-by-city';
 import { useAppSelector, getPreviewOffers } from '../../../shared/lib/redux';
 
-import Card from '../../../entities/card';
-import Bookmark from '../../../features/bookmark';
+import MemoizedCard from '../../../entities/card';
+import MemoizedBookmark from '../../../features/bookmark';
 
 const SavedList = (): JSX.Element => {
   const offers = useAppSelector(getPreviewOffers);
@@ -24,12 +24,12 @@ const SavedList = (): JSX.Element => {
             </div>
             <div className="favorites__places">
               {offersList.map((offer) => (
-                <Card
+                <MemoizedCard
                   key={offer.id}
                   offer={offer}
                   sectionName="favorites"
                   userAction={
-                    <Bookmark
+                    <MemoizedBookmark
                       sectionName="place-card"
                       isFavorite={offer.isFavorite}
                     />

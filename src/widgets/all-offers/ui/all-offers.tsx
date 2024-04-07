@@ -1,21 +1,18 @@
-import { useState } from 'react';
-import { Nullable } from 'vitest';
-import { useAppSelector } from '../../../shared/lib/redux';
-import { TPreviewOffer } from '../../../shared/types/offer';
 import { getCurrentOffers } from '../../../entities/offers';
-import { getCurrentCity } from '../../../shared/lib/redux';
-import { getPreviewOffersStatusObject } from '../../../shared/lib/redux';
+import {
+  getCurrentCity,
+  getPreviewOffersStatusObject,
+  useAppSelector
+} from '../../../shared/lib/redux';
 
-import Sort from '../../../features/sort';
+import MemoizedSort from '../../../features/sort';
 import Map from '../../../features/map';
-import Bookmark from '../../../features/bookmark';
-import Card from '../../../entities/card';
+import MemoizedBookmark from '../../../features/bookmark';
+import MemoizedCard from '../../../entities/card';
 import NoOffers from './no-offers';
 import ErrorOffers from './error-offers';
 
 const AllOffers = (): JSX.Element => {
-  const [activeCard, setActiveCard] = useState<Nullable<TPreviewOffer>>(null);
-  const handleCardHover = (offer: Nullable<TPreviewOffer>) => setActiveCard(offer);
   const currentCity = useAppSelector(getCurrentCity);
   const { name, location } = currentCity;
   const currentOffers = useAppSelector(getCurrentOffers);
@@ -35,21 +32,21 @@ const AllOffers = (): JSX.Element => {
         <section className="cities__places places">
           <h2 className="visually-hidden">Places</h2>
           <b className="places__found">{currentOffers.length} place{currentOffers.length > 1 && 's'} to stay in {name}</b>
-          <Sort />
+          <MemoizedSort />
           <div className="cities__places-list places__list tabs__content">
 
             {currentOffers.map((offer) => (
-              <Card
+              <MemoizedCard
                 key={offer.id}
                 offer={offer}
                 sectionName='cities'
                 userAction={
-                  <Bookmark
+                  <MemoizedBookmark
                     sectionName="place-card"
                     isFavorite={offer.isFavorite}
                   />
                 }
-                onCardHover={handleCardHover}
+                hovered
               />
             ))}
 
@@ -59,7 +56,6 @@ const AllOffers = (): JSX.Element => {
           <Map
             sectionName="cities"
             offers={currentOffers}
-            balloonId={activeCard?.id}
             location={location}
           />
         </div>

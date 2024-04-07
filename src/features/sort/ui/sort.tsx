@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { useState } from 'react';
+import { useState, useCallback, memo } from 'react';
 import { SORT_OPTIONS, offersActions } from '../../../entities/offers';
 import { useAppSelector, getCurrentSortOption, useActionCreators } from '../../../shared/lib/redux';
 import { useOutsideClick } from '../../../shared/lib/react';
@@ -9,12 +9,14 @@ const Sort = (): JSX.Element => {
   const currentSortOption = useAppSelector(getCurrentSortOption);
   const [isOpenedSortOptions, setIsOpenedSortOptions] = useState(false);
 
-  const handleSortOptionChange = (option: string) => {
+  const handleSortOptionChange = useCallback((option: string) => {
     changeSortOption(option);
     setIsOpenedSortOptions(false);
-  };
+  }, [changeSortOption]);
 
-  const handleSortOptionClick = () => setIsOpenedSortOptions(true);
+  const handleSortOptionClick = useCallback(() => {
+    setIsOpenedSortOptions(true);
+  }, []);
 
   const sortRef = useOutsideClick(() => setIsOpenedSortOptions(false));
 
@@ -49,4 +51,6 @@ const Sort = (): JSX.Element => {
   );
 };
 
-export default Sort;
+const MemoizedSort = memo(Sort);
+
+export default MemoizedSort;

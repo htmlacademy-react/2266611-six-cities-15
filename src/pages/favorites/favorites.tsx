@@ -1,13 +1,13 @@
 import Layout from '../../shared/layout';
-import Header from '../../widgets/header';
-import Footer from '../../widgets/footer';
+import MemoizedHeader from '../../widgets/header';
+import MemoizedFooter from '../../widgets/footer';
 import SavedList from '../../widgets/saved-list';
 
 const Favorites = (): JSX.Element => (
   <Layout
     wrapper="page"
     title="6 cities: favorites"
-    header={<Header />}
+    header={<MemoizedHeader />}
     content={
       <main className="page__main page__main--favorites">
         <div className="page__favorites-container container">
@@ -15,7 +15,7 @@ const Favorites = (): JSX.Element => (
         </div>
       </main>
     }
-    footer={<Footer />}
+    footer={<MemoizedFooter />}
   />
 );
 

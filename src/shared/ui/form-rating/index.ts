@@ -1,2 +1,2 @@
-import FormRating from './ui/form-rating';
-export default FormRating;
+import MemoizedFormRating from './ui/form-rating';
+export default MemoizedFormRating;

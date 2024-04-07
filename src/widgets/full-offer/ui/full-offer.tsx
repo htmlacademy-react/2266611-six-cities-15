@@ -1,19 +1,23 @@
 import clsx from 'clsx';
 import { Navigate } from 'react-router-dom';
 import { capitalizeFirstLetter } from '../../../shared/lib/utils';
-import { getPreviewOffers, getFullOffer, getNearbyOffers } from '../../../shared/lib/redux/selectors/selectors';
-import { useAppSelector } from '../../../shared/lib/redux';
+import {
+  getPreviewOffers,
+  getFullOffer,
+  getNearbyOffers,
+  getAuthorizationStatus,
+  useAppSelector
+} from '../../../shared/lib/redux';
 import { AuthorizationStatus, AppRoute } from '../../../shared/enum';
 import { getSortedComments } from '../../../entities/reviews/model/selectors';
-import { getAuthorizationStatus } from '../../../shared/lib/redux/selectors/selectors';
 import { MAX_IMAGES_COUNT } from '../const';
 
 import Map from '../../../features/map';
 import Feedback from '../../../features/feedback';
-import Bookmark from '../../../features/bookmark';
-import Review from '../../../entities/reviews';
-import PremiumBadge from '../../../shared/ui/premium-badge';
-import StarRating from '../../../shared/ui/star-rating';
+import MemoizedBookmark from '../../../features/bookmark';
+import MemoizedReview from '../../../entities/reviews';
+import MemoizedPremiumBadge from '../../../shared/ui/premium-badge';
+import MemoizedStarRating from '../../../shared/ui/star-rating';
 
 const FullOffer = (): JSX.Element => {
   const currentFullOffer = useAppSelector(getFullOffer);
@@ -61,20 +65,20 @@ const FullOffer = (): JSX.Element => {
       <div className="offer__container container">
         <div className="offer__wrapper">
 
-          {isPremium && <PremiumBadge sectionName="offer" />}
+          {isPremium && <MemoizedPremiumBadge sectionName="offer" />}
 
           <div className="offer__name-wrapper">
             <h1 className="offer__name">
               {title}
             </h1>
 
-            <Bookmark
+            <MemoizedBookmark
               sectionName="offer"
               isFavorite={isFavorite}
             />
           </div>
 
-          <StarRating
+          <MemoizedStarRating
             sectionName="offer"
             rating={rating}
             hasInitialValue
@@ -133,7 +137,7 @@ const FullOffer = (): JSX.Element => {
 
             <ul className="reviews__list">
               {sortedComments.map((sortedComment) => (
-                <Review
+                <MemoizedReview
                   key={sortedComment.id}
                   sortedComment={sortedComment}
                 />)
@@ -149,7 +153,6 @@ const FullOffer = (): JSX.Element => {
 
       <Map
         sectionName="offer"
-        balloonId={currentFullOffer.id}
         location={city.location}
         offers={currentAndNearbyOffers}
       />

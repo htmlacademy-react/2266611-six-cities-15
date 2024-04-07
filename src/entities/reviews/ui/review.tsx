@@ -1,6 +1,8 @@
 import dayjs from 'dayjs';
+import { memo } from 'react';
 import { TComment } from '../../../shared/types/comment';
-import StarRating from '../../../shared/ui/star-rating';
+
+import MemoizedStarRating from '../../../shared/ui/star-rating';
 
 type ReviewProps = {
   sortedComment: TComment;
@@ -20,7 +22,7 @@ const Review = ({ sortedComment }: ReviewProps): JSX.Element => {
         </span>
       </div>
       <div className="reviews__info">
-        <StarRating sectionName="reviews" rating={rating} />
+        <MemoizedStarRating sectionName="reviews" rating={rating} />
         <p className="reviews__text">
           {comment}
         </p>
@@ -32,4 +34,6 @@ const Review = ({ sortedComment }: ReviewProps): JSX.Element => {
   );
 };
 
-export default Review;
+const MemoizedReview = memo(Review);
+
+export default MemoizedReview;

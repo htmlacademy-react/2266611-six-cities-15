@@ -1,35 +1,37 @@
 import clsx from 'clsx';
-import { ReactNode } from 'react';
+import { offersActions } from '../../offers';
+import { ReactNode, memo } from 'react';
 import { Link, generatePath } from 'react-router-dom';
+import { useActionCreators } from '../../../shared/lib/redux';
 import { TPreviewOffer } from '../../../shared/types/offer';
 import { capitalizeFirstLetter } from '../../../shared/lib/utils';
 import { AppRoute } from '../../../shared/enum';
 import { getImageSize } from '../lib/get-image-size';
-import { Nullable } from 'vitest';
 
-import StarRating from '../../../shared/ui/star-rating';
-import PremiumBadge from '../../../shared/ui/premium-badge';
+import MemoizedStarRating from '../../../shared/ui/star-rating';
+import MemoizedPremiumBadge from '../../../shared/ui/premium-badge';
 
 type CardProps = {
   offer: TPreviewOffer;
   sectionName: string;
   userAction: ReactNode;
-  onCardHover?: (offer: Nullable<TPreviewOffer>) => void;
+  hovered?: boolean;
 }
 
-const Card = ({ offer, sectionName, userAction, onCardHover }: CardProps): JSX.Element => {
+const Card = ({ offer, sectionName, userAction, hovered }: CardProps): JSX.Element => {
   const { id, title, type, price, previewImage, isPremium, rating } = offer;
   const { width, height } = getImageSize(sectionName);
+  const { setActiveId } = useActionCreators(offersActions);
 
   return (
     <article
       className={clsx(`${sectionName}__card`, 'place-card')}
-      onMouseEnter={() => onCardHover?.(offer)}
-      onMouseLeave={() => onCardHover?.(null)}
+      onMouseEnter={() => hovered && setActiveId(id)}
+      onMouseLeave={() => hovered && setActiveId(undefined)}
     >
 
       {/* Premium значок */}
-      {isPremium && <PremiumBadge sectionName="place-card" />}
+      {isPremium && <MemoizedPremiumBadge sectionName="place-card" />}
 
       {/* Изображение-ссылка */}
       <div className={clsx(`${sectionName}__image-wrapper`, 'place-card__image-wrapper')}>
@@ -59,7 +61,7 @@ const Card = ({ offer, sectionName, userAction, onCardHover }: CardProps): JSX.E
         </div>
 
         {/* Звёздный рейтинг */}
-        <StarRating sectionName='place-card' rating={rating} />
+        <MemoizedStarRating sectionName='place-card' rating={rating} />
 
         {/* Заголовок-ссылка */}
         <h2 className="place-card__name">
@@ -74,4 +76,6 @@ const Card = ({ offer, sectionName, userAction, onCardHover }: CardProps): JSX.E
   );
 };
 
-export default Card;
+const MemoizedCard = memo(Card);
+
+export default MemoizedCard;

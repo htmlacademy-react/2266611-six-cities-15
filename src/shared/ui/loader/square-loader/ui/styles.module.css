@@ -22,7 +22,7 @@
   content: '';
   width: 48px;
   height: 5px;
-  background: rgba(0, 0, 0, 0.2);
+  background: #00000033;
   position: absolute;
   top: 60px;
   left: 0;

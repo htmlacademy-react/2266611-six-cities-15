@@ -1,2 +1,2 @@
-import StarRating from './ui/star-rating';
-export default StarRating;
+import MemoizedStarRating from './ui/star-rating';
+export default MemoizedStarRating;

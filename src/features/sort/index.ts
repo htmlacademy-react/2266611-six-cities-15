@@ -1,2 +1,2 @@
-import Sort from './ui/sort';
-export default Sort;
+import MemoizedSort from './ui/sort';
+export default MemoizedSort;

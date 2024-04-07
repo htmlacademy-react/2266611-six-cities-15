@@ -1,11 +1,10 @@
-import { useState, ChangeEvent, FormEvent, useEffect } from 'react';
+import { useState, ChangeEvent, FormEvent, useEffect, useCallback } from 'react';
 import { RATINGS, MIN_COMMENT_LENGTH, MAX_COMMENT_LENGTH } from '../const';
-import { useActionCreators, useAppSelector } from '../../../shared/lib/redux';
-import { getAddCommentStatusObject } from '../../../shared/lib/redux';
+import { useActionCreators, useAppSelector, getAddCommentStatusObject } from '../../../shared/lib/redux';
 import { reviewsActions } from '../../../entities/reviews';
 import styles from './styles.module.css';
 
-import FormRating from '../../../shared/ui/form-rating';
+import MemoizedFormRating from '../../../shared/ui/form-rating';
 
 type FeedbackProps = {
   offerId: string;
@@ -21,12 +20,12 @@ const Feedback = ({ offerId }: FeedbackProps): JSX.Element => {
     review: ''
   });
 
-  const handleFormDataChange = (evt: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleFormDataChange = useCallback((evt: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = evt.target;
     setFormData({ ...formData, [name]: value });
-  };
+  }, [formData]);
 
-  const handleFormSubmit = (evt: FormEvent<HTMLFormElement>) => {
+  const handleFormSubmit = useCallback((evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
 
     addReview({
@@ -34,7 +33,7 @@ const Feedback = ({ offerId }: FeedbackProps): JSX.Element => {
       comment: formData.review,
       rating: +formData.rating
     });
-  };
+  }, [addReview, formData, offerId]);
 
   const clearFormData = () => setFormData({
     rating: '0',
@@ -64,7 +63,7 @@ const Feedback = ({ offerId }: FeedbackProps): JSX.Element => {
 
       <div className="reviews__rating-form form__rating">
         {RATINGS.map(({ value, title }) => (
-          <FormRating
+          <MemoizedFormRating
             key={title}
             title={title}
             value={value}

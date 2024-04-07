@@ -1,4 +1,4 @@
-import { TRootState } from '../types/store-types';
+import { TRootState } from '../../../../types';
 import { createStatusObject } from './create-status-object';
 
 export const getPreviewOffers = (state: TRootState) => state.offers.previewOffers;
@@ -19,6 +19,8 @@ export const getLoginStatus = (state: TRootState) => state.user.loginStatus;
 export const getUserData = (state: TRootState) => state.user.userData;
 
 export const getCurrentCity = (state: TRootState) => state.city.currentCity;
+
+export const getActiveId = (state: TRootState) => state.offers.activeId;
 
 export const getCurrentSortOption = (state: TRootState) => state.offers.currentSortOption;
 
