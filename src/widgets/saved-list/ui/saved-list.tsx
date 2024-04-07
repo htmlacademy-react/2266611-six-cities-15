@@ -1,19 +1,25 @@
 import { getSortedOffersByCity } from '../lib/get-sorted-offers-by-city';
-import { useAppSelector, getPreviewOffers } from '../../../shared/lib/redux';
+import { useAppSelector, getFavoriteOffers } from '../../../shared/lib/redux';
 
 import MemoizedCard from '../../../entities/card';
 import MemoizedBookmark from '../../../features/bookmark';
+import EmptySavedList from './empty-saved-list';
 
 const SavedList = (): JSX.Element => {
-  const offers = useAppSelector(getPreviewOffers);
-  const favoriteOffers = getSortedOffersByCity(offers);
+  const favoriteOffers = useAppSelector(getFavoriteOffers);
+  const favoriteSortedOffers = getSortedOffersByCity(favoriteOffers);
+  const isEmpty = favoriteOffers.length === 0;
+
+  if (isEmpty) {
+    return <EmptySavedList />;
+  }
 
   return (
     <section className="favorites">
       <h1 className="favorites__title">Saved listing</h1>
 
       <ul className="favorites__list">
-        {Object.entries(favoriteOffers).map(([name, offersList]) => (
+        {Object.entries(favoriteSortedOffers).map(([name, offersList]) => (
           <li key={name} className="favorites__locations-items">
             <div className="favorites__locations locations locations--current">
               <div className="locations__item">

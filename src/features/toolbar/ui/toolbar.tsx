@@ -1,6 +1,7 @@
 import {
   useAppSelector,
   getUserData,
+  getFavoriteOffers,
   getAuthorizationStatus,
   useActionCreators
 } from '../../../shared/lib/redux';
@@ -11,6 +12,7 @@ import { Link } from 'react-router-dom';
 
 const Toolbar = (): JSX.Element => {
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
+  const favoriteOffers = useAppSelector(getFavoriteOffers);
   const userData = useAppSelector(getUserData);
   const { logOutAction } = useActionCreators(userActions);
 
@@ -35,7 +37,7 @@ const Toolbar = (): JSX.Element => {
                   >
                   </div>
                   <span className="header__user-name user__name">{userData?.email}</span>
-                  <span className="header__favorite-count">3</span>
+                  <span className="header__favorite-count">{favoriteOffers.length}</span>
                 </Link>
               </li>
               <li className="header__nav-item">

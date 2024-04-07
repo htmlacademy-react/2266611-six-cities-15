@@ -1,13 +1,14 @@
 import { useActionCreators } from '../../../shared/lib/redux';
 import { offersActions } from '../../../entities/offers';
+import { useCallback } from 'react';
 import styles from './styles.module.css';
 
 const ErrorOffers = (): JSX.Element => {
   const { fetchPreviewOffers } = useActionCreators(offersActions);
 
-  const handleButtonClick = () => {
+  const handleButtonClick = useCallback(() => {
     fetchPreviewOffers();
-  };
+  }, [fetchPreviewOffers]);
 
   return (
     <div className="cities">

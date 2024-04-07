@@ -14,7 +14,7 @@ type THost = {
   isPro: boolean;
 }
 
-type TBasicOffer = {
+export type TPreviewOffer = {
   id: string;
   title: string;
   type: string;
@@ -24,13 +24,10 @@ type TBasicOffer = {
   isFavorite: boolean;
   isPremium: boolean;
   rating: number;
+  previewImage?: string;
 }
 
-export type TPreviewOffer = TBasicOffer & {
-  previewImage: string;
-};
-
-export type TFullOffer = TBasicOffer & {
+export type TFullOffer = TPreviewOffer & {
   description: string;
   images: string[];
   goods: string[];
@@ -38,3 +35,8 @@ export type TFullOffer = TBasicOffer & {
   bedrooms: number;
   maxAdults: number;
 }
+
+export type TFavoriteStatus = {
+  offerId: string;
+  status: number;
+};
