@@ -44,6 +44,9 @@ export const offersSlice = createSlice({
     setActiveId(state, action: PayloadAction<string | undefined>) {
       state.activeId = action.payload;
     },
+    clearFavorites(state) {
+      state.favoriteOffers = [];
+    },
   },
   extraReducers: (builder) => {
     builder

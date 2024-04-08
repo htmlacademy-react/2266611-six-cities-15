@@ -6,20 +6,35 @@ import {
   useActionCreators
 } from '../../../shared/lib/redux';
 import { AuthorizationStatus, AppRoute } from '../../../shared/enum';
+import { offersActions } from '../../../entities/offers';
 import { userActions } from '../../../entities/user';
 import { useCallback, memo } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
 
 const Toolbar = (): JSX.Element => {
+  const { id: offerId } = useParams();
   const location = useLocation();
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
   const favoriteOffers = useAppSelector(getFavoriteOffers);
   const userData = useAppSelector(getUserData);
   const { logoutAction } = useActionCreators(userActions);
+  const { clearFavorites, fetchPreviewOffers, fetchFullOffer } = useActionCreators(offersActions);
 
   const handleSignOutClick = useCallback(() => {
-    logoutAction();
-  }, [logoutAction]);
+    logoutAction().then(() => {
+      clearFavorites();
+      fetchPreviewOffers();
+      if (offerId) {
+        fetchFullOffer(offerId);
+      }
+    });
+  }, [
+    logoutAction,
+    clearFavorites,
+    fetchPreviewOffers,
+    fetchFullOffer,
+    offerId
+  ]);
 
   return (
     <nav className="header__nav">
