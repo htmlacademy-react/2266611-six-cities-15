@@ -1,8 +1,11 @@
 import { getCurrentOffers } from '../../../entities/offers';
+import { offersActions } from '../../../entities/offers';
+import { useCallback } from 'react';
 import {
   getCurrentCity,
   getPreviewOffersStatusObject,
-  useAppSelector
+  useAppSelector,
+  useActionCreators
 } from '../../../shared/lib/redux';
 
 import MemoizedSort from '../../../features/sort';
@@ -10,20 +13,25 @@ import Map from '../../../features/map';
 import MemoizedBookmark from '../../../features/bookmark';
 import MemoizedCard from '../../../entities/card';
 import NoOffers from './no-offers';
-import ErrorOffers from './error-offers';
+import ServerError from '../../../shared/ui/server-error';
 
 const AllOffers = (): JSX.Element => {
   const currentCity = useAppSelector(getCurrentCity);
   const { name, location } = currentCity;
   const currentOffers = useAppSelector(getCurrentOffers);
   const previewOffersStatus = useAppSelector(getPreviewOffersStatusObject);
+  const { fetchPreviewOffers } = useActionCreators(offersActions);
+
+  const handleRefreshClick = useCallback(() => {
+    fetchPreviewOffers();
+  }, [fetchPreviewOffers]);
 
   if (previewOffersStatus.isFailed) {
-    return <ErrorOffers />;
+    return <ServerError callback={handleRefreshClick} />;
   }
 
   if (!currentOffers.length) {
-    return <NoOffers city={name}/>;
+    return <NoOffers city={name} />;
   }
 
   return (
