@@ -9,21 +9,17 @@ import AppRoutes from './router/app-routes';
 const App = (): JSX.Element => {
   const { checkAuthAction } = useActionCreators(userActions);
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
-  const { fetchFavoriteOffers, fetchPreviewOffers } = useActionCreators(offersActions);
+  const { fetchFavoriteOffers } = useActionCreators(offersActions);
 
   useEffect(() => {
     checkAuthAction();
 
     if (authorizationStatus === AuthorizationStatus.Auth) {
       fetchFavoriteOffers();
-      return;
     }
-
-    fetchPreviewOffers().unwrap();
   }, [
     checkAuthAction,
     fetchFavoriteOffers,
-    fetchPreviewOffers,
     authorizationStatus
   ]);
 

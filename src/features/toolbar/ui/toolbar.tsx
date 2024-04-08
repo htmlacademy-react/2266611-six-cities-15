@@ -15,11 +15,11 @@ const Toolbar = (): JSX.Element => {
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
   const favoriteOffers = useAppSelector(getFavoriteOffers);
   const userData = useAppSelector(getUserData);
-  const { logOutAction } = useActionCreators(userActions);
+  const { logoutAction } = useActionCreators(userActions);
 
   const handleSignOutClick = useCallback(() => {
-    logOutAction();
-  }, [logOutAction]);
+    logoutAction();
+  }, [logoutAction]);
 
   return (
     <nav className="header__nav">

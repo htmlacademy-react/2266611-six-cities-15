@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { Nullable } from 'vitest';
 import { AuthorizationStatus, NameSpace, APIStatus } from '../../../shared/enum';
-import { checkAuthAction, logOutAction, loginAction } from '../api/thunk';
+import { checkAuthAction, logoutAction, loginAction } from '../api/thunk';
 import { TUser } from '../../../shared/types/user';
 
 type UserProcess = {
@@ -41,11 +41,11 @@ export const userSlice = createSlice({
         state.authorizationStatus = AuthorizationStatus.NoAuth;
         state.loginStatus = APIStatus.Failed;
       })
-      .addCase(logOutAction.fulfilled, (state) => {
+      .addCase(logoutAction.fulfilled, (state) => {
         state.authorizationStatus = AuthorizationStatus.NoAuth;
         state.userData = null;
       });
   },
 });
 
-export const userActions = { checkAuthAction, loginAction, logOutAction };
+export const userActions = { checkAuthAction, loginAction, logoutAction };

@@ -22,7 +22,7 @@ export const loginAction = createAppAsyncThunk<TUser, TAuthData>(
   }
 );
 
-export const logOutAction = createAppAsyncThunk<void, undefined>(
+export const logoutAction = createAppAsyncThunk<void, undefined>(
   'user/logout',
   async (_arg, { extra: api }) => {
     await api.delete(APIRoute.Logout);
