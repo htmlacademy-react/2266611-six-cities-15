@@ -14,6 +14,10 @@ export const getComments = (state: TRootState) => state.reviews.comments;
 export const getCommentsStatus = (state: TRootState) => state.reviews.commentsStatus;
 export const getAddCommentStatus = (state: TRootState) => state.reviews.addCommentStatus;
 
+export const getFavoriteOffers = (state: TRootState) => state.offers.favoriteOffers;
+export const getFavoriteOffersStatus = (state: TRootState) => state.offers.favoriteOffersStatus;
+export const getFavoriteOfferStatus = (state: TRootState) => state.offers.favoriteOfferStatus;
+
 export const getAuthorizationStatus = (state: TRootState) => state.user.authorizationStatus;
 export const getLoginStatus = (state: TRootState) => state.user.loginStatus;
 export const getUserData = (state: TRootState) => state.user.userData;
@@ -30,3 +34,5 @@ export const getNearbyOffersStatusObject = createStatusObject(getNearbyOffersSta
 export const getCommentsStatusObject = createStatusObject(getCommentsStatus);
 export const getAddCommentStatusObject = createStatusObject(getAddCommentStatus);
 export const getLoginStatusObject = createStatusObject(getLoginStatus);
+export const getFavoriteOffersStatusObject = createStatusObject(getFavoriteOffersStatus);
+export const getFavoriteOfferStatusObject = createStatusObject(getFavoriteOfferStatus);

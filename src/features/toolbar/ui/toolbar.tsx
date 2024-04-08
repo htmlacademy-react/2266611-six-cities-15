@@ -1,22 +1,25 @@
 import {
   useAppSelector,
   getUserData,
+  getFavoriteOffers,
   getAuthorizationStatus,
   useActionCreators
 } from '../../../shared/lib/redux';
 import { AuthorizationStatus, AppRoute } from '../../../shared/enum';
 import { userActions } from '../../../entities/user';
 import { useCallback, memo } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const Toolbar = (): JSX.Element => {
+  const location = useLocation();
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
+  const favoriteOffers = useAppSelector(getFavoriteOffers);
   const userData = useAppSelector(getUserData);
-  const { logOutAction } = useActionCreators(userActions);
+  const { logoutAction } = useActionCreators(userActions);
 
   const handleSignOutClick = useCallback(() => {
-    logOutAction();
-  }, [logOutAction]);
+    logoutAction();
+  }, [logoutAction]);
 
   return (
     <nav className="header__nav">
@@ -35,13 +38,13 @@ const Toolbar = (): JSX.Element => {
                   >
                   </div>
                   <span className="header__user-name user__name">{userData?.email}</span>
-                  <span className="header__favorite-count">3</span>
+                  <span className="header__favorite-count">{favoriteOffers.length}</span>
                 </Link>
               </li>
               <li className="header__nav-item">
                 <Link
                   className="header__nav-link"
-                  to="/"
+                  to={location.pathname}
                   onClick={handleSignOutClick}
                 >
                   <span className="header__signout">Sign out</span>

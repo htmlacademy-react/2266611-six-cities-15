@@ -1,21 +1,12 @@
-import { useCallback } from 'react';
-import { Link } from 'react-router-dom';
-import { AppRoute } from '../../../shared/enum';
 import { getRandomItemFromArray } from '../../../shared/lib/utils';
 import { CITIES } from '../../../entities/city/const';
-import { useActionCreators } from '../../../shared/lib/redux';
-import { cityActions } from '../../../entities/city';
 
 import Register from '../../../features/register';
+import Location from '../../../features/location';
 
 const Authorization = (): JSX.Element => {
-  const { changeCity } = useActionCreators(cityActions);
   const randomCity = getRandomItemFromArray(CITIES);
   const { name: city } = randomCity;
-
-  const handleLinkClick = useCallback(() => {
-    changeCity(randomCity);
-  }, [changeCity, randomCity]);
 
   return (
     <div className="page__login-container container">
@@ -24,15 +15,7 @@ const Authorization = (): JSX.Element => {
         <Register />
       </section>
       <section className="locations locations--login locations--current">
-        <div className="locations__item">
-          <Link
-            className="locations__item-link"
-            to={AppRoute.Root}
-            onClick={handleLinkClick}
-          >
-            <span>{city}</span>
-          </Link>
-        </div>
+        <Location city={city} />
       </section>
     </div>
   );

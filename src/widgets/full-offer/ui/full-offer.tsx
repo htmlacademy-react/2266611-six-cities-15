@@ -2,6 +2,7 @@ import clsx from 'clsx';
 import { Navigate } from 'react-router-dom';
 import { capitalizeFirstLetter } from '../../../shared/lib/utils';
 import {
+  getComments,
   getPreviewOffers,
   getFullOffer,
   getNearbyOffers,
@@ -25,6 +26,7 @@ const FullOffer = (): JSX.Element => {
   const offers = useAppSelector(getPreviewOffers);
   const currentOffer = [...offers].filter((offer) => offer.id === currentFullOffer?.id);
   const currentAndNearbyOffers = [...nearbyOffers, ...currentOffer];
+  const allComments = useAppSelector(getComments);
   const sortedComments = useAppSelector(getSortedComments);
 
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
@@ -74,6 +76,7 @@ const FullOffer = (): JSX.Element => {
 
             <MemoizedBookmark
               sectionName="offer"
+              offerId={currentFullOffer.id}
               isFavorite={isFavorite}
             />
           </div>
@@ -132,7 +135,7 @@ const FullOffer = (): JSX.Element => {
 
           <section className="offer__reviews reviews">
             <h2 className="reviews__title">Reviews &middot;
-              <span className="reviews__amount">{sortedComments.length}</span>
+              <span className="reviews__amount">{allComments.length}</span>
             </h2>
 
             <ul className="reviews__list">

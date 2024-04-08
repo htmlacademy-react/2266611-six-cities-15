@@ -3,7 +3,7 @@ import { INITIAL_SORT_OPTION, NEARBY_OFFERS_COUNT } from '../const';
 import { NameSpace, APIStatus } from '../../../shared/enum';
 import { getRandomItemsFromArray } from '../../../shared/lib/utils';
 import { TPreviewOffer, TFullOffer } from '../../../shared/types/offer';
-import { fetchPreviewOffers, fetchFullOffer, fetchNearbyOffers } from '../api/thunks';
+import { fetchPreviewOffers, fetchFullOffer, fetchNearbyOffers, changeFavoriteOfferStatus, fetchFavoriteOffers } from '../api/thunks';
 import { Nullable } from 'vitest';
 
 type OffersState = {
@@ -14,6 +14,9 @@ type OffersState = {
   fullOfferStatus: APIStatus;
   nearbyOffers: TPreviewOffer[];
   nearbyOffersStatus: APIStatus;
+  favoriteOffers: TPreviewOffer[];
+  favoriteOffersStatus: APIStatus;
+  favoriteOfferStatus: APIStatus;
   currentSortOption: string;
 }
 
@@ -25,6 +28,9 @@ const initialState: OffersState = {
   fullOfferStatus: APIStatus.Idle,
   nearbyOffers: [],
   nearbyOffersStatus: APIStatus.Idle,
+  favoriteOffers: [],
+  favoriteOffersStatus: APIStatus.Idle,
+  favoriteOfferStatus: APIStatus.Idle,
   currentSortOption: INITIAL_SORT_OPTION,
 };
 
@@ -41,6 +47,8 @@ export const offersSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+      // Preview Offers
+      // --------
       .addCase(fetchPreviewOffers.pending, (state) => {
         state.previewOffersStatus = APIStatus.Loading;
       })
@@ -51,6 +59,8 @@ export const offersSlice = createSlice({
       .addCase(fetchPreviewOffers.rejected, (state) => {
         state.previewOffersStatus = APIStatus.Failed;
       })
+      // Full Offer
+      // --------
       .addCase(fetchFullOffer.pending, (state) => {
         state.fullOfferStatus = APIStatus.Loading;
       })
@@ -62,6 +72,8 @@ export const offersSlice = createSlice({
         state.fullOfferStatus = APIStatus.Failed;
         state.fullOffer = null;
       })
+      // Nearby Offers
+      // --------
       .addCase(fetchNearbyOffers.pending, (state) => {
         state.nearbyOffersStatus = APIStatus.Loading;
       })
@@ -72,8 +84,48 @@ export const offersSlice = createSlice({
       .addCase(fetchNearbyOffers.rejected, (state) => {
         state.nearbyOffersStatus = APIStatus.Failed;
         state.nearbyOffers = [];
+      })
+      // Favorite Offers
+      // --------
+      .addCase(fetchFavoriteOffers.pending, (state) => {
+        state.favoriteOffersStatus = APIStatus.Loading;
+      })
+      .addCase(fetchFavoriteOffers.fulfilled, (state, action) => {
+        state.favoriteOffers = action.payload;
+        state.favoriteOffersStatus = APIStatus.Succeeded;
+      })
+      .addCase(fetchFavoriteOffers.rejected, (state) => {
+        state.favoriteOffersStatus = APIStatus.Failed;
+      })
+      // Favorite Offer
+      // --------
+      .addCase(changeFavoriteOfferStatus.pending, (state) => {
+        state.favoriteOfferStatus = APIStatus.Loading;
+      })
+      .addCase(changeFavoriteOfferStatus.fulfilled, (state, action) => {
+        state.favoriteOfferStatus = APIStatus.Succeeded;
+
+        state.fullOffer = action.payload;
+        state.previewOffers = state.previewOffers.map((offer) => (offer.id === action.payload.id) ? action.payload : offer);
+        state.nearbyOffers = state.nearbyOffers.map((offer) => (offer.id === action.payload.id) ? action.payload : offer);
+
+        if (action.payload.isFavorite) {
+          state.favoriteOffers.push(action.payload);
+        } else {
+          state.favoriteOffers = state.favoriteOffers.filter((offer) => offer.id !== action.payload.id);
+        }
+      })
+      .addCase(changeFavoriteOfferStatus.rejected, (state) => {
+        state.favoriteOfferStatus = APIStatus.Failed;
       });
   },
 });
 
-export const offersActions = { ...offersSlice.actions, fetchPreviewOffers, fetchFullOffer, fetchNearbyOffers };
+export const offersActions = {
+  ...offersSlice.actions,
+  fetchPreviewOffers,
+  fetchFullOffer,
+  fetchNearbyOffers,
+  fetchFavoriteOffers,
+  changeFavoriteOfferStatus
+};

@@ -1,8 +1,10 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { AppRoute } from '../../shared/enum';
-import { ScrollToTop } from '../../shared/lib/utils';
+import { ScrollToTop } from '../../shared/lib/react';
 import { useAppSelector, getAuthorizationStatus } from '../../shared/lib/redux';
+import { HistoryRouter } from './history-router';
+import { browserHistory } from '../browser-history';
 
 import PrivateRoute from './private-route';
 import Main from '../../pages/main';
@@ -16,7 +18,7 @@ const AppRoutes = (): JSX.Element => {
 
   return (
     <HelmetProvider>
-      <BrowserRouter>
+      <HistoryRouter history={browserHistory}>
         <ScrollToTop />
         <Routes>
           <Route path={AppRoute.Root} element={<Main />} />
@@ -35,7 +37,7 @@ const AppRoutes = (): JSX.Element => {
           <Route path={AppRoute.Offer} element={<Offer />} />
           <Route path={AppRoute.NotFound} element={<NotFound />} />
         </Routes>
-      </BrowserRouter>
+      </HistoryRouter>
     </HelmetProvider>
   );
 };
