@@ -1,2 +1,2 @@
-import Loader from './ui/balloon-loader';
-export default Loader;
+import BalloonLoader from './ui/balloon-loader';
+export default BalloonLoader;

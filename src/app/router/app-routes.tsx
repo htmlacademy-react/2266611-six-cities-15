@@ -22,7 +22,7 @@ const AppRoutes = (): JSX.Element => {
           <Route path={AppRoute.Root} element={<Main />} />
           <Route path={AppRoute.Login} element={
             <PrivateRoute authorizationStatus={authorizationStatus} isReverse>
-              <Login />
+              <Login authorizationStatus={authorizationStatus} />
             </PrivateRoute>
           }
           />
