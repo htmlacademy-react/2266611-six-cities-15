@@ -3,6 +3,7 @@ import { useActionCreators, useAppSelector, getLoginStatusObject } from '../../.
 import { userActions } from '../../../entities/user';
 import { FormEvent, useState, useCallback } from 'react';
 import { validateEmail, validatePassword } from '../lib/validate-form';
+import { toast } from 'react-toastify';
 import styles from './styles.module.css';
 
 const Register = (): JSX.Element => {
@@ -12,6 +13,10 @@ const Register = (): JSX.Element => {
   const [passwordError, setPasswordError] = useState(false);
   const [emailValue, setEmailValue] = useState('');
   const [passwordValue, setPasswordValue] = useState('');
+
+  if (loginStatus.isFailed) {
+    toast.error('Internal Server Error!', { toastId: 'login' });
+  }
 
   const handleEmailChange = useCallback(({ target }: { target: HTMLInputElement }) => {
     setEmailValue(target.value);
