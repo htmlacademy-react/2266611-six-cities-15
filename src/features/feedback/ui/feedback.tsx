@@ -1,5 +1,5 @@
 import { useState, ChangeEvent, FormEvent, useEffect, useCallback } from 'react';
-import { RATINGS, MIN_COMMENT_LENGTH, MAX_COMMENT_LENGTH } from '../const';
+import { RATINGS, CommentLength } from '../const';
 import { useActionCreators, useAppSelector, getAddCommentStatusObject } from '../../../shared/lib/redux';
 import { reviewsActions } from '../../../entities/reviews';
 import styles from './styles.module.css';
@@ -50,7 +50,7 @@ const Feedback = ({ offerId }: FeedbackProps): JSX.Element => {
     }
   }, [addCommentStatus]);
 
-  const isFormInvalid = formData.review.length > MAX_COMMENT_LENGTH || formData.review.length < MIN_COMMENT_LENGTH || +formData.rating === 0;
+  const isFormInvalid = formData.review.length > CommentLength.Max || formData.review.length < CommentLength.Min || +formData.rating === 0;
 
   return (
     <form
