@@ -50,7 +50,7 @@ const Feedback = ({ offerId }: FeedbackProps): JSX.Element => {
     }
   }, [addCommentStatus]);
 
-  const isFormInvalid = formData.review.length < MIN_COMMENT_LENGTH || +formData.rating === 0;
+  const isFormInvalid = formData.review.length > MAX_COMMENT_LENGTH || formData.review.length < MIN_COMMENT_LENGTH || +formData.rating === 0;
 
   return (
     <form
@@ -79,7 +79,6 @@ const Feedback = ({ offerId }: FeedbackProps): JSX.Element => {
           name="review"
           id="review"
           placeholder="Tell how was your stay, what you like and what can be improved"
-          maxLength={MAX_COMMENT_LENGTH}
           value={formData.review}
           onChange={handleFormDataChange}
           disabled={addCommentStatus.isLoading}
