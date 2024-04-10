@@ -21,7 +21,9 @@ const RATINGS: { value: string; title: string }[] = [
   },
 ];
 
-const MIN_COMMENT_LENGTH = 50;
-const MAX_COMMENT_LENGTH = 300;
+const CommentLength = {
+  Min: 50,
+  Max: 300
+} as const;
 
-export { RATINGS, MIN_COMMENT_LENGTH, MAX_COMMENT_LENGTH };
+export { RATINGS, CommentLength };
