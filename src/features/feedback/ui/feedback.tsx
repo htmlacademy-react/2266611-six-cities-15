@@ -2,7 +2,8 @@ import { useState, ChangeEvent, FormEvent, useEffect, useCallback } from 'react'
 import { RATINGS, CommentLength } from '../const';
 import { useActionCreators, useAppSelector, getAddCommentStatusObject } from '../../../shared/lib/redux';
 import { reviewsActions } from '../../../entities/reviews';
-import styles from './styles.module.css';
+import { ToastMessage, ToastId } from '../../../shared/enum';
+import { toast } from 'react-toastify';
 
 import MemoizedFormRating from '../../../shared/ui/form-rating';
 
@@ -14,7 +15,6 @@ const Feedback = ({ offerId }: FeedbackProps): JSX.Element => {
   const { addReview } = useActionCreators(reviewsActions);
   const addCommentStatus = useAppSelector(getAddCommentStatusObject);
 
-  const [formError, setFormError] = useState(false);
   const [formData, setFormData] = useState({
     rating: '0',
     review: ''
@@ -46,7 +46,7 @@ const Feedback = ({ offerId }: FeedbackProps): JSX.Element => {
     }
 
     if (addCommentStatus.isFailed) {
-      setFormError(true);
+      toast.error(ToastMessage.SomethingWrong, { toastId: ToastId.Comment });
     }
   }, [addCommentStatus]);
 
@@ -73,19 +73,18 @@ const Feedback = ({ offerId }: FeedbackProps): JSX.Element => {
           />
         ))}
       </div>
-      <div className={styles.wrapper}>
-        <textarea
-          className="reviews__textarea form__textarea"
-          name="review"
-          id="review"
-          placeholder="Tell how was your stay, what you like and what can be improved"
-          value={formData.review}
-          onChange={handleFormDataChange}
-          disabled={addCommentStatus.isLoading}
-        >
-        </textarea>
-        {formError && <span className={styles.text}>Oops... Something went wrong. Please try again.</span>}
-      </div>
+
+      <textarea
+        className="reviews__textarea form__textarea"
+        name="review"
+        id="review"
+        placeholder="Tell how was your stay, what you like and what can be improved"
+        value={formData.review}
+        onChange={handleFormDataChange}
+        disabled={addCommentStatus.isLoading}
+      >
+      </textarea>
+
 
       <div className="reviews__button-wrapper">
         <p className="reviews__help">

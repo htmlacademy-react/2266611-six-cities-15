@@ -40,3 +40,13 @@ export enum SortOption {
   HighToLow = 'Price: high to low',
   TopRated = 'Top rated first',
 }
+
+export enum ToastMessage {
+  ISE = 'Internal Server Error!',
+  SomethingWrong = 'Oops... Something went wrong. Please try again.',
+}
+
+export enum ToastId {
+  Login = 'login',
+  Comment = 'comment',
+}
