@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import styles from './styles.module.css';
 import { useAppSelector, getFavoriteOffersStatusObject, getFavoriteOffers } from '../../shared/lib/redux';
 
 import Layout from '../../shared/layout';
@@ -15,11 +16,26 @@ const Favorites = (): JSX.Element => {
 
   return (
     <Layout
-      wrapper={clsx('page', { 'page--main': isLoading, 'page--favorites-empty': isEmpty })}
+      wrapper={clsx('page',
+        {
+          'page--main': isLoading,
+          'page--favorites-empty': isEmpty,
+          [styles.wrapper]: !isEmpty
+        })}
       title="6 cities: favorites"
       header={<MemoizedHeader />}
       content={
-        <main className={clsx('page__main', { 'page__main--index': isLoading, 'page__main--favorites': !isLoading, 'page__main--favorites-empty': isEmpty })}>
+        <main className={
+          clsx('page__main',
+            {
+              'page__main--index': isLoading,
+              'page__main--favorites ': !isLoading,
+              'page__main--favorites-empty': isEmpty,
+              [styles.main]: !isEmpty
+            }
+          )
+        }
+        >
           <div className="page__favorites-container container">
             {isLoading && <HeartLoader />}
             {!isLoading && <SavedList />}
