@@ -14,7 +14,7 @@ The offer page provides extended information about the rental property. The user
 
 ![preview-second-part](https://github.com/heligie/six-cities/assets/120678617/19dd4559-19d1-4282-b34c-07b85aa3b55a)
 
-### Technologies
+## Technologies
 
 ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/css3-%23048110.svg?style=for-the-badge&logo=css3&logoColor=white)
@@ -27,3 +27,11 @@ The offer page provides extended information about the rental property. The user
 [![Feature-Sliced Design][shields-fsd-domain]](https://feature-sliced.design/)
 
 [shields-fsd-domain]: https://img.shields.io/badge/Feature--Sliced-Design?style=for-the-badge&color=F2F2F2&labelColor=262224&logoWidth=10&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAaCAYAAAC3g3x9AAAACXBIWXMAAALFAAACxQGJ1n/vAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAABISURBVHgB7dKxCQAgDETR0w2cws0cys2cwhEUBbsggikCuVekDHwSQFlYo7Q+8KnmtHdFWMdk2cl5wSsbxGSZw8dm8pX9ZHUTMBUgGU2F718AAAAASUVORK5CYII=
+
+- Implemented breaking down the UI into a hierarchy of smaller, reusable React components
+- Used React Hooks: useState, useEffect, useRef, useMemo, useCallback and custom hooks
+- React Router is employed to interact with the address bar (including the use of hooks: useLocation, useParams, useNavigate)
+- With Redux, state is stored globally and can easily be updated or invoked from anywhere in the app
+- Hooks useSelector and useDispatch are used to dispatch actions to the Redux store and to access the stored state there
+- The redux-thunk library is used to work with asynchronous actions
+- The reducers are broken down according to the subject area and combined using the Combine Reducer
