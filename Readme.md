@@ -1,49 +1,37 @@
-# Личный проект «Шесть городов»
+# Six Cities
 
-* Студент: [Ольга Межецкая](https://up.htmlacademy.ru/react/15/user/2266611).
-* Наставник: [Олег Глущенко](https://htmlacademy.ru/profile/id305355).
+An app for travelers who do not want to overpay for rent. They can choose from six popular travel destinations and get the latest rental listings. The map displays blue markers to indicate the property locations.
 
----
+<p align="center"><img width="869" alt="Browser Mockup." src="/preview-image.png"></p>
 
-_Не удаляйте и не изменяйте папки и файлы:_
-_`.editorconfig`, `.gitattributes`, `.gitignore`._
+## Overview
 
----
+The main page displays tabs of cities for which rental offers can be requested: **Paris**, **Cologne**, **Brussels**, **Amsterdam**, **Hamburg**, and **Dusseldorf**. The offers list can be sorted in different ways by the user.
 
-### Памятка
+![preview-first-part](https://github.com/heligie/six-cities/assets/120678617/16836c1e-a379-45f8-8e4e-c73fd1df4cc7)
 
-#### 1. Зарегистрируйтесь на Гитхабе
+The offer page provides extended information about the rental property. The user has the ability to leave a review about the offer and see what others say. Any offer also can be added to favorites.
 
-Если у вас ещё нет аккаунта на [github.com](https://github.com/join), скорее зарегистрируйтесь.
+![preview-second-part](https://github.com/heligie/six-cities/assets/120678617/19dd4559-19d1-4282-b34c-07b85aa3b55a)
 
-#### 2. Создайте форк
+## Technologies
 
-Откройте репозиторий и нажмите кнопку «Fork» в правом верхнем углу. Репозиторий из Академии будет скопирован в ваш аккаунт.
+![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/css3-%23048110.svg?style=for-the-badge&logo=css3&logoColor=white)
+![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)
+![Redux](https://img.shields.io/badge/redux-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white)
+![Axios](https://img.shields.io/badge/Axios-5A29E4?logo=axios&logoColor=fff&style=for-the-badge)
+![Vite](https://img.shields.io/badge/Vite-B73BFE?style=for-the-badge&logo=vite&logoColor=FFD62E)
+[![Feature-Sliced Design][shields-fsd-domain]](https://feature-sliced.design/)
 
-<img width="769" alt="Press 'Fork'" src="https://cloud.githubusercontent.com/assets/259739/20264045/a1ddbf40-aa7a-11e6-9a1a-724a1c0123c8.png">
+[shields-fsd-domain]: https://img.shields.io/badge/Feature--Sliced-Design?style=for-the-badge&color=F2F2F2&labelColor=262224&logoWidth=10&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAaCAYAAAC3g3x9AAAACXBIWXMAAALFAAACxQGJ1n/vAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAABISURBVHgB7dKxCQAgDETR0w2cws0cys2cwhEUBbsggikCuVekDHwSQFlYo7Q+8KnmtHdFWMdk2cl5wSsbxGSZw8dm8pX9ZHUTMBUgGU2F718AAAAASUVORK5CYII=
 
-Получится вот так:
-
-<img width="769" alt="Forked" src="https://cloud.githubusercontent.com/assets/259739/20264122/f63219a6-aa7a-11e6-945a-89818fc7c014.png">
-
-#### 3. Клонируйте репозиторий на свой компьютер
-
-Будьте внимательны: нужно клонировать свой репозиторий (форк), а не репозиторий Академии. Также обратите внимание, что клонировать репозиторий нужно через SSH, а не через HTTPS. Нажмите зелёную кнопку в правой части экрана, чтобы скопировать SSH-адрес вашего репозитория:
-
-<img width="769" alt="SSH" src="https://cloud.githubusercontent.com/assets/259739/20264180/42704126-aa7b-11e6-9ab4-73372b812a53.png">
-
-Клонировать репозиторий можно так:
-
-```
-git clone SSH-адрес_вашего_форка
-```
-
-Команда клонирует репозиторий на ваш компьютер и подготовит всё необходимое для старта работы.
-
-#### 4. Начинайте обучение!
-
----
-
-<a href="https://htmlacademy.ru/intensive/react"><img align="left" width="50" height="50" title="HTML Academy" src="https://up.htmlacademy.ru/static/img/intensive/react/logo-for-github.png"></a>
-
-Репозиторий создан для обучения на профессиональном онлайн‑курсе «[React. Разработка сложных клиентских приложений](https://htmlacademy.ru/intensive/react)» от [HTML Academy](https://htmlacademy.ru).
+- Implemented breaking down the UI into a hierarchy of smaller, reusable React components
+- Used React Hooks: useState, useEffect, useRef, useMemo, useCallback and custom hooks
+- React Router is employed to interact with the address bar (including the use of hooks: useLocation, useParams, useNavigate)
+- With Redux, state is stored globally and can easily be updated or invoked from anywhere in the app
+- Hooks useSelector and useDispatch are used to dispatch actions to the Redux store and to access the stored state there
+- The redux-thunk library is used to work with asynchronous actions
+- The reducers are broken down according to the subject area and combined using the Combine Reducer
